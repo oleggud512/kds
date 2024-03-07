@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DishController;
+use App\Http\Controllers\WaiterController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,4 +20,7 @@ Route::get('/', function () {
 });
 
 Route::resource('dishes', DishController::class)
+    ->only(['index']);
+
+Route::resource('waiters', WaiterController::class)
     ->only(['index']);
