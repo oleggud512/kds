@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DishController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\WaiterController;
 use Illuminate\Support\Facades\Route;
 
@@ -24,3 +25,6 @@ Route::resource('dishes', DishController::class)
 
 Route::resource('waiters', WaiterController::class)
     ->only(['index']);
+
+Route::resource('orders', OrderController::class)
+    ->only(['index', 'store', 'show']);
