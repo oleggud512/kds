@@ -15,20 +15,20 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$Order {
+mixin _$MyOrder {
   int get id => throw _privateConstructorUsedError;
   Waiter get waiter => throw _privateConstructorUsedError;
   dynamic get state => throw _privateConstructorUsedError;
   List<OrderItem> get items => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $OrderCopyWith<Order> get copyWith => throw _privateConstructorUsedError;
+  $MyOrderCopyWith<MyOrder> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $OrderCopyWith<$Res> {
-  factory $OrderCopyWith(Order value, $Res Function(Order) then) =
-      _$OrderCopyWithImpl<$Res, Order>;
+abstract class $MyOrderCopyWith<$Res> {
+  factory $MyOrderCopyWith(MyOrder value, $Res Function(MyOrder) then) =
+      _$MyOrderCopyWithImpl<$Res, MyOrder>;
   @useResult
   $Res call({int id, Waiter waiter, dynamic state, List<OrderItem> items});
 
@@ -36,9 +36,9 @@ abstract class $OrderCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$OrderCopyWithImpl<$Res, $Val extends Order>
-    implements $OrderCopyWith<$Res> {
-  _$OrderCopyWithImpl(this._value, this._then);
+class _$MyOrderCopyWithImpl<$Res, $Val extends MyOrder>
+    implements $MyOrderCopyWith<$Res> {
+  _$MyOrderCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -83,10 +83,10 @@ class _$OrderCopyWithImpl<$Res, $Val extends Order>
 }
 
 /// @nodoc
-abstract class _$$OrderImplCopyWith<$Res> implements $OrderCopyWith<$Res> {
-  factory _$$OrderImplCopyWith(
-          _$OrderImpl value, $Res Function(_$OrderImpl) then) =
-      __$$OrderImplCopyWithImpl<$Res>;
+abstract class _$$MyOrderImplCopyWith<$Res> implements $MyOrderCopyWith<$Res> {
+  factory _$$MyOrderImplCopyWith(
+          _$MyOrderImpl value, $Res Function(_$MyOrderImpl) then) =
+      __$$MyOrderImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({int id, Waiter waiter, dynamic state, List<OrderItem> items});
@@ -96,11 +96,11 @@ abstract class _$$OrderImplCopyWith<$Res> implements $OrderCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$OrderImplCopyWithImpl<$Res>
-    extends _$OrderCopyWithImpl<$Res, _$OrderImpl>
-    implements _$$OrderImplCopyWith<$Res> {
-  __$$OrderImplCopyWithImpl(
-      _$OrderImpl _value, $Res Function(_$OrderImpl) _then)
+class __$$MyOrderImplCopyWithImpl<$Res>
+    extends _$MyOrderCopyWithImpl<$Res, _$MyOrderImpl>
+    implements _$$MyOrderImplCopyWith<$Res> {
+  __$$MyOrderImplCopyWithImpl(
+      _$MyOrderImpl _value, $Res Function(_$MyOrderImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -111,7 +111,7 @@ class __$$OrderImplCopyWithImpl<$Res>
     Object? state = freezed,
     Object? items = null,
   }) {
-    return _then(_$OrderImpl(
+    return _then(_$MyOrderImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -131,8 +131,8 @@ class __$$OrderImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$OrderImpl implements _Order {
-  _$OrderImpl(
+class _$MyOrderImpl implements _MyOrder {
+  _$MyOrderImpl(
       {required this.id,
       required this.waiter,
       this.state = OrderState.inProgress,
@@ -157,14 +157,14 @@ class _$OrderImpl implements _Order {
 
   @override
   String toString() {
-    return 'Order(id: $id, waiter: $waiter, state: $state, items: $items)';
+    return 'MyOrder(id: $id, waiter: $waiter, state: $state, items: $items)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$OrderImpl &&
+            other is _$MyOrderImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.waiter, waiter) || other.waiter == waiter) &&
             const DeepCollectionEquality().equals(other.state, state) &&
@@ -182,16 +182,16 @@ class _$OrderImpl implements _Order {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$OrderImplCopyWith<_$OrderImpl> get copyWith =>
-      __$$OrderImplCopyWithImpl<_$OrderImpl>(this, _$identity);
+  _$$MyOrderImplCopyWith<_$MyOrderImpl> get copyWith =>
+      __$$MyOrderImplCopyWithImpl<_$MyOrderImpl>(this, _$identity);
 }
 
-abstract class _Order implements Order {
-  factory _Order(
+abstract class _MyOrder implements MyOrder {
+  factory _MyOrder(
       {required final int id,
       required final Waiter waiter,
       final dynamic state,
-      final List<OrderItem> items}) = _$OrderImpl;
+      final List<OrderItem> items}) = _$MyOrderImpl;
 
   @override
   int get id;
@@ -203,6 +203,6 @@ abstract class _Order implements Order {
   List<OrderItem> get items;
   @override
   @JsonKey(ignore: true)
-  _$$OrderImplCopyWith<_$OrderImpl> get copyWith =>
+  _$$MyOrderImplCopyWith<_$MyOrderImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

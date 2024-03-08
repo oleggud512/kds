@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_client/src/core/common/extensions/string.dart';
+import 'package:mobile_client/src/router.dart';
 
 @RoutePage()
 class OrderListPage extends StatefulWidget {
@@ -17,7 +18,14 @@ class _OrderListPageState extends State<OrderListPage> {
       appBar: AppBar(
         title: Text("OrderListPage".hardcoded)
       ),
-      body: Container()
+      body: Container(),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          // TODO: can I just leave it 0 to identify that I want to add a new order?
+          context.router.push(EditOrderRoute());
+        },
+        child: const Icon(Icons.add),
+      ),
     );
   }
 }

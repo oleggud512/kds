@@ -6,11 +6,11 @@ import 'package:mobile_client/src/features/waiters/domain/entities/waiter.dart';
 part 'order.freezed.dart';
 
 @freezed
-class Order with _$Order {
-  factory Order({
+class MyOrder with _$MyOrder {
+  factory MyOrder({
     required int id,
     required Waiter waiter,
     @Default(OrderState.inProgress) state,
     @Default([]) List<OrderItem> items,
-  }) = _Order;
+  }) = _MyOrder;
 }

@@ -15,13 +15,74 @@ abstract class _$AppRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
+    EditOrderRoute.name: (routeData) {
+      final pathParams = routeData.inheritedPathParams;
+      final args = routeData.argsAs<EditOrderRouteArgs>(
+          orElse: () => EditOrderRouteArgs(
+                  orderId: pathParams.getInt(
+                'orderId',
+                0,
+              )));
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: EditOrderPage(
+          key: args.key,
+          orderId: args.orderId,
+          order: args.order,
+        ),
+      );
+    },
     OrderListRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const OrderListPage(),
       );
-    }
+    },
   };
+}
+
+/// generated route for
+/// [EditOrderPage]
+class EditOrderRoute extends PageRouteInfo<EditOrderRouteArgs> {
+  EditOrderRoute({
+    Key? key,
+    int orderId = 0,
+    MyOrder? order,
+    List<PageRouteInfo>? children,
+  }) : super(
+          EditOrderRoute.name,
+          args: EditOrderRouteArgs(
+            key: key,
+            orderId: orderId,
+            order: order,
+          ),
+          rawPathParams: {'orderId': orderId},
+          initialChildren: children,
+        );
+
+  static const String name = 'EditOrderRoute';
+
+  static const PageInfo<EditOrderRouteArgs> page =
+      PageInfo<EditOrderRouteArgs>(name);
+}
+
+class EditOrderRouteArgs {
+  const EditOrderRouteArgs({
+    this.key,
+    this.orderId = 0,
+    this.order,
+  });
+
+  final Key? key;
+
+  final int orderId;
+
+  final MyOrder? order;
+
+  @override
+  String toString() {
+    return 'EditOrderRouteArgs{key: $key, orderId: $orderId, order: $order}';
+  }
 }
 
 /// generated route for
