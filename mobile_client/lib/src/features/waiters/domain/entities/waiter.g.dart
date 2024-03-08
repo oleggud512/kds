@@ -1,20 +1,18 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'dish.dart';
+part of 'waiter.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$DishImpl _$$DishImplFromJson(Map<String, dynamic> json) => _$DishImpl(
+_$WaiterImpl _$$WaiterImplFromJson(Map<String, dynamic> json) => _$WaiterImpl(
       id: json['id'] as int,
       name: json['name'] as String,
-      category: json['category'] as String? ?? "",
     );
 
-Map<String, dynamic> _$$DishImplToJson(_$DishImpl instance) =>
+Map<String, dynamic> _$$WaiterImplToJson(_$WaiterImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
-      'category': instance.category,
     };

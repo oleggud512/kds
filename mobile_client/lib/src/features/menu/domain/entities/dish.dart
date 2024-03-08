@@ -8,6 +8,7 @@ class Dish with _$Dish {
   factory Dish({
     required int id,
     required String name,
+    @Default("") String category,
   }) = _Dish;
 
   factory Dish.fromJson(Map<String, dynamic> json) => _$DishFromJson(json);

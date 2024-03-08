@@ -14,11 +14,16 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
+Waiter _$WaiterFromJson(Map<String, dynamic> json) {
+  return _Waiter.fromJson(json);
+}
+
 /// @nodoc
 mixin _$Waiter {
   int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $WaiterCopyWith<Waiter> get copyWith => throw _privateConstructorUsedError;
 }
@@ -98,9 +103,12 @@ class __$$WaiterImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$WaiterImpl implements _Waiter {
   _$WaiterImpl({required this.id, required this.name});
+
+  factory _$WaiterImpl.fromJson(Map<String, dynamic> json) =>
+      _$$WaiterImplFromJson(json);
 
   @override
   final int id;
@@ -121,6 +129,7 @@ class _$WaiterImpl implements _Waiter {
             (identical(other.name, name) || other.name == name));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, name);
 
@@ -129,11 +138,20 @@ class _$WaiterImpl implements _Waiter {
   @pragma('vm:prefer-inline')
   _$$WaiterImplCopyWith<_$WaiterImpl> get copyWith =>
       __$$WaiterImplCopyWithImpl<_$WaiterImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$WaiterImplToJson(
+      this,
+    );
+  }
 }
 
 abstract class _Waiter implements Waiter {
   factory _Waiter({required final int id, required final String name}) =
       _$WaiterImpl;
+
+  factory _Waiter.fromJson(Map<String, dynamic> json) = _$WaiterImpl.fromJson;
 
   @override
   int get id;

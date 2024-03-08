@@ -22,6 +22,7 @@ Dish _$DishFromJson(Map<String, dynamic> json) {
 mixin _$Dish {
   int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
+  String get category => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -33,7 +34,7 @@ abstract class $DishCopyWith<$Res> {
   factory $DishCopyWith(Dish value, $Res Function(Dish) then) =
       _$DishCopyWithImpl<$Res, Dish>;
   @useResult
-  $Res call({int id, String name});
+  $Res call({int id, String name, String category});
 }
 
 /// @nodoc
@@ -51,6 +52,7 @@ class _$DishCopyWithImpl<$Res, $Val extends Dish>
   $Res call({
     Object? id = null,
     Object? name = null,
+    Object? category = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -60,6 +62,10 @@ class _$DishCopyWithImpl<$Res, $Val extends Dish>
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      category: null == category
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -72,7 +78,7 @@ abstract class _$$DishImplCopyWith<$Res> implements $DishCopyWith<$Res> {
       __$$DishImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String name});
+  $Res call({int id, String name, String category});
 }
 
 /// @nodoc
@@ -87,6 +93,7 @@ class __$$DishImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? name = null,
+    Object? category = null,
   }) {
     return _then(_$DishImpl(
       id: null == id
@@ -97,6 +104,10 @@ class __$$DishImplCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      category: null == category
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -104,7 +115,7 @@ class __$$DishImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$DishImpl implements _Dish {
-  _$DishImpl({required this.id, required this.name});
+  _$DishImpl({required this.id, required this.name, this.category = ""});
 
   factory _$DishImpl.fromJson(Map<String, dynamic> json) =>
       _$$DishImplFromJson(json);
@@ -113,10 +124,13 @@ class _$DishImpl implements _Dish {
   final int id;
   @override
   final String name;
+  @override
+  @JsonKey()
+  final String category;
 
   @override
   String toString() {
-    return 'Dish(id: $id, name: $name)';
+    return 'Dish(id: $id, name: $name, category: $category)';
   }
 
   @override
@@ -125,12 +139,14 @@ class _$DishImpl implements _Dish {
         (other.runtimeType == runtimeType &&
             other is _$DishImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.name, name) || other.name == name));
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.category, category) ||
+                other.category == category));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name);
+  int get hashCode => Object.hash(runtimeType, id, name, category);
 
   @JsonKey(ignore: true)
   @override
@@ -147,8 +163,10 @@ class _$DishImpl implements _Dish {
 }
 
 abstract class _Dish implements Dish {
-  factory _Dish({required final int id, required final String name}) =
-      _$DishImpl;
+  factory _Dish(
+      {required final int id,
+      required final String name,
+      final String category}) = _$DishImpl;
 
   factory _Dish.fromJson(Map<String, dynamic> json) = _$DishImpl.fromJson;
 
@@ -156,6 +174,8 @@ abstract class _Dish implements Dish {
   int get id;
   @override
   String get name;
+  @override
+  String get category;
   @override
   @JsonKey(ignore: true)
   _$$DishImplCopyWith<_$DishImpl> get copyWith =>
