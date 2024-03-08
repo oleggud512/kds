@@ -1,0 +1,4 @@
+enum OrderState {
+  inProgress, 
+  closed
+}
