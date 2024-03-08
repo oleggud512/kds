@@ -11,7 +11,11 @@
 import 'package:dio/dio.dart' as _i4;
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
-import 'package:mobile_client/src/core/di/get_it.dart' as _i5;
+import 'package:mobile_client/src/core/di/get_it.dart' as _i7;
+import 'package:mobile_client/src/features/menu/domain/repositories/dish_repository.dart'
+    as _i5;
+import 'package:mobile_client/src/features/menu/infrastructure/repositories/dish_repository_impl.dart'
+    as _i6;
 import 'package:mobile_client/src/router.dart' as _i3;
 
 extension GetItInjectableX on _i1.GetIt {
@@ -28,8 +32,10 @@ extension GetItInjectableX on _i1.GetIt {
     final registerModule = _$RegisterModule();
     gh.lazySingleton<_i3.AppRouter>(() => _i3.AppRouter());
     gh.lazySingleton<_i4.Dio>(() => registerModule.dio);
+    gh.lazySingleton<_i5.DishRepository>(
+        () => _i6.DishRepositoryImpl(gh<_i4.Dio>()));
     return this;
   }
 }
 
-class _$RegisterModule extends _i5.RegisterModule {}
+class _$RegisterModule extends _i7.RegisterModule {}

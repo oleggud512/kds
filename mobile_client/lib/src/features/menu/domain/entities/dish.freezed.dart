@@ -14,11 +14,16 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
+Dish _$DishFromJson(Map<String, dynamic> json) {
+  return _Dish.fromJson(json);
+}
+
 /// @nodoc
 mixin _$Dish {
   int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $DishCopyWith<Dish> get copyWith => throw _privateConstructorUsedError;
 }
@@ -97,9 +102,12 @@ class __$$DishImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$DishImpl implements _Dish {
   _$DishImpl({required this.id, required this.name});
+
+  factory _$DishImpl.fromJson(Map<String, dynamic> json) =>
+      _$$DishImplFromJson(json);
 
   @override
   final int id;
@@ -120,6 +128,7 @@ class _$DishImpl implements _Dish {
             (identical(other.name, name) || other.name == name));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, name);
 
@@ -128,11 +137,20 @@ class _$DishImpl implements _Dish {
   @pragma('vm:prefer-inline')
   _$$DishImplCopyWith<_$DishImpl> get copyWith =>
       __$$DishImplCopyWithImpl<_$DishImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$DishImplToJson(
+      this,
+    );
+  }
 }
 
 abstract class _Dish implements Dish {
   factory _Dish({required final int id, required final String name}) =
       _$DishImpl;
+
+  factory _Dish.fromJson(Map<String, dynamic> json) = _$DishImpl.fromJson;
 
   @override
   int get id;
