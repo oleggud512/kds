@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_client/src/core/common/extensions/string.dart';
 import 'package:mobile_client/src/core/di/inject.dart';
+import 'package:mobile_client/src/core/presentation/confirm_dialog.dart';
 import 'package:mobile_client/src/core/presentation/router/router.dart';
 import 'package:mobile_client/src/features/waiters/domain/services/waiter_auth_service.dart';
 
@@ -16,8 +17,13 @@ class OrderListPage extends StatefulWidget {
 class _OrderListPageState extends State<OrderListPage> {
 
   Future<void> onLogout() async {
+    final isSureLogout = await ConfirmDialog(
+      message: 'Are you sure you want to logout?'.hardcoded
+    ).show(context);
     await inject<WaiterAuthService>().clearWaiterId();
-    if (mounted) context.router.reevaluateGuards();
+    if (isSureLogout == true && mounted) {
+      context.router.reevaluateGuards();
+    }
   }
 
   @override
