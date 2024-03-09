@@ -24,7 +24,7 @@ Route::resource('dishes', DishController::class)
     ->only(['index']);
 
 Route::resource('waiters', WaiterController::class)
-    ->only(['index']);
+    ->only(['index', 'show']);
 
 Route::resource('orders', OrderController::class)
     ->only(['index', 'store', 'show']);

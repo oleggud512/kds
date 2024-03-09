@@ -38,7 +38,7 @@ class WaiterController extends Controller
      */
     public function show(Waiter $waiter)
     {
-        //
+        return response()->json($waiter);
     }
 
     /**

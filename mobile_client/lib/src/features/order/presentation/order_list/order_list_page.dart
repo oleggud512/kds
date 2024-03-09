@@ -5,6 +5,7 @@ import 'package:mobile_client/src/core/di/inject.dart';
 import 'package:mobile_client/src/core/presentation/confirm_dialog.dart';
 import 'package:mobile_client/src/core/presentation/router/router.dart';
 import 'package:mobile_client/src/features/waiters/domain/services/waiter_auth_service.dart';
+import 'package:mobile_client/src/features/waiters/presentation/widgets/logout_boutton.dart';
 
 @RoutePage()
 class OrderListPage extends StatefulWidget {
@@ -16,26 +17,16 @@ class OrderListPage extends StatefulWidget {
 
 class _OrderListPageState extends State<OrderListPage> {
 
-  Future<void> onLogout() async {
-    final isSureLogout = await ConfirmDialog(
-      message: 'Are you sure you want to logout?'.hardcoded
-    ).show(context);
-    await inject<WaiterAuthService>().clearWaiterId();
-    if (isSureLogout == true && mounted) {
-      context.router.reevaluateGuards();
-    }
+  Future<void> gout() async {
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("OrderListPage".hardcoded),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.logout),
-            onPressed: onLogout,
-          )
+        title: Text("Orders".hardcoded),
+        actions: const [
+          LogoutButton() 
         ]
       ),
       body: Container(),

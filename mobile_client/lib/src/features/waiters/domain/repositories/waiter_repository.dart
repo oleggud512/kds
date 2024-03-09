@@ -4,4 +4,5 @@ import 'package:mobile_client/src/features/waiters/domain/entities/waiter.dart';
 
 abstract interface class WaiterRepository {
   Future<Either<AppException, List<Waiter>>> getWaiters();
+  Future<Either<AppException, Waiter>> getWaiter(int id);
 }
