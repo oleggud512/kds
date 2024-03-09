@@ -23,7 +23,14 @@ class WaiterAuthServiceImpl implements WaiterAuthService {
   Future<void> setWaiterId(int id) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setInt(waiterIdKey, id);
+    _waiterId = id;
   }
-
+  
+  @override
+  Future<void> clearWaiterId() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.remove(waiterIdKey);
+    _waiterId = null;
+  }
 
 }

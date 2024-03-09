@@ -1,7 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_client/src/core/common/extensions/string.dart';
+import 'package:mobile_client/src/core/di/inject.dart';
 import 'package:mobile_client/src/core/presentation/router/router.dart';
+import 'package:mobile_client/src/features/waiters/domain/services/waiter_auth_service.dart';
 
 @RoutePage()
 class OrderListPage extends StatefulWidget {
@@ -12,11 +14,23 @@ class OrderListPage extends StatefulWidget {
 }
 
 class _OrderListPageState extends State<OrderListPage> {
+
+  Future<void> onLogout() async {
+    await inject<WaiterAuthService>().clearWaiterId();
+    if (mounted) context.router.reevaluateGuards();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("OrderListPage".hardcoded)
+        title: Text("OrderListPage".hardcoded),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.logout),
+            onPressed: onLogout,
+          )
+        ]
       ),
       body: Container(),
       floatingActionButton: FloatingActionButton(

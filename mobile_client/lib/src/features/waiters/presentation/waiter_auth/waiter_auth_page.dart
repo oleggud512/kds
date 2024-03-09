@@ -44,10 +44,14 @@ class WaiterAuthPage extends StatelessWidget {
               title: Text("Who are you?".hardcoded)
             ),
             body: Padding(
-              padding: const EdgeInsets.all(p24),
+              padding: const EdgeInsets.all(p16),
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  DropdownButton<int?>(
+                  DropdownButtonFormField<int?>(
+                    isExpanded: true,
+                    value: state.currentWaiterId,
                     items: [
                       DropdownMenuItem(
                         value: null,
@@ -62,6 +66,7 @@ class WaiterAuthPage extends StatelessWidget {
                       setWaiter(context, newV);
                     }
                   ),
+                  h16gap,
                   FilledButton(
                     onPressed: state.currentWaiterId != null 
                       ? () => submit(context)

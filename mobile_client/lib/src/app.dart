@@ -9,8 +9,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       routerConfig: inject<AppRouter>().config(),
-      theme: ThemeData(brightness: Brightness.light),
-      darkTheme: ThemeData(brightness: Brightness.dark),
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
+        brightness: Brightness.light,
+        inputDecorationTheme: const InputDecorationTheme(
+          border: OutlineInputBorder()
+        )
+      ),
       debugShowCheckedModeBanner: false,
       debugShowMaterialGrid: false
     );
