@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_client/src/core/common/extensions/string.dart';
-import 'package:mobile_client/src/router.dart';
+import 'package:mobile_client/src/core/presentation/router/router.dart';
 
 @RoutePage()
 class OrderListPage extends StatefulWidget {

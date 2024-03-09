@@ -16,4 +16,4 @@ abstract class RegisterModule {
 }
 
 @InjectableInit()
-GetIt configureDependencies() => GetIt.instance.init();
+Future<GetIt> configureDependencies() => GetIt.instance.init();

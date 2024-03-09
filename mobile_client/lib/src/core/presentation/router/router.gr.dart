@@ -38,6 +38,16 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const OrderListPage(),
       );
     },
+    WaiterAuthRoute.name: (routeData) {
+      final args = routeData.argsAs<WaiterAuthRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: WaiterAuthPage(
+          key: args.key,
+          onWaiterSelected: args.onWaiterSelected,
+        ),
+      );
+    },
   };
 }
 
@@ -97,4 +107,42 @@ class OrderListRoute extends PageRouteInfo<void> {
   static const String name = 'OrderListRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [WaiterAuthPage]
+class WaiterAuthRoute extends PageRouteInfo<WaiterAuthRouteArgs> {
+  WaiterAuthRoute({
+    Key? key,
+    required void Function() onWaiterSelected,
+    List<PageRouteInfo>? children,
+  }) : super(
+          WaiterAuthRoute.name,
+          args: WaiterAuthRouteArgs(
+            key: key,
+            onWaiterSelected: onWaiterSelected,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'WaiterAuthRoute';
+
+  static const PageInfo<WaiterAuthRouteArgs> page =
+      PageInfo<WaiterAuthRouteArgs>(name);
+}
+
+class WaiterAuthRouteArgs {
+  const WaiterAuthRouteArgs({
+    this.key,
+    required this.onWaiterSelected,
+  });
+
+  final Key? key;
+
+  final void Function() onWaiterSelected;
+
+  @override
+  String toString() {
+    return 'WaiterAuthRouteArgs{key: $key, onWaiterSelected: $onWaiterSelected}';
+  }
 }
