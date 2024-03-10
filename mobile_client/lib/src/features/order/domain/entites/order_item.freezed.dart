@@ -19,7 +19,7 @@ mixin _$OrderItem {
   int get id => throw _privateConstructorUsedError;
   Dish get dish => throw _privateConstructorUsedError;
   int get amount => throw _privateConstructorUsedError;
-  Waiter get waiter => throw _privateConstructorUsedError;
+  String get comment => throw _privateConstructorUsedError;
   int get orderId => throw _privateConstructorUsedError;
   OrderItemState get state => throw _privateConstructorUsedError;
 
@@ -37,12 +37,11 @@ abstract class $OrderItemCopyWith<$Res> {
       {int id,
       Dish dish,
       int amount,
-      Waiter waiter,
+      String comment,
       int orderId,
       OrderItemState state});
 
   $DishCopyWith<$Res> get dish;
-  $WaiterCopyWith<$Res> get waiter;
 }
 
 /// @nodoc
@@ -61,7 +60,7 @@ class _$OrderItemCopyWithImpl<$Res, $Val extends OrderItem>
     Object? id = null,
     Object? dish = null,
     Object? amount = null,
-    Object? waiter = null,
+    Object? comment = null,
     Object? orderId = null,
     Object? state = null,
   }) {
@@ -78,10 +77,10 @@ class _$OrderItemCopyWithImpl<$Res, $Val extends OrderItem>
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
               as int,
-      waiter: null == waiter
-          ? _value.waiter
-          : waiter // ignore: cast_nullable_to_non_nullable
-              as Waiter,
+      comment: null == comment
+          ? _value.comment
+          : comment // ignore: cast_nullable_to_non_nullable
+              as String,
       orderId: null == orderId
           ? _value.orderId
           : orderId // ignore: cast_nullable_to_non_nullable
@@ -100,14 +99,6 @@ class _$OrderItemCopyWithImpl<$Res, $Val extends OrderItem>
       return _then(_value.copyWith(dish: value) as $Val);
     });
   }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $WaiterCopyWith<$Res> get waiter {
-    return $WaiterCopyWith<$Res>(_value.waiter, (value) {
-      return _then(_value.copyWith(waiter: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -122,14 +113,12 @@ abstract class _$$OrderItemImplCopyWith<$Res>
       {int id,
       Dish dish,
       int amount,
-      Waiter waiter,
+      String comment,
       int orderId,
       OrderItemState state});
 
   @override
   $DishCopyWith<$Res> get dish;
-  @override
-  $WaiterCopyWith<$Res> get waiter;
 }
 
 /// @nodoc
@@ -146,7 +135,7 @@ class __$$OrderItemImplCopyWithImpl<$Res>
     Object? id = null,
     Object? dish = null,
     Object? amount = null,
-    Object? waiter = null,
+    Object? comment = null,
     Object? orderId = null,
     Object? state = null,
   }) {
@@ -163,10 +152,10 @@ class __$$OrderItemImplCopyWithImpl<$Res>
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
               as int,
-      waiter: null == waiter
-          ? _value.waiter
-          : waiter // ignore: cast_nullable_to_non_nullable
-              as Waiter,
+      comment: null == comment
+          ? _value.comment
+          : comment // ignore: cast_nullable_to_non_nullable
+              as String,
       orderId: null == orderId
           ? _value.orderId
           : orderId // ignore: cast_nullable_to_non_nullable
@@ -181,16 +170,18 @@ class __$$OrderItemImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$OrderItemImpl implements _OrderItem {
+class _$OrderItemImpl extends _OrderItem {
   _$OrderItemImpl(
-      {required this.id,
+      {this.id = 0,
       required this.dish,
       this.amount = 0,
-      required this.waiter,
-      required this.orderId,
-      this.state = OrderItemState.preparing});
+      this.comment = "",
+      this.orderId = 0,
+      this.state = OrderItemState.preparing})
+      : super._();
 
   @override
+  @JsonKey()
   final int id;
   @override
   final Dish dish;
@@ -198,8 +189,10 @@ class _$OrderItemImpl implements _OrderItem {
   @JsonKey()
   final int amount;
   @override
-  final Waiter waiter;
+  @JsonKey()
+  final String comment;
   @override
+  @JsonKey()
   final int orderId;
   @override
   @JsonKey()
@@ -207,7 +200,7 @@ class _$OrderItemImpl implements _OrderItem {
 
   @override
   String toString() {
-    return 'OrderItem(id: $id, dish: $dish, amount: $amount, waiter: $waiter, orderId: $orderId, state: $state)';
+    return 'OrderItem(id: $id, dish: $dish, amount: $amount, comment: $comment, orderId: $orderId, state: $state)';
   }
 
   @override
@@ -218,14 +211,14 @@ class _$OrderItemImpl implements _OrderItem {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.dish, dish) || other.dish == dish) &&
             (identical(other.amount, amount) || other.amount == amount) &&
-            (identical(other.waiter, waiter) || other.waiter == waiter) &&
+            (identical(other.comment, comment) || other.comment == comment) &&
             (identical(other.orderId, orderId) || other.orderId == orderId) &&
             (identical(other.state, state) || other.state == state));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, id, dish, amount, waiter, orderId, state);
+      Object.hash(runtimeType, id, dish, amount, comment, orderId, state);
 
   @JsonKey(ignore: true)
   @override
@@ -234,14 +227,15 @@ class _$OrderItemImpl implements _OrderItem {
       __$$OrderItemImplCopyWithImpl<_$OrderItemImpl>(this, _$identity);
 }
 
-abstract class _OrderItem implements OrderItem {
+abstract class _OrderItem extends OrderItem {
   factory _OrderItem(
-      {required final int id,
+      {final int id,
       required final Dish dish,
       final int amount,
-      required final Waiter waiter,
-      required final int orderId,
+      final String comment,
+      final int orderId,
       final OrderItemState state}) = _$OrderItemImpl;
+  _OrderItem._() : super._();
 
   @override
   int get id;
@@ -250,7 +244,7 @@ abstract class _OrderItem implements OrderItem {
   @override
   int get amount;
   @override
-  Waiter get waiter;
+  String get comment;
   @override
   int get orderId;
   @override

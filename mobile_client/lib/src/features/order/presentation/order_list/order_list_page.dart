@@ -1,10 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_client/src/core/common/extensions/string.dart';
-import 'package:mobile_client/src/core/di/inject.dart';
-import 'package:mobile_client/src/core/presentation/confirm_dialog.dart';
 import 'package:mobile_client/src/core/presentation/router/router.dart';
-import 'package:mobile_client/src/features/waiters/domain/services/waiter_auth_service.dart';
 import 'package:mobile_client/src/features/waiters/presentation/widgets/logout_boutton.dart';
 
 @RoutePage()
