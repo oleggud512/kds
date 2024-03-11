@@ -2,7 +2,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_client/src/core/common/constants/sizes.dart';
-import 'package:mobile_client/src/core/common/extensions/build_context.dart';
 import 'package:mobile_client/src/core/common/extensions/string.dart';
 import 'package:mobile_client/src/core/common/logger.dart';
 import 'package:mobile_client/src/core/di/inject.dart';
@@ -95,6 +94,7 @@ class _EditOrderPageState extends State<EditOrderPage> {
               ),
               body: TabBarView(
                 children: [
+                  // TODO: Create separate widgets for each Tab.
                   buildOrderForm(state),
                   buildDishes(state),
                 ]

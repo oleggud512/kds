@@ -11,11 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('orders', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('waiter_id')->references('id')->on('waiters');
-            $table->string('state'); // inProgress | closed
-            $table->timestamps();
+        Schema::table('order_items', function (Blueprint $table) {
+            $table->integer('amount')->default(1);
         });
     }
 
@@ -24,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('orders');
+        Schema::table('order_items', function (Blueprint $table) {
+            $table->removeColumn('amount');
+        });
     }
 };

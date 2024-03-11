@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('order_id')->references('id')->on('orders');
             $table->foreignId('dish_id')->references('id')->on('dishes');
             $table->string('comment');
-            $table->string('state');
+            $table->string('state'); // cooking | ready | served
             $table->timestamps();
         });
     }

@@ -2,17 +2,29 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreOrderRequest;
 use App\Models\Order;
 use Illuminate\Http\Request;
+use App\Interfaces\OrderRepository;
+use Illuminate\Contracts\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
+    public function __construct(
+        protected OrderRepository $orderRepo
+    )
+    {
+        //
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $orders = $this->orderRepo->getOrders();
+        return response()->json($orders);
     }
 
     /**
@@ -26,9 +38,12 @@ class OrderController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreOrderRequest $request)
     {
-        //
+        $validated = $request->validate();
+        $waiterId = $request->header('waiterId');
+        $newOrder = $this->orderRepo->createOrder($waiterId, $validated);
+        return response()->json($newOrder);
     }
 
     /**
