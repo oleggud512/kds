@@ -14,11 +14,16 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
+MyOrder _$MyOrderFromJson(Map<String, dynamic> json) {
+  return _MyOrder.fromJson(json);
+}
+
 /// @nodoc
 mixin _$MyOrder {
   int get id => throw _privateConstructorUsedError;
   Waiter get waiter => throw _privateConstructorUsedError;
-  dynamic get state => throw _privateConstructorUsedError;
+  OrderState get state => throw _privateConstructorUsedError;
+  @JsonKey(name: 'order_items')
   List<OrderItem> get items => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -30,7 +35,11 @@ abstract class $MyOrderCopyWith<$Res> {
   factory $MyOrderCopyWith(MyOrder value, $Res Function(MyOrder) then) =
       _$MyOrderCopyWithImpl<$Res, MyOrder>;
   @useResult
-  $Res call({int id, Waiter waiter, dynamic state, List<OrderItem> items});
+  $Res call(
+      {int id,
+      Waiter waiter,
+      OrderState state,
+      @JsonKey(name: 'order_items') List<OrderItem> items});
 
   $WaiterCopyWith<$Res> get waiter;
 }
@@ -50,7 +59,7 @@ class _$MyOrderCopyWithImpl<$Res, $Val extends MyOrder>
   $Res call({
     Object? id = null,
     Object? waiter = null,
-    Object? state = freezed,
+    Object? state = null,
     Object? items = null,
   }) {
     return _then(_value.copyWith(
@@ -62,10 +71,10 @@ class _$MyOrderCopyWithImpl<$Res, $Val extends MyOrder>
           ? _value.waiter
           : waiter // ignore: cast_nullable_to_non_nullable
               as Waiter,
-      state: freezed == state
+      state: null == state
           ? _value.state
           : state // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as OrderState,
       items: null == items
           ? _value.items
           : items // ignore: cast_nullable_to_non_nullable
@@ -89,7 +98,11 @@ abstract class _$$MyOrderImplCopyWith<$Res> implements $MyOrderCopyWith<$Res> {
       __$$MyOrderImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, Waiter waiter, dynamic state, List<OrderItem> items});
+  $Res call(
+      {int id,
+      Waiter waiter,
+      OrderState state,
+      @JsonKey(name: 'order_items') List<OrderItem> items});
 
   @override
   $WaiterCopyWith<$Res> get waiter;
@@ -108,7 +121,7 @@ class __$$MyOrderImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? waiter = null,
-    Object? state = freezed,
+    Object? state = null,
     Object? items = null,
   }) {
     return _then(_$MyOrderImpl(
@@ -120,7 +133,10 @@ class __$$MyOrderImplCopyWithImpl<$Res>
           ? _value.waiter
           : waiter // ignore: cast_nullable_to_non_nullable
               as Waiter,
-      state: freezed == state ? _value.state! : state,
+      state: null == state
+          ? _value.state
+          : state // ignore: cast_nullable_to_non_nullable
+              as OrderState,
       items: null == items
           ? _value._items
           : items // ignore: cast_nullable_to_non_nullable
@@ -130,14 +146,17 @@ class __$$MyOrderImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable(createToJson: false)
 class _$MyOrderImpl implements _MyOrder {
   _$MyOrderImpl(
       {required this.id,
       required this.waiter,
       this.state = OrderState.inProgress,
-      final List<OrderItem> items = const []})
+      @JsonKey(name: 'order_items') final List<OrderItem> items = const []})
       : _items = items;
+
+  factory _$MyOrderImpl.fromJson(Map<String, dynamic> json) =>
+      _$$MyOrderImplFromJson(json);
 
   @override
   final int id;
@@ -145,10 +164,10 @@ class _$MyOrderImpl implements _MyOrder {
   final Waiter waiter;
   @override
   @JsonKey()
-  final dynamic state;
+  final OrderState state;
   final List<OrderItem> _items;
   @override
-  @JsonKey()
+  @JsonKey(name: 'order_items')
   List<OrderItem> get items {
     if (_items is EqualUnmodifiableListView) return _items;
     // ignore: implicit_dynamic_type
@@ -167,16 +186,13 @@ class _$MyOrderImpl implements _MyOrder {
             other is _$MyOrderImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.waiter, waiter) || other.waiter == waiter) &&
-            const DeepCollectionEquality().equals(other.state, state) &&
+            (identical(other.state, state) || other.state == state) &&
             const DeepCollectionEquality().equals(other._items, _items));
   }
 
+  @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      waiter,
-      const DeepCollectionEquality().hash(state),
+  int get hashCode => Object.hash(runtimeType, id, waiter, state,
       const DeepCollectionEquality().hash(_items));
 
   @JsonKey(ignore: true)
@@ -188,18 +204,22 @@ class _$MyOrderImpl implements _MyOrder {
 
 abstract class _MyOrder implements MyOrder {
   factory _MyOrder(
-      {required final int id,
-      required final Waiter waiter,
-      final dynamic state,
-      final List<OrderItem> items}) = _$MyOrderImpl;
+          {required final int id,
+          required final Waiter waiter,
+          final OrderState state,
+          @JsonKey(name: 'order_items') final List<OrderItem> items}) =
+      _$MyOrderImpl;
+
+  factory _MyOrder.fromJson(Map<String, dynamic> json) = _$MyOrderImpl.fromJson;
 
   @override
   int get id;
   @override
   Waiter get waiter;
   @override
-  dynamic get state;
+  OrderState get state;
   @override
+  @JsonKey(name: 'order_items')
   List<OrderItem> get items;
   @override
   @JsonKey(ignore: true)

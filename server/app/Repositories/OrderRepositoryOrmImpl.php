@@ -19,6 +19,6 @@ class OrderRepositoryOrmImpl implements OrderRepository {
     }
 
     public function getOrders(): array {
-        return Order::with('orderItems.dish')->get()->toArray();
+        return Order::with(['orderItems.dish', 'waiter'])->get()->toArray();
     }
 }

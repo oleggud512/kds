@@ -1,7 +1,15 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mobile_client/src/core/common/constants/sizes.dart';
 import 'package:mobile_client/src/core/common/extensions/string.dart';
+import 'package:mobile_client/src/core/di/inject.dart';
 import 'package:mobile_client/src/core/presentation/router/router.dart';
+import 'package:mobile_client/src/features/order/domain/entites/order.dart';
+import 'package:mobile_client/src/features/order/presentation/order_list/order_list_bloc.dart';
+import 'package:mobile_client/src/features/order/presentation/order_list/order_list_event.dart';
+import 'package:mobile_client/src/features/order/presentation/order_list/order_list_state.dart';
+import 'package:mobile_client/src/features/order/presentation/order_list/widgets/order_widget.dart';
 import 'package:mobile_client/src/features/waiters/presentation/widgets/logout_boutton.dart';
 
 @RoutePage()
@@ -14,26 +22,51 @@ class OrderListPage extends StatefulWidget {
 
 class _OrderListPageState extends State<OrderListPage> {
 
-  Future<void> gout() async {
+  void onAddOrder() {
+    context.router.push(const AddOrderRoute());
+  }
+
+  void onTapOrder(MyOrder order) {
+    context.router.push(OrderRoute(order: order));
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Orders".hardcoded),
-        actions: const [
-          LogoutButton() 
-        ]
+    return BlocProvider(
+      create: (_) => inject<OrderListBloc>()
+        ..add(OrderListLoadEvent()),
+      child: BlocBuilder<OrderListBloc, OrderListState>(
+        builder: (context, state) {
+          return Scaffold(
+            appBar: AppBar(
+              title: Text("Orders".hardcoded),
+              actions: const [
+                LogoutButton() 
+              ]
+            ),
+            body: buildOrderList(context, state),
+            floatingActionButton: FloatingActionButton(
+              onPressed: onAddOrder,
+              child: const Icon(Icons.add),
+            ),
+          );
+        }
       ),
-      body: Container(),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          // TODO: can I just leave it 0 to identify that I want to add a new order?
-          context.router.push(EditOrderRoute());
-        },
-        child: const Icon(Icons.add),
-      ),
+    );
+  }
+
+  Widget buildOrderList(BuildContext context, OrderListState state) {
+    return ListView.separated(
+      separatorBuilder: (_, __) => h4gap,
+      padding: const EdgeInsets.symmetric(horizontal: p8, vertical: p4),
+      itemCount: state.orders.length,
+      itemBuilder: (context, i) {
+        final order = state.orders[i];
+        return OrderWidget(
+          order: order,
+          onTap: () => onTapOrder(order)
+        );
+      }
     );
   }
 }

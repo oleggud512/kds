@@ -1,5 +1,5 @@
 enum OrderItemState {
-  preparing,
+  cooking,
   ready,
   served,
 }

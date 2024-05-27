@@ -14,6 +14,10 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
+OrderItem _$OrderItemFromJson(Map<String, dynamic> json) {
+  return _OrderItem.fromJson(json);
+}
+
 /// @nodoc
 mixin _$OrderItem {
   int get id => throw _privateConstructorUsedError;
@@ -169,7 +173,7 @@ class __$$OrderItemImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable(createToJson: false)
 class _$OrderItemImpl extends _OrderItem {
   _$OrderItemImpl(
       {this.id = 0,
@@ -177,8 +181,11 @@ class _$OrderItemImpl extends _OrderItem {
       this.amount = 0,
       this.comment = "",
       this.orderId = 0,
-      this.state = OrderItemState.preparing})
+      this.state = OrderItemState.cooking})
       : super._();
+
+  factory _$OrderItemImpl.fromJson(Map<String, dynamic> json) =>
+      _$$OrderItemImplFromJson(json);
 
   @override
   @JsonKey()
@@ -216,6 +223,7 @@ class _$OrderItemImpl extends _OrderItem {
             (identical(other.state, state) || other.state == state));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode =>
       Object.hash(runtimeType, id, dish, amount, comment, orderId, state);
@@ -236,6 +244,9 @@ abstract class _OrderItem extends OrderItem {
       final int orderId,
       final OrderItemState state}) = _$OrderItemImpl;
   _OrderItem._() : super._();
+
+  factory _OrderItem.fromJson(Map<String, dynamic> json) =
+      _$OrderItemImpl.fromJson;
 
   @override
   int get id;

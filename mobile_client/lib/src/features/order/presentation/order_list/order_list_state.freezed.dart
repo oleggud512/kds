@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$OrderListState {
   bool get isLoading => throw _privateConstructorUsedError;
+  List<MyOrder> get orders => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $OrderListStateCopyWith<OrderListState> get copyWith =>
@@ -29,7 +30,7 @@ abstract class $OrderListStateCopyWith<$Res> {
           OrderListState value, $Res Function(OrderListState) then) =
       _$OrderListStateCopyWithImpl<$Res, OrderListState>;
   @useResult
-  $Res call({bool isLoading});
+  $Res call({bool isLoading, List<MyOrder> orders});
 }
 
 /// @nodoc
@@ -46,12 +47,17 @@ class _$OrderListStateCopyWithImpl<$Res, $Val extends OrderListState>
   @override
   $Res call({
     Object? isLoading = null,
+    Object? orders = null,
   }) {
     return _then(_value.copyWith(
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
+      orders: null == orders
+          ? _value.orders
+          : orders // ignore: cast_nullable_to_non_nullable
+              as List<MyOrder>,
     ) as $Val);
   }
 }
@@ -64,7 +70,7 @@ abstract class _$$OrderListStateImplCopyWith<$Res>
       __$$OrderListStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool isLoading});
+  $Res call({bool isLoading, List<MyOrder> orders});
 }
 
 /// @nodoc
@@ -79,12 +85,17 @@ class __$$OrderListStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? isLoading = null,
+    Object? orders = null,
   }) {
     return _then(_$OrderListStateImpl(
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
+      orders: null == orders
+          ? _value._orders
+          : orders // ignore: cast_nullable_to_non_nullable
+              as List<MyOrder>,
     ));
   }
 }
@@ -92,15 +103,25 @@ class __$$OrderListStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$OrderListStateImpl implements _OrderListState {
-  _$OrderListStateImpl({this.isLoading = false});
+  _$OrderListStateImpl(
+      {this.isLoading = false, final List<MyOrder> orders = const []})
+      : _orders = orders;
 
   @override
   @JsonKey()
   final bool isLoading;
+  final List<MyOrder> _orders;
+  @override
+  @JsonKey()
+  List<MyOrder> get orders {
+    if (_orders is EqualUnmodifiableListView) return _orders;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_orders);
+  }
 
   @override
   String toString() {
-    return 'OrderListState(isLoading: $isLoading)';
+    return 'OrderListState(isLoading: $isLoading, orders: $orders)';
   }
 
   @override
@@ -109,11 +130,13 @@ class _$OrderListStateImpl implements _OrderListState {
         (other.runtimeType == runtimeType &&
             other is _$OrderListStateImpl &&
             (identical(other.isLoading, isLoading) ||
-                other.isLoading == isLoading));
+                other.isLoading == isLoading) &&
+            const DeepCollectionEquality().equals(other._orders, _orders));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isLoading);
+  int get hashCode => Object.hash(
+      runtimeType, isLoading, const DeepCollectionEquality().hash(_orders));
 
   @JsonKey(ignore: true)
   @override
@@ -124,10 +147,13 @@ class _$OrderListStateImpl implements _OrderListState {
 }
 
 abstract class _OrderListState implements OrderListState {
-  factory _OrderListState({final bool isLoading}) = _$OrderListStateImpl;
+  factory _OrderListState({final bool isLoading, final List<MyOrder> orders}) =
+      _$OrderListStateImpl;
 
   @override
   bool get isLoading;
+  @override
+  List<MyOrder> get orders;
   @override
   @JsonKey(ignore: true)
   _$$OrderListStateImplCopyWith<_$OrderListStateImpl> get copyWith =>

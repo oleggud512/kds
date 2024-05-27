@@ -17,6 +17,7 @@ class DishTileWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      contentPadding: const EdgeInsets.symmetric(horizontal: p16, vertical: 0),
       onTap: onTap,
       title: Text(dish.name),
       subtitle: Text(dish.category),
