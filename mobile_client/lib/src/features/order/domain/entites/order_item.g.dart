@@ -10,7 +10,7 @@ _$OrderItemImpl _$$OrderItemImplFromJson(Map<String, dynamic> json) =>
     _$OrderItemImpl(
       id: json['id'] as int? ?? 0,
       dish: Dish.fromJson(json['dish'] as Map<String, dynamic>),
-      amount: json['amount'] as int? ?? 0,
+      count: json['count'] as int? ?? 0,
       comment: json['comment'] as String? ?? "",
       orderId: json['orderId'] as int? ?? 0,
       state: $enumDecodeNullable(_$OrderItemStateEnumMap, json['state']) ??

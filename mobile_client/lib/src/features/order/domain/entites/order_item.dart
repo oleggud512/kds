@@ -18,7 +18,7 @@ class OrderItem with _$OrderItem {
 
     required Dish dish,
 
-    @Default(0) int amount,
+    @Default(0) int count,
 
     @Default("") String comment,
 
@@ -30,12 +30,12 @@ class OrderItem with _$OrderItem {
   }) = _OrderItem;
 
   factory OrderItem.create(Dish dish, {
-    int? amount,
+    int? count,
     String? comment,
   }) {
     return OrderItem(
       dish: dish, 
-      amount: amount ?? 1, 
+      count: count ?? 1, 
       comment: comment ?? ""
     );
   }
@@ -43,6 +43,10 @@ class OrderItem with _$OrderItem {
   factory OrderItem.fromJson(Map<String, dynamic> json) => _$OrderItemFromJson(json);
 
   Map<String, dynamic> toJson() {
-    return {};
+    return {
+      "dishId": dish.id,
+      "comment": comment,
+      "count": count
+    };
   }
 }

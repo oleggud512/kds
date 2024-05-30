@@ -14,7 +14,9 @@ export function setupOrderSockets(io: Server) {
 
   orderItems.on("connection", (socket: Socket) => {
     socket.on("subscribe-cooking-items", () => {
+      console.log("joined the fucking room")
       socket.join("cooking-items-room")
+      sendCookingOrderItems()
     })
 
     socket.on("unsubscribe-cooking-items", () => {
@@ -39,7 +41,8 @@ export function setupOrderSockets(io: Server) {
  * отправляет обновленные списки поварам и каждому из активных официантов
  */
 export async function onInProgressOrdersUpdated() : Promise<void> {
-  const items = await orderRepository.getCookingOrderItems()
+
+  sendCookingOrderItems()
 
   for (const waiterId in orders.adapter.rooms) {
     orderRepository.getOrders({
@@ -51,7 +54,12 @@ export async function onInProgressOrdersUpdated() : Promise<void> {
         .emit("waiter-orders", ords)
     })
   }
+}
 
+export async function sendCookingOrderItems() : Promise<void> {
+  const items = await orderRepository.getCookingOrderItems()
+
+  console.log(items)
   orderItems
     .to("cooking-items-room")
     .emit("cooking-items", items)

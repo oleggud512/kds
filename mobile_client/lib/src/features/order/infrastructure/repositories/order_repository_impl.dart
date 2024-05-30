@@ -17,7 +17,7 @@ class OrderRepositoryImpl implements OrderRepository {
   Future<Either<AppException, MyOrder>> createNewOrder(List<OrderItem> items) async {
     try {
       final res = await dio.post('orders', data: items.map((i) => i.toJson()));
-      final order = MyOrder.fromJson(res.data);
+      final order = MyOrder.fromJson(res.data["data"]);
       return Right(order);
     } catch (e) {
       glogger.e(e);
@@ -30,7 +30,9 @@ class OrderRepositoryImpl implements OrderRepository {
     try {
       final res = await dio.get('orders');
       print(res.data);
-      final orders = List.from(res.data).map((o) => MyOrder.fromJson(o)).toList();
+      final orders = List.from(res.data["data"])
+        .map((o) => MyOrder.fromJson(o))
+        .toList();
       return Right(orders);
     } catch (e, s) {
       glogger.e(e, stackTrace: s);

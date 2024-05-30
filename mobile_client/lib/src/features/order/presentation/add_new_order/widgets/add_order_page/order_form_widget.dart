@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_client/src/core/common/constants/sizes.dart';
@@ -27,24 +28,35 @@ class OrderFormWidget extends StatefulWidget {
 class _OrderFormWidgetState extends State<OrderFormWidget> {
   AddNewOrderState get state => widget.state;
 
-    Future<void> onDeleteOrderItem(BuildContext context, OrderItem item) async {
-      final isSure = await ConfirmDialog(
-        message: "Are you sure you want to delete this item?".hardcoded
-      ).show(context);
-      if (isSure == true && context.mounted) {
-        context.read<AddNewOrderBloc>().add(AddNewOrderDeleteItemEvent(item));
-      }
+  Future<void> onDeleteOrderItem(BuildContext context, OrderItem item) async {
+    final isSure = await ConfirmDialog(
+      message: "Are you sure you want to delete this item?".hardcoded
+    ).show(context);
+    if (isSure == true && context.mounted) {
+      context.read<AddNewOrderBloc>().add(AddNewOrderDeleteItemEvent(item));
     }
+  }
 
-    void onAmountChange(BuildContext context, OrderItem item, int newAmount) {
-      context.read<AddNewOrderBloc>()
-        .add(AddNewOrderAmountChangedEvent(item, newAmount));
-    }
+  void onAmountChange(BuildContext context, OrderItem item, int newAmount) {
+    context.read<AddNewOrderBloc>()
+      .add(AddNewOrderCountChangedEvent(item, newAmount));
+  }
 
-    void onCommentChange(BuildContext context, OrderItem item, String newComment) {
+  void onCommentChange(BuildContext context, OrderItem item, String newComment) {
+    context.read<AddNewOrderBloc>()
+      .add(AddNewOrderCommentChangedEvent(item, newComment));
+  }
+
+  Future<void> onAddOrder(BuildContext context) async {
+    final isSure = await ConfirmDialog(
+      message: "Are you sure the order is completed? The action can't be undone.".hardcoded
+    ).show(context);
+
+    if (isSure == true && context.mounted) {
       context.read<AddNewOrderBloc>()
-        .add(AddNewOrderCommentChangedEvent(item, newComment));
+        .add(AddNewOrderEvent.submit(onSuccess: context.router.pop));
     }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -74,7 +86,7 @@ class _OrderFormWidgetState extends State<OrderFormWidget> {
                           ),
                         ),
                         CounterWidget(
-                          value: item.amount,
+                          value: item.count,
                           onChanged: (newAmount) => onAmountChange(context, item, newAmount)
                         ),
                       ]

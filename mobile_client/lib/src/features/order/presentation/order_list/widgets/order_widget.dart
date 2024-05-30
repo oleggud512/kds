@@ -23,7 +23,7 @@ class OrderWidget extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              ...order.items.map((i) => Text('${i.dish.name} x ${i.amount} [${i.state.name}]')),
+              ...order.items.map((i) => Text('${i.dish.name} x ${i.count} [${i.state.name}]')),
               Text(order.waiter.name,
                 textAlign: TextAlign.right,
                 style: Theme.of(context).textTheme.bodyLarge,

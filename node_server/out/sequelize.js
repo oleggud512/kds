@@ -15,28 +15,31 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.initSequelize = exports.sequelize = exports.OrderItem = exports.Waiter = exports.Order = exports.Dish = void 0;
 const sequelize_1 = require("sequelize");
 const OrderState_1 = __importDefault(require("./src/features/orders/OrderState"));
-const service_1 = require("./src/features/dishes/service");
+const OrderItemState_1 = __importDefault(require("./src/features/orders/OrderItemState"));
 const sequelize = new sequelize_1.Sequelize('kds', 'root', 'Ab7Cug84', {
     host: 'localhost',
     port: 3306,
     dialect: 'mysql'
 });
 exports.sequelize = sequelize;
-const Dish = sequelize.define('dish', {
-    name: {
-        type: sequelize_1.DataTypes.STRING(256),
-        allowNull: false
-    },
-    category: {
-        type: sequelize_1.DataTypes.STRING(32),
-        allowNull: false
-    }
-}, {
-    modelName: 'dish',
-    freezeTableName: true
-});
+class Waiter extends sequelize_1.Model {
+}
+exports.Waiter = Waiter;
+class Dish extends sequelize_1.Model {
+}
 exports.Dish = Dish;
-const Waiter = sequelize.define('waiter', {
+class OrderItem extends sequelize_1.Model {
+}
+exports.OrderItem = OrderItem;
+class Order extends sequelize_1.Model {
+}
+exports.Order = Order;
+Waiter.init({
+    id: {
+        type: sequelize_1.DataTypes.INTEGER.UNSIGNED,
+        autoIncrement: true,
+        primaryKey: true
+    },
     name: {
         type: sequelize_1.DataTypes.STRING(100),
         allowNull: false
@@ -47,11 +50,39 @@ const Waiter = sequelize.define('waiter', {
         allowNull: false
     }
 }, {
+    sequelize: sequelize,
     modelName: 'waiter',
     freezeTableName: true
 });
-exports.Waiter = Waiter;
-const Order = sequelize.define('order', {
+Dish.init({
+    id: {
+        type: sequelize_1.DataTypes.INTEGER.UNSIGNED,
+        autoIncrement: true,
+        primaryKey: true
+    },
+    name: {
+        type: sequelize_1.DataTypes.STRING(256),
+        allowNull: false
+    },
+    category: {
+        type: sequelize_1.DataTypes.STRING(32),
+        allowNull: false
+    },
+    price: {
+        type: sequelize_1.DataTypes.DECIMAL(8, 2),
+        allowNull: false,
+    }
+}, {
+    sequelize: sequelize,
+    modelName: 'dish',
+    freezeTableName: true
+});
+Order.init({
+    id: {
+        type: sequelize_1.DataTypes.INTEGER.UNSIGNED,
+        autoIncrement: true,
+        primaryKey: true
+    },
     waiterId: {
         type: sequelize_1.DataTypes.INTEGER,
         references: {
@@ -60,6 +91,11 @@ const Order = sequelize.define('order', {
         },
         allowNull: false,
         field: 'waiter_id'
+    },
+    date: {
+        type: sequelize_1.DataTypes.DATE,
+        allowNull: false,
+        defaultValue: sequelize_1.Sequelize.fn("now")
     },
     state: {
         type: sequelize_1.DataTypes.ENUM,
@@ -72,19 +108,13 @@ const Order = sequelize.define('order', {
         allowNull: true
     }
 }, {
+    sequelize: sequelize,
     modelName: 'order',
     freezeTableName: true
 });
-exports.Order = Order;
-var OrderItemState;
-(function (OrderItemState) {
-    OrderItemState["cooking"] = "cooking";
-    OrderItemState["ready"] = "ready";
-    OrderItemState["inProgress"] = "inProgress";
-})(OrderItemState || (OrderItemState = {}));
-const OrderItem = sequelize.define('order_item', {
+OrderItem.init({
     orderId: {
-        type: sequelize_1.DataTypes.INTEGER,
+        type: sequelize_1.DataTypes.INTEGER.UNSIGNED,
         references: {
             model: Order,
             key: 'id'
@@ -106,8 +136,8 @@ const OrderItem = sequelize.define('order_item', {
     },
     state: {
         type: sequelize_1.DataTypes.ENUM,
-        defaultValue: OrderItemState.cooking,
-        values: Object.keys(OrderItemState)
+        defaultValue: OrderItemState_1.default.cooking,
+        values: Object.keys(OrderItemState_1.default)
     },
     count: {
         type: sequelize_1.DataTypes.INTEGER,
@@ -116,13 +146,13 @@ const OrderItem = sequelize.define('order_item', {
     },
     price: {
         type: sequelize_1.DataTypes.DECIMAL(8, 2),
-        allowNull: false,
+        allowNull: true,
     }
 }, {
+    sequelize: sequelize,
     modelName: 'order_item',
     freezeTableName: true
 });
-exports.OrderItem = OrderItem;
 function initSequelize() {
     return __awaiter(this, void 0, void 0, function* () {
         yield sequelize.authenticate();
@@ -145,33 +175,30 @@ exports.initSequelize = initSequelize;
 function dummyData() {
     return __awaiter(this, void 0, void 0, function* () {
         console.log('meant to insert something into the database here.');
-        const dishes = {
-            'Борщ': 'Перші страви',
-            'Вареники': 'Перші страви',
-            'Салат "Олів\'є"': 'Салати',
-            'Гаспачо': 'Перші страви',
-            'Блинчики': 'Другі страви',
-            'Котлети по-київськи': 'Другі страви',
-            'Медовик': 'Десерти',
-            'Морс': 'Напої',
-            'Суп-лапша': 'Перші страви',
-            'Шарлотка': 'Десерти',
-            'Гарбузова каша': 'Другі страви',
-            'Свіжий сік': 'Напої',
-            'Томатний суп': 'Перші страви',
-            'Сирники': 'Десерти',
-            'Цезар': 'Салати',
-            'Млинці': 'Десерти',
-            'Панакота': 'Десерти',
-            'Фруктовий салат': 'Салати',
-            'Лимонад': 'Напої',
-            'Чізкейк': 'Десерти',
-        };
-        for (const dish in dishes) {
-            yield Dish.create({
-                name: dish,
-                category: dishes[dish]
-            });
+        const dishes = [
+            { name: 'Борщ', category: 'Перші страви', price: 5.50 },
+            { name: 'Вареники', category: 'Перші страви', price: 6.00 },
+            { name: 'Салат "Олів\'є"', category: 'Салати', price: 4.50 },
+            { name: 'Гаспачо', category: 'Перші страви', price: 5.00 },
+            { name: 'Блинчики', category: 'Другі страви', price: 4.00 },
+            { name: 'Котлети по-київськи', category: 'Другі страви', price: 7.50 },
+            { name: 'Медовик', category: 'Десерти', price: 3.50 },
+            { name: 'Морс', category: 'Напої', price: 2.00 },
+            { name: 'Суп-лапша', category: 'Перші страви', price: 5.00 },
+            { name: 'Шарлотка', category: 'Десерти', price: 3.00 },
+            { name: 'Гарбузова каша', category: 'Другі страви', price: 4.50 },
+            { name: 'Свіжий сік', category: 'Напої', price: 2.50 },
+            { name: 'Томатний суп', category: 'Перші страви', price: 5.00 },
+            { name: 'Сирники', category: 'Десерти', price: 3.50 },
+            { name: 'Цезар', category: 'Салати', price: 5.00 },
+            { name: 'Млинці', category: 'Десерти', price: 3.00 },
+            { name: 'Панакота', category: 'Десерти', price: 4.00 },
+            { name: 'Фруктовий салат', category: 'Салати', price: 4.00 },
+            { name: 'Лимонад', category: 'Напої', price: 2.50 },
+            { name: 'Чізкейк', category: 'Десерти', price: 4.50 }
+        ];
+        for (const dish of dishes) {
+            yield Dish.create(dish);
         }
         const waiters = {
             'Іван': '0502002021',
@@ -191,6 +218,17 @@ function dummyData() {
                 phoneNumber: waiters[waiter]
             });
         }
-        yield (0, service_1.getDishes)();
+        const order = yield Order.create({
+            waiterId: 1
+        });
+        for (let i = 1; i < 4; i++) {
+            yield OrderItem.create({
+                orderId: order.id,
+                dishId: i,
+                comment: "first comment",
+                count: i + 10
+            });
+        }
+        // console.log(await getOrders())
     });
 }

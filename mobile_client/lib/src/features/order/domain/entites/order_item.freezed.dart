@@ -22,7 +22,7 @@ OrderItem _$OrderItemFromJson(Map<String, dynamic> json) {
 mixin _$OrderItem {
   int get id => throw _privateConstructorUsedError;
   Dish get dish => throw _privateConstructorUsedError;
-  int get amount => throw _privateConstructorUsedError;
+  int get count => throw _privateConstructorUsedError;
   String get comment => throw _privateConstructorUsedError;
   int get orderId => throw _privateConstructorUsedError;
   OrderItemState get state => throw _privateConstructorUsedError;
@@ -40,7 +40,7 @@ abstract class $OrderItemCopyWith<$Res> {
   $Res call(
       {int id,
       Dish dish,
-      int amount,
+      int count,
       String comment,
       int orderId,
       OrderItemState state});
@@ -63,7 +63,7 @@ class _$OrderItemCopyWithImpl<$Res, $Val extends OrderItem>
   $Res call({
     Object? id = null,
     Object? dish = null,
-    Object? amount = null,
+    Object? count = null,
     Object? comment = null,
     Object? orderId = null,
     Object? state = null,
@@ -77,9 +77,9 @@ class _$OrderItemCopyWithImpl<$Res, $Val extends OrderItem>
           ? _value.dish
           : dish // ignore: cast_nullable_to_non_nullable
               as Dish,
-      amount: null == amount
-          ? _value.amount
-          : amount // ignore: cast_nullable_to_non_nullable
+      count: null == count
+          ? _value.count
+          : count // ignore: cast_nullable_to_non_nullable
               as int,
       comment: null == comment
           ? _value.comment
@@ -116,7 +116,7 @@ abstract class _$$OrderItemImplCopyWith<$Res>
   $Res call(
       {int id,
       Dish dish,
-      int amount,
+      int count,
       String comment,
       int orderId,
       OrderItemState state});
@@ -138,7 +138,7 @@ class __$$OrderItemImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? dish = null,
-    Object? amount = null,
+    Object? count = null,
     Object? comment = null,
     Object? orderId = null,
     Object? state = null,
@@ -152,9 +152,9 @@ class __$$OrderItemImplCopyWithImpl<$Res>
           ? _value.dish
           : dish // ignore: cast_nullable_to_non_nullable
               as Dish,
-      amount: null == amount
-          ? _value.amount
-          : amount // ignore: cast_nullable_to_non_nullable
+      count: null == count
+          ? _value.count
+          : count // ignore: cast_nullable_to_non_nullable
               as int,
       comment: null == comment
           ? _value.comment
@@ -178,7 +178,7 @@ class _$OrderItemImpl extends _OrderItem {
   _$OrderItemImpl(
       {this.id = 0,
       required this.dish,
-      this.amount = 0,
+      this.count = 0,
       this.comment = "",
       this.orderId = 0,
       this.state = OrderItemState.cooking})
@@ -194,7 +194,7 @@ class _$OrderItemImpl extends _OrderItem {
   final Dish dish;
   @override
   @JsonKey()
-  final int amount;
+  final int count;
   @override
   @JsonKey()
   final String comment;
@@ -207,7 +207,7 @@ class _$OrderItemImpl extends _OrderItem {
 
   @override
   String toString() {
-    return 'OrderItem(id: $id, dish: $dish, amount: $amount, comment: $comment, orderId: $orderId, state: $state)';
+    return 'OrderItem(id: $id, dish: $dish, count: $count, comment: $comment, orderId: $orderId, state: $state)';
   }
 
   @override
@@ -217,7 +217,7 @@ class _$OrderItemImpl extends _OrderItem {
             other is _$OrderItemImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.dish, dish) || other.dish == dish) &&
-            (identical(other.amount, amount) || other.amount == amount) &&
+            (identical(other.count, count) || other.count == count) &&
             (identical(other.comment, comment) || other.comment == comment) &&
             (identical(other.orderId, orderId) || other.orderId == orderId) &&
             (identical(other.state, state) || other.state == state));
@@ -226,7 +226,7 @@ class _$OrderItemImpl extends _OrderItem {
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, id, dish, amount, comment, orderId, state);
+      Object.hash(runtimeType, id, dish, count, comment, orderId, state);
 
   @JsonKey(ignore: true)
   @override
@@ -239,7 +239,7 @@ abstract class _OrderItem extends OrderItem {
   factory _OrderItem(
       {final int id,
       required final Dish dish,
-      final int amount,
+      final int count,
       final String comment,
       final int orderId,
       final OrderItemState state}) = _$OrderItemImpl;
@@ -253,7 +253,7 @@ abstract class _OrderItem extends OrderItem {
   @override
   Dish get dish;
   @override
-  int get amount;
+  int get count;
   @override
   String get comment;
   @override

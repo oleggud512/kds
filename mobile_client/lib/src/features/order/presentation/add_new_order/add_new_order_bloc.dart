@@ -16,9 +16,17 @@ class AddNewOrderBloc extends Bloc<AddNewOrderEvent, AddNewOrderState> {
     on<AddNewOrderLoadEvent>(_load);
     on<AddNewOrderDishSelectedEvent>(_selectDish);
     on<AddNewOrderDeleteItemEvent>(_deleteItem);
-    on<AddNewOrderAmountChangedEvent>(_changeAmount);
+    on<AddNewOrderCountChangedEvent>(_changeAmount);
     on<AddNewOrderCommentChangedEvent>(_changeComment);
+    on<AddNewOrderSubmitEvent>(_submit);
   } 
+
+  Future<void> _submit(
+    AddNewOrderSubmitEvent event,
+    Emitter<AddNewOrderState> emit,
+  ) async {
+    
+  }
 
   Future<void> _load(
     AddNewOrderLoadEvent event,
@@ -40,7 +48,7 @@ class AddNewOrderBloc extends Bloc<AddNewOrderEvent, AddNewOrderState> {
     if (state.getOrderItemForDish(event.dish) != null) return;
 
     final orderItem = OrderItem.create(event.dish,
-      amount: event.amount,
+      count: event.count,
       comment: event.comment,
     );
 
@@ -59,12 +67,12 @@ class AddNewOrderBloc extends Bloc<AddNewOrderEvent, AddNewOrderState> {
   }
 
   Future<void> _changeAmount(
-    AddNewOrderAmountChangedEvent event,
+    AddNewOrderCountChangedEvent event,
     Emitter<AddNewOrderState> emit,
   ) async {
     final newItems = [...state.items];
     final i = newItems.indexOf(event.item);
-    newItems[i] = newItems[i].copyWith(amount: event.newAmount);
+    newItems[i] = newItems[i].copyWith(count: event.newCount);
     emit(state.copyWith(items: newItems));
   }
 

@@ -24,7 +24,7 @@ const sequelize_1 = require("./sequelize");
     app.use((0, cors_1.default)());
     app.use(express_1.default.json());
     app.use(express_1.default.urlencoded());
-    app.use("api/v1", router_1.default);
+    app.use("/api/v1", router_1.default);
     app.use(handle_error_1.handleErrorMiddleware);
     const server = http_1.default.createServer(app);
     const PORT = 3000;

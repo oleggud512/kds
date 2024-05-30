@@ -19,10 +19,10 @@ mixin _$AddNewOrderEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() load,
-    required TResult Function(Dish dish, int? amount, String? comment)
+    required TResult Function(Dish dish, int? count, String? comment)
         dishSelected,
     required TResult Function(OrderItem item) deleteItem,
-    required TResult Function(OrderItem item, int newAmount) amountChanged,
+    required TResult Function(OrderItem item, int newCount) countChanged,
     required TResult Function(OrderItem item, String newComment) commentChanged,
     required TResult Function(void Function() onSuccess) submit,
   }) =>
@@ -30,9 +30,9 @@ mixin _$AddNewOrderEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? load,
-    TResult? Function(Dish dish, int? amount, String? comment)? dishSelected,
+    TResult? Function(Dish dish, int? count, String? comment)? dishSelected,
     TResult? Function(OrderItem item)? deleteItem,
-    TResult? Function(OrderItem item, int newAmount)? amountChanged,
+    TResult? Function(OrderItem item, int newCount)? countChanged,
     TResult? Function(OrderItem item, String newComment)? commentChanged,
     TResult? Function(void Function() onSuccess)? submit,
   }) =>
@@ -40,9 +40,9 @@ mixin _$AddNewOrderEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
-    TResult Function(Dish dish, int? amount, String? comment)? dishSelected,
+    TResult Function(Dish dish, int? count, String? comment)? dishSelected,
     TResult Function(OrderItem item)? deleteItem,
-    TResult Function(OrderItem item, int newAmount)? amountChanged,
+    TResult Function(OrderItem item, int newCount)? countChanged,
     TResult Function(OrderItem item, String newComment)? commentChanged,
     TResult Function(void Function() onSuccess)? submit,
     required TResult orElse(),
@@ -53,8 +53,7 @@ mixin _$AddNewOrderEvent {
     required TResult Function(AddNewOrderLoadEvent value) load,
     required TResult Function(AddNewOrderDishSelectedEvent value) dishSelected,
     required TResult Function(AddNewOrderDeleteItemEvent value) deleteItem,
-    required TResult Function(AddNewOrderAmountChangedEvent value)
-        amountChanged,
+    required TResult Function(AddNewOrderCountChangedEvent value) countChanged,
     required TResult Function(AddNewOrderCommentChangedEvent value)
         commentChanged,
     required TResult Function(AddNewOrderSubmitEvent value) submit,
@@ -65,7 +64,7 @@ mixin _$AddNewOrderEvent {
     TResult? Function(AddNewOrderLoadEvent value)? load,
     TResult? Function(AddNewOrderDishSelectedEvent value)? dishSelected,
     TResult? Function(AddNewOrderDeleteItemEvent value)? deleteItem,
-    TResult? Function(AddNewOrderAmountChangedEvent value)? amountChanged,
+    TResult? Function(AddNewOrderCountChangedEvent value)? countChanged,
     TResult? Function(AddNewOrderCommentChangedEvent value)? commentChanged,
     TResult? Function(AddNewOrderSubmitEvent value)? submit,
   }) =>
@@ -75,7 +74,7 @@ mixin _$AddNewOrderEvent {
     TResult Function(AddNewOrderLoadEvent value)? load,
     TResult Function(AddNewOrderDishSelectedEvent value)? dishSelected,
     TResult Function(AddNewOrderDeleteItemEvent value)? deleteItem,
-    TResult Function(AddNewOrderAmountChangedEvent value)? amountChanged,
+    TResult Function(AddNewOrderCountChangedEvent value)? countChanged,
     TResult Function(AddNewOrderCommentChangedEvent value)? commentChanged,
     TResult Function(AddNewOrderSubmitEvent value)? submit,
     required TResult orElse(),
@@ -141,10 +140,10 @@ class _$AddNewOrderLoadEventImpl implements AddNewOrderLoadEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() load,
-    required TResult Function(Dish dish, int? amount, String? comment)
+    required TResult Function(Dish dish, int? count, String? comment)
         dishSelected,
     required TResult Function(OrderItem item) deleteItem,
-    required TResult Function(OrderItem item, int newAmount) amountChanged,
+    required TResult Function(OrderItem item, int newCount) countChanged,
     required TResult Function(OrderItem item, String newComment) commentChanged,
     required TResult Function(void Function() onSuccess) submit,
   }) {
@@ -155,9 +154,9 @@ class _$AddNewOrderLoadEventImpl implements AddNewOrderLoadEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? load,
-    TResult? Function(Dish dish, int? amount, String? comment)? dishSelected,
+    TResult? Function(Dish dish, int? count, String? comment)? dishSelected,
     TResult? Function(OrderItem item)? deleteItem,
-    TResult? Function(OrderItem item, int newAmount)? amountChanged,
+    TResult? Function(OrderItem item, int newCount)? countChanged,
     TResult? Function(OrderItem item, String newComment)? commentChanged,
     TResult? Function(void Function() onSuccess)? submit,
   }) {
@@ -168,9 +167,9 @@ class _$AddNewOrderLoadEventImpl implements AddNewOrderLoadEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
-    TResult Function(Dish dish, int? amount, String? comment)? dishSelected,
+    TResult Function(Dish dish, int? count, String? comment)? dishSelected,
     TResult Function(OrderItem item)? deleteItem,
-    TResult Function(OrderItem item, int newAmount)? amountChanged,
+    TResult Function(OrderItem item, int newCount)? countChanged,
     TResult Function(OrderItem item, String newComment)? commentChanged,
     TResult Function(void Function() onSuccess)? submit,
     required TResult orElse(),
@@ -187,8 +186,7 @@ class _$AddNewOrderLoadEventImpl implements AddNewOrderLoadEvent {
     required TResult Function(AddNewOrderLoadEvent value) load,
     required TResult Function(AddNewOrderDishSelectedEvent value) dishSelected,
     required TResult Function(AddNewOrderDeleteItemEvent value) deleteItem,
-    required TResult Function(AddNewOrderAmountChangedEvent value)
-        amountChanged,
+    required TResult Function(AddNewOrderCountChangedEvent value) countChanged,
     required TResult Function(AddNewOrderCommentChangedEvent value)
         commentChanged,
     required TResult Function(AddNewOrderSubmitEvent value) submit,
@@ -202,7 +200,7 @@ class _$AddNewOrderLoadEventImpl implements AddNewOrderLoadEvent {
     TResult? Function(AddNewOrderLoadEvent value)? load,
     TResult? Function(AddNewOrderDishSelectedEvent value)? dishSelected,
     TResult? Function(AddNewOrderDeleteItemEvent value)? deleteItem,
-    TResult? Function(AddNewOrderAmountChangedEvent value)? amountChanged,
+    TResult? Function(AddNewOrderCountChangedEvent value)? countChanged,
     TResult? Function(AddNewOrderCommentChangedEvent value)? commentChanged,
     TResult? Function(AddNewOrderSubmitEvent value)? submit,
   }) {
@@ -215,7 +213,7 @@ class _$AddNewOrderLoadEventImpl implements AddNewOrderLoadEvent {
     TResult Function(AddNewOrderLoadEvent value)? load,
     TResult Function(AddNewOrderDishSelectedEvent value)? dishSelected,
     TResult Function(AddNewOrderDeleteItemEvent value)? deleteItem,
-    TResult Function(AddNewOrderAmountChangedEvent value)? amountChanged,
+    TResult Function(AddNewOrderCountChangedEvent value)? countChanged,
     TResult Function(AddNewOrderCommentChangedEvent value)? commentChanged,
     TResult Function(AddNewOrderSubmitEvent value)? submit,
     required TResult orElse(),
@@ -238,7 +236,7 @@ abstract class _$$AddNewOrderDishSelectedEventImplCopyWith<$Res> {
           $Res Function(_$AddNewOrderDishSelectedEventImpl) then) =
       __$$AddNewOrderDishSelectedEventImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({Dish dish, int? amount, String? comment});
+  $Res call({Dish dish, int? count, String? comment});
 
   $DishCopyWith<$Res> get dish;
 }
@@ -257,7 +255,7 @@ class __$$AddNewOrderDishSelectedEventImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? dish = null,
-    Object? amount = freezed,
+    Object? count = freezed,
     Object? comment = freezed,
   }) {
     return _then(_$AddNewOrderDishSelectedEventImpl(
@@ -265,9 +263,9 @@ class __$$AddNewOrderDishSelectedEventImplCopyWithImpl<$Res>
           ? _value.dish
           : dish // ignore: cast_nullable_to_non_nullable
               as Dish,
-      amount: freezed == amount
-          ? _value.amount
-          : amount // ignore: cast_nullable_to_non_nullable
+      count: freezed == count
+          ? _value.count
+          : count // ignore: cast_nullable_to_non_nullable
               as int?,
       comment: freezed == comment
           ? _value.comment
@@ -290,18 +288,18 @@ class __$$AddNewOrderDishSelectedEventImplCopyWithImpl<$Res>
 class _$AddNewOrderDishSelectedEventImpl
     implements AddNewOrderDishSelectedEvent {
   _$AddNewOrderDishSelectedEventImpl(
-      {required this.dish, this.amount, this.comment});
+      {required this.dish, this.count, this.comment});
 
   @override
   final Dish dish;
   @override
-  final int? amount;
+  final int? count;
   @override
   final String? comment;
 
   @override
   String toString() {
-    return 'AddNewOrderEvent.dishSelected(dish: $dish, amount: $amount, comment: $comment)';
+    return 'AddNewOrderEvent.dishSelected(dish: $dish, count: $count, comment: $comment)';
   }
 
   @override
@@ -310,12 +308,12 @@ class _$AddNewOrderDishSelectedEventImpl
         (other.runtimeType == runtimeType &&
             other is _$AddNewOrderDishSelectedEventImpl &&
             (identical(other.dish, dish) || other.dish == dish) &&
-            (identical(other.amount, amount) || other.amount == amount) &&
+            (identical(other.count, count) || other.count == count) &&
             (identical(other.comment, comment) || other.comment == comment));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, dish, amount, comment);
+  int get hashCode => Object.hash(runtimeType, dish, count, comment);
 
   @JsonKey(ignore: true)
   @override
@@ -329,42 +327,42 @@ class _$AddNewOrderDishSelectedEventImpl
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() load,
-    required TResult Function(Dish dish, int? amount, String? comment)
+    required TResult Function(Dish dish, int? count, String? comment)
         dishSelected,
     required TResult Function(OrderItem item) deleteItem,
-    required TResult Function(OrderItem item, int newAmount) amountChanged,
+    required TResult Function(OrderItem item, int newCount) countChanged,
     required TResult Function(OrderItem item, String newComment) commentChanged,
     required TResult Function(void Function() onSuccess) submit,
   }) {
-    return dishSelected(dish, amount, comment);
+    return dishSelected(dish, count, comment);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? load,
-    TResult? Function(Dish dish, int? amount, String? comment)? dishSelected,
+    TResult? Function(Dish dish, int? count, String? comment)? dishSelected,
     TResult? Function(OrderItem item)? deleteItem,
-    TResult? Function(OrderItem item, int newAmount)? amountChanged,
+    TResult? Function(OrderItem item, int newCount)? countChanged,
     TResult? Function(OrderItem item, String newComment)? commentChanged,
     TResult? Function(void Function() onSuccess)? submit,
   }) {
-    return dishSelected?.call(dish, amount, comment);
+    return dishSelected?.call(dish, count, comment);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
-    TResult Function(Dish dish, int? amount, String? comment)? dishSelected,
+    TResult Function(Dish dish, int? count, String? comment)? dishSelected,
     TResult Function(OrderItem item)? deleteItem,
-    TResult Function(OrderItem item, int newAmount)? amountChanged,
+    TResult Function(OrderItem item, int newCount)? countChanged,
     TResult Function(OrderItem item, String newComment)? commentChanged,
     TResult Function(void Function() onSuccess)? submit,
     required TResult orElse(),
   }) {
     if (dishSelected != null) {
-      return dishSelected(dish, amount, comment);
+      return dishSelected(dish, count, comment);
     }
     return orElse();
   }
@@ -375,8 +373,7 @@ class _$AddNewOrderDishSelectedEventImpl
     required TResult Function(AddNewOrderLoadEvent value) load,
     required TResult Function(AddNewOrderDishSelectedEvent value) dishSelected,
     required TResult Function(AddNewOrderDeleteItemEvent value) deleteItem,
-    required TResult Function(AddNewOrderAmountChangedEvent value)
-        amountChanged,
+    required TResult Function(AddNewOrderCountChangedEvent value) countChanged,
     required TResult Function(AddNewOrderCommentChangedEvent value)
         commentChanged,
     required TResult Function(AddNewOrderSubmitEvent value) submit,
@@ -390,7 +387,7 @@ class _$AddNewOrderDishSelectedEventImpl
     TResult? Function(AddNewOrderLoadEvent value)? load,
     TResult? Function(AddNewOrderDishSelectedEvent value)? dishSelected,
     TResult? Function(AddNewOrderDeleteItemEvent value)? deleteItem,
-    TResult? Function(AddNewOrderAmountChangedEvent value)? amountChanged,
+    TResult? Function(AddNewOrderCountChangedEvent value)? countChanged,
     TResult? Function(AddNewOrderCommentChangedEvent value)? commentChanged,
     TResult? Function(AddNewOrderSubmitEvent value)? submit,
   }) {
@@ -403,7 +400,7 @@ class _$AddNewOrderDishSelectedEventImpl
     TResult Function(AddNewOrderLoadEvent value)? load,
     TResult Function(AddNewOrderDishSelectedEvent value)? dishSelected,
     TResult Function(AddNewOrderDeleteItemEvent value)? deleteItem,
-    TResult Function(AddNewOrderAmountChangedEvent value)? amountChanged,
+    TResult Function(AddNewOrderCountChangedEvent value)? countChanged,
     TResult Function(AddNewOrderCommentChangedEvent value)? commentChanged,
     TResult Function(AddNewOrderSubmitEvent value)? submit,
     required TResult orElse(),
@@ -418,11 +415,11 @@ class _$AddNewOrderDishSelectedEventImpl
 abstract class AddNewOrderDishSelectedEvent implements AddNewOrderEvent {
   factory AddNewOrderDishSelectedEvent(
       {required final Dish dish,
-      final int? amount,
+      final int? count,
       final String? comment}) = _$AddNewOrderDishSelectedEventImpl;
 
   Dish get dish;
-  int? get amount;
+  int? get count;
   String? get comment;
   @JsonKey(ignore: true)
   _$$AddNewOrderDishSelectedEventImplCopyWith<
@@ -509,10 +506,10 @@ class _$AddNewOrderDeleteItemEventImpl implements AddNewOrderDeleteItemEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() load,
-    required TResult Function(Dish dish, int? amount, String? comment)
+    required TResult Function(Dish dish, int? count, String? comment)
         dishSelected,
     required TResult Function(OrderItem item) deleteItem,
-    required TResult Function(OrderItem item, int newAmount) amountChanged,
+    required TResult Function(OrderItem item, int newCount) countChanged,
     required TResult Function(OrderItem item, String newComment) commentChanged,
     required TResult Function(void Function() onSuccess) submit,
   }) {
@@ -523,9 +520,9 @@ class _$AddNewOrderDeleteItemEventImpl implements AddNewOrderDeleteItemEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? load,
-    TResult? Function(Dish dish, int? amount, String? comment)? dishSelected,
+    TResult? Function(Dish dish, int? count, String? comment)? dishSelected,
     TResult? Function(OrderItem item)? deleteItem,
-    TResult? Function(OrderItem item, int newAmount)? amountChanged,
+    TResult? Function(OrderItem item, int newCount)? countChanged,
     TResult? Function(OrderItem item, String newComment)? commentChanged,
     TResult? Function(void Function() onSuccess)? submit,
   }) {
@@ -536,9 +533,9 @@ class _$AddNewOrderDeleteItemEventImpl implements AddNewOrderDeleteItemEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
-    TResult Function(Dish dish, int? amount, String? comment)? dishSelected,
+    TResult Function(Dish dish, int? count, String? comment)? dishSelected,
     TResult Function(OrderItem item)? deleteItem,
-    TResult Function(OrderItem item, int newAmount)? amountChanged,
+    TResult Function(OrderItem item, int newCount)? countChanged,
     TResult Function(OrderItem item, String newComment)? commentChanged,
     TResult Function(void Function() onSuccess)? submit,
     required TResult orElse(),
@@ -555,8 +552,7 @@ class _$AddNewOrderDeleteItemEventImpl implements AddNewOrderDeleteItemEvent {
     required TResult Function(AddNewOrderLoadEvent value) load,
     required TResult Function(AddNewOrderDishSelectedEvent value) dishSelected,
     required TResult Function(AddNewOrderDeleteItemEvent value) deleteItem,
-    required TResult Function(AddNewOrderAmountChangedEvent value)
-        amountChanged,
+    required TResult Function(AddNewOrderCountChangedEvent value) countChanged,
     required TResult Function(AddNewOrderCommentChangedEvent value)
         commentChanged,
     required TResult Function(AddNewOrderSubmitEvent value) submit,
@@ -570,7 +566,7 @@ class _$AddNewOrderDeleteItemEventImpl implements AddNewOrderDeleteItemEvent {
     TResult? Function(AddNewOrderLoadEvent value)? load,
     TResult? Function(AddNewOrderDishSelectedEvent value)? dishSelected,
     TResult? Function(AddNewOrderDeleteItemEvent value)? deleteItem,
-    TResult? Function(AddNewOrderAmountChangedEvent value)? amountChanged,
+    TResult? Function(AddNewOrderCountChangedEvent value)? countChanged,
     TResult? Function(AddNewOrderCommentChangedEvent value)? commentChanged,
     TResult? Function(AddNewOrderSubmitEvent value)? submit,
   }) {
@@ -583,7 +579,7 @@ class _$AddNewOrderDeleteItemEventImpl implements AddNewOrderDeleteItemEvent {
     TResult Function(AddNewOrderLoadEvent value)? load,
     TResult Function(AddNewOrderDishSelectedEvent value)? dishSelected,
     TResult Function(AddNewOrderDeleteItemEvent value)? deleteItem,
-    TResult Function(AddNewOrderAmountChangedEvent value)? amountChanged,
+    TResult Function(AddNewOrderCountChangedEvent value)? countChanged,
     TResult Function(AddNewOrderCommentChangedEvent value)? commentChanged,
     TResult Function(AddNewOrderSubmitEvent value)? submit,
     required TResult orElse(),
@@ -606,41 +602,41 @@ abstract class AddNewOrderDeleteItemEvent implements AddNewOrderEvent {
 }
 
 /// @nodoc
-abstract class _$$AddNewOrderAmountChangedEventImplCopyWith<$Res> {
-  factory _$$AddNewOrderAmountChangedEventImplCopyWith(
-          _$AddNewOrderAmountChangedEventImpl value,
-          $Res Function(_$AddNewOrderAmountChangedEventImpl) then) =
-      __$$AddNewOrderAmountChangedEventImplCopyWithImpl<$Res>;
+abstract class _$$AddNewOrderCountChangedEventImplCopyWith<$Res> {
+  factory _$$AddNewOrderCountChangedEventImplCopyWith(
+          _$AddNewOrderCountChangedEventImpl value,
+          $Res Function(_$AddNewOrderCountChangedEventImpl) then) =
+      __$$AddNewOrderCountChangedEventImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({OrderItem item, int newAmount});
+  $Res call({OrderItem item, int newCount});
 
   $OrderItemCopyWith<$Res> get item;
 }
 
 /// @nodoc
-class __$$AddNewOrderAmountChangedEventImplCopyWithImpl<$Res>
+class __$$AddNewOrderCountChangedEventImplCopyWithImpl<$Res>
     extends _$AddNewOrderEventCopyWithImpl<$Res,
-        _$AddNewOrderAmountChangedEventImpl>
-    implements _$$AddNewOrderAmountChangedEventImplCopyWith<$Res> {
-  __$$AddNewOrderAmountChangedEventImplCopyWithImpl(
-      _$AddNewOrderAmountChangedEventImpl _value,
-      $Res Function(_$AddNewOrderAmountChangedEventImpl) _then)
+        _$AddNewOrderCountChangedEventImpl>
+    implements _$$AddNewOrderCountChangedEventImplCopyWith<$Res> {
+  __$$AddNewOrderCountChangedEventImplCopyWithImpl(
+      _$AddNewOrderCountChangedEventImpl _value,
+      $Res Function(_$AddNewOrderCountChangedEventImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? item = null,
-    Object? newAmount = null,
+    Object? newCount = null,
   }) {
-    return _then(_$AddNewOrderAmountChangedEventImpl(
+    return _then(_$AddNewOrderCountChangedEventImpl(
       null == item
           ? _value.item
           : item // ignore: cast_nullable_to_non_nullable
               as OrderItem,
-      null == newAmount
-          ? _value.newAmount
-          : newAmount // ignore: cast_nullable_to_non_nullable
+      null == newCount
+          ? _value.newCount
+          : newCount // ignore: cast_nullable_to_non_nullable
               as int,
     ));
   }
@@ -656,81 +652,81 @@ class __$$AddNewOrderAmountChangedEventImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$AddNewOrderAmountChangedEventImpl
-    implements AddNewOrderAmountChangedEvent {
-  _$AddNewOrderAmountChangedEventImpl(this.item, this.newAmount);
+class _$AddNewOrderCountChangedEventImpl
+    implements AddNewOrderCountChangedEvent {
+  _$AddNewOrderCountChangedEventImpl(this.item, this.newCount);
 
   @override
   final OrderItem item;
   @override
-  final int newAmount;
+  final int newCount;
 
   @override
   String toString() {
-    return 'AddNewOrderEvent.amountChanged(item: $item, newAmount: $newAmount)';
+    return 'AddNewOrderEvent.countChanged(item: $item, newCount: $newCount)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$AddNewOrderAmountChangedEventImpl &&
+            other is _$AddNewOrderCountChangedEventImpl &&
             (identical(other.item, item) || other.item == item) &&
-            (identical(other.newAmount, newAmount) ||
-                other.newAmount == newAmount));
+            (identical(other.newCount, newCount) ||
+                other.newCount == newCount));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, item, newAmount);
+  int get hashCode => Object.hash(runtimeType, item, newCount);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$AddNewOrderAmountChangedEventImplCopyWith<
-          _$AddNewOrderAmountChangedEventImpl>
-      get copyWith => __$$AddNewOrderAmountChangedEventImplCopyWithImpl<
-          _$AddNewOrderAmountChangedEventImpl>(this, _$identity);
+  _$$AddNewOrderCountChangedEventImplCopyWith<
+          _$AddNewOrderCountChangedEventImpl>
+      get copyWith => __$$AddNewOrderCountChangedEventImplCopyWithImpl<
+          _$AddNewOrderCountChangedEventImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() load,
-    required TResult Function(Dish dish, int? amount, String? comment)
+    required TResult Function(Dish dish, int? count, String? comment)
         dishSelected,
     required TResult Function(OrderItem item) deleteItem,
-    required TResult Function(OrderItem item, int newAmount) amountChanged,
+    required TResult Function(OrderItem item, int newCount) countChanged,
     required TResult Function(OrderItem item, String newComment) commentChanged,
     required TResult Function(void Function() onSuccess) submit,
   }) {
-    return amountChanged(item, newAmount);
+    return countChanged(item, newCount);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? load,
-    TResult? Function(Dish dish, int? amount, String? comment)? dishSelected,
+    TResult? Function(Dish dish, int? count, String? comment)? dishSelected,
     TResult? Function(OrderItem item)? deleteItem,
-    TResult? Function(OrderItem item, int newAmount)? amountChanged,
+    TResult? Function(OrderItem item, int newCount)? countChanged,
     TResult? Function(OrderItem item, String newComment)? commentChanged,
     TResult? Function(void Function() onSuccess)? submit,
   }) {
-    return amountChanged?.call(item, newAmount);
+    return countChanged?.call(item, newCount);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
-    TResult Function(Dish dish, int? amount, String? comment)? dishSelected,
+    TResult Function(Dish dish, int? count, String? comment)? dishSelected,
     TResult Function(OrderItem item)? deleteItem,
-    TResult Function(OrderItem item, int newAmount)? amountChanged,
+    TResult Function(OrderItem item, int newCount)? countChanged,
     TResult Function(OrderItem item, String newComment)? commentChanged,
     TResult Function(void Function() onSuccess)? submit,
     required TResult orElse(),
   }) {
-    if (amountChanged != null) {
-      return amountChanged(item, newAmount);
+    if (countChanged != null) {
+      return countChanged(item, newCount);
     }
     return orElse();
   }
@@ -741,13 +737,12 @@ class _$AddNewOrderAmountChangedEventImpl
     required TResult Function(AddNewOrderLoadEvent value) load,
     required TResult Function(AddNewOrderDishSelectedEvent value) dishSelected,
     required TResult Function(AddNewOrderDeleteItemEvent value) deleteItem,
-    required TResult Function(AddNewOrderAmountChangedEvent value)
-        amountChanged,
+    required TResult Function(AddNewOrderCountChangedEvent value) countChanged,
     required TResult Function(AddNewOrderCommentChangedEvent value)
         commentChanged,
     required TResult Function(AddNewOrderSubmitEvent value) submit,
   }) {
-    return amountChanged(this);
+    return countChanged(this);
   }
 
   @override
@@ -756,11 +751,11 @@ class _$AddNewOrderAmountChangedEventImpl
     TResult? Function(AddNewOrderLoadEvent value)? load,
     TResult? Function(AddNewOrderDishSelectedEvent value)? dishSelected,
     TResult? Function(AddNewOrderDeleteItemEvent value)? deleteItem,
-    TResult? Function(AddNewOrderAmountChangedEvent value)? amountChanged,
+    TResult? Function(AddNewOrderCountChangedEvent value)? countChanged,
     TResult? Function(AddNewOrderCommentChangedEvent value)? commentChanged,
     TResult? Function(AddNewOrderSubmitEvent value)? submit,
   }) {
-    return amountChanged?.call(this);
+    return countChanged?.call(this);
   }
 
   @override
@@ -769,28 +764,28 @@ class _$AddNewOrderAmountChangedEventImpl
     TResult Function(AddNewOrderLoadEvent value)? load,
     TResult Function(AddNewOrderDishSelectedEvent value)? dishSelected,
     TResult Function(AddNewOrderDeleteItemEvent value)? deleteItem,
-    TResult Function(AddNewOrderAmountChangedEvent value)? amountChanged,
+    TResult Function(AddNewOrderCountChangedEvent value)? countChanged,
     TResult Function(AddNewOrderCommentChangedEvent value)? commentChanged,
     TResult Function(AddNewOrderSubmitEvent value)? submit,
     required TResult orElse(),
   }) {
-    if (amountChanged != null) {
-      return amountChanged(this);
+    if (countChanged != null) {
+      return countChanged(this);
     }
     return orElse();
   }
 }
 
-abstract class AddNewOrderAmountChangedEvent implements AddNewOrderEvent {
-  factory AddNewOrderAmountChangedEvent(
-          final OrderItem item, final int newAmount) =
-      _$AddNewOrderAmountChangedEventImpl;
+abstract class AddNewOrderCountChangedEvent implements AddNewOrderEvent {
+  factory AddNewOrderCountChangedEvent(
+          final OrderItem item, final int newCount) =
+      _$AddNewOrderCountChangedEventImpl;
 
   OrderItem get item;
-  int get newAmount;
+  int get newCount;
   @JsonKey(ignore: true)
-  _$$AddNewOrderAmountChangedEventImplCopyWith<
-          _$AddNewOrderAmountChangedEventImpl>
+  _$$AddNewOrderCountChangedEventImplCopyWith<
+          _$AddNewOrderCountChangedEventImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -884,10 +879,10 @@ class _$AddNewOrderCommentChangedEventImpl
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() load,
-    required TResult Function(Dish dish, int? amount, String? comment)
+    required TResult Function(Dish dish, int? count, String? comment)
         dishSelected,
     required TResult Function(OrderItem item) deleteItem,
-    required TResult Function(OrderItem item, int newAmount) amountChanged,
+    required TResult Function(OrderItem item, int newCount) countChanged,
     required TResult Function(OrderItem item, String newComment) commentChanged,
     required TResult Function(void Function() onSuccess) submit,
   }) {
@@ -898,9 +893,9 @@ class _$AddNewOrderCommentChangedEventImpl
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? load,
-    TResult? Function(Dish dish, int? amount, String? comment)? dishSelected,
+    TResult? Function(Dish dish, int? count, String? comment)? dishSelected,
     TResult? Function(OrderItem item)? deleteItem,
-    TResult? Function(OrderItem item, int newAmount)? amountChanged,
+    TResult? Function(OrderItem item, int newCount)? countChanged,
     TResult? Function(OrderItem item, String newComment)? commentChanged,
     TResult? Function(void Function() onSuccess)? submit,
   }) {
@@ -911,9 +906,9 @@ class _$AddNewOrderCommentChangedEventImpl
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
-    TResult Function(Dish dish, int? amount, String? comment)? dishSelected,
+    TResult Function(Dish dish, int? count, String? comment)? dishSelected,
     TResult Function(OrderItem item)? deleteItem,
-    TResult Function(OrderItem item, int newAmount)? amountChanged,
+    TResult Function(OrderItem item, int newCount)? countChanged,
     TResult Function(OrderItem item, String newComment)? commentChanged,
     TResult Function(void Function() onSuccess)? submit,
     required TResult orElse(),
@@ -930,8 +925,7 @@ class _$AddNewOrderCommentChangedEventImpl
     required TResult Function(AddNewOrderLoadEvent value) load,
     required TResult Function(AddNewOrderDishSelectedEvent value) dishSelected,
     required TResult Function(AddNewOrderDeleteItemEvent value) deleteItem,
-    required TResult Function(AddNewOrderAmountChangedEvent value)
-        amountChanged,
+    required TResult Function(AddNewOrderCountChangedEvent value) countChanged,
     required TResult Function(AddNewOrderCommentChangedEvent value)
         commentChanged,
     required TResult Function(AddNewOrderSubmitEvent value) submit,
@@ -945,7 +939,7 @@ class _$AddNewOrderCommentChangedEventImpl
     TResult? Function(AddNewOrderLoadEvent value)? load,
     TResult? Function(AddNewOrderDishSelectedEvent value)? dishSelected,
     TResult? Function(AddNewOrderDeleteItemEvent value)? deleteItem,
-    TResult? Function(AddNewOrderAmountChangedEvent value)? amountChanged,
+    TResult? Function(AddNewOrderCountChangedEvent value)? countChanged,
     TResult? Function(AddNewOrderCommentChangedEvent value)? commentChanged,
     TResult? Function(AddNewOrderSubmitEvent value)? submit,
   }) {
@@ -958,7 +952,7 @@ class _$AddNewOrderCommentChangedEventImpl
     TResult Function(AddNewOrderLoadEvent value)? load,
     TResult Function(AddNewOrderDishSelectedEvent value)? dishSelected,
     TResult Function(AddNewOrderDeleteItemEvent value)? deleteItem,
-    TResult Function(AddNewOrderAmountChangedEvent value)? amountChanged,
+    TResult Function(AddNewOrderCountChangedEvent value)? countChanged,
     TResult Function(AddNewOrderCommentChangedEvent value)? commentChanged,
     TResult Function(AddNewOrderSubmitEvent value)? submit,
     required TResult orElse(),
@@ -1052,10 +1046,10 @@ class _$AddNewOrderSubmitEventImpl implements AddNewOrderSubmitEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() load,
-    required TResult Function(Dish dish, int? amount, String? comment)
+    required TResult Function(Dish dish, int? count, String? comment)
         dishSelected,
     required TResult Function(OrderItem item) deleteItem,
-    required TResult Function(OrderItem item, int newAmount) amountChanged,
+    required TResult Function(OrderItem item, int newCount) countChanged,
     required TResult Function(OrderItem item, String newComment) commentChanged,
     required TResult Function(void Function() onSuccess) submit,
   }) {
@@ -1066,9 +1060,9 @@ class _$AddNewOrderSubmitEventImpl implements AddNewOrderSubmitEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? load,
-    TResult? Function(Dish dish, int? amount, String? comment)? dishSelected,
+    TResult? Function(Dish dish, int? count, String? comment)? dishSelected,
     TResult? Function(OrderItem item)? deleteItem,
-    TResult? Function(OrderItem item, int newAmount)? amountChanged,
+    TResult? Function(OrderItem item, int newCount)? countChanged,
     TResult? Function(OrderItem item, String newComment)? commentChanged,
     TResult? Function(void Function() onSuccess)? submit,
   }) {
@@ -1079,9 +1073,9 @@ class _$AddNewOrderSubmitEventImpl implements AddNewOrderSubmitEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
-    TResult Function(Dish dish, int? amount, String? comment)? dishSelected,
+    TResult Function(Dish dish, int? count, String? comment)? dishSelected,
     TResult Function(OrderItem item)? deleteItem,
-    TResult Function(OrderItem item, int newAmount)? amountChanged,
+    TResult Function(OrderItem item, int newCount)? countChanged,
     TResult Function(OrderItem item, String newComment)? commentChanged,
     TResult Function(void Function() onSuccess)? submit,
     required TResult orElse(),
@@ -1098,8 +1092,7 @@ class _$AddNewOrderSubmitEventImpl implements AddNewOrderSubmitEvent {
     required TResult Function(AddNewOrderLoadEvent value) load,
     required TResult Function(AddNewOrderDishSelectedEvent value) dishSelected,
     required TResult Function(AddNewOrderDeleteItemEvent value) deleteItem,
-    required TResult Function(AddNewOrderAmountChangedEvent value)
-        amountChanged,
+    required TResult Function(AddNewOrderCountChangedEvent value) countChanged,
     required TResult Function(AddNewOrderCommentChangedEvent value)
         commentChanged,
     required TResult Function(AddNewOrderSubmitEvent value) submit,
@@ -1113,7 +1106,7 @@ class _$AddNewOrderSubmitEventImpl implements AddNewOrderSubmitEvent {
     TResult? Function(AddNewOrderLoadEvent value)? load,
     TResult? Function(AddNewOrderDishSelectedEvent value)? dishSelected,
     TResult? Function(AddNewOrderDeleteItemEvent value)? deleteItem,
-    TResult? Function(AddNewOrderAmountChangedEvent value)? amountChanged,
+    TResult? Function(AddNewOrderCountChangedEvent value)? countChanged,
     TResult? Function(AddNewOrderCommentChangedEvent value)? commentChanged,
     TResult? Function(AddNewOrderSubmitEvent value)? submit,
   }) {
@@ -1126,7 +1119,7 @@ class _$AddNewOrderSubmitEventImpl implements AddNewOrderSubmitEvent {
     TResult Function(AddNewOrderLoadEvent value)? load,
     TResult Function(AddNewOrderDishSelectedEvent value)? dishSelected,
     TResult Function(AddNewOrderDeleteItemEvent value)? deleteItem,
-    TResult Function(AddNewOrderAmountChangedEvent value)? amountChanged,
+    TResult Function(AddNewOrderCountChangedEvent value)? countChanged,
     TResult Function(AddNewOrderCommentChangedEvent value)? commentChanged,
     TResult Function(AddNewOrderSubmitEvent value)? submit,
     required TResult orElse(),

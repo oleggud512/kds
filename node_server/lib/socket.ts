@@ -5,7 +5,7 @@ import { setupOrderSockets } from "./src/features/orders/socket"
 export function setupSocketIoServer(httpServer: http.Server) {
   var io = new Server(httpServer, {
     cors: {
-      origin: "http://localhost:8080",
+      origin: "http://localhost:3009",
       credentials: true
     }
   })

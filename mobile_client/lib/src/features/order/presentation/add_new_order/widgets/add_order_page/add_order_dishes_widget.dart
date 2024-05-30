@@ -28,7 +28,7 @@ class _AddOrderDishesWidgetState extends State<AddOrderDishesWidget> {
     if (context.mounted) {
       context.read<AddNewOrderBloc>().add(AddNewOrderDishSelectedEvent(
         dish: dish,
-        amount: res?.amount,
+        count: res?.count,
         comment: res?.comment,
       ));
     }
@@ -49,7 +49,7 @@ class _AddOrderDishesWidgetState extends State<AddOrderDishesWidget> {
           onTap: () => onSelectDish(context, dish),
           trailing: orderItem != null 
             ? CircleAvatar(
-              child: Center(child: Text(orderItem.amount.toString()))
+              child: Center(child: Text(orderItem.count.toString()))
             )
             : null
         );

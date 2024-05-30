@@ -12,7 +12,9 @@ export async function getOrders(
   res: Response, 
   next: NextFunction
 ) {
-  const waiterId = tryParseInt(req.query.waiterId as string | undefined)
+  const waiterId = tryParseInt(
+    req.query.waiterId as string | undefined ?? res.locals.waiterId)
+
   const startDate = tryParseDate(req.query.startDate as string | undefined)
   const endDate = tryParseDate(req.query.endDate as string | undefined)
   const state = req.query.state 
@@ -34,7 +36,7 @@ export async function addOrder(
   res: Response,
   next: NextFunction
 ) {
-  const waiterId = tryParseInt(req.body.waiterId)
+  const waiterId = tryParseInt(res.locals.waiterId)
   const items: CreateOrderItem[] = []
 
   for (const item of req.body.items) {

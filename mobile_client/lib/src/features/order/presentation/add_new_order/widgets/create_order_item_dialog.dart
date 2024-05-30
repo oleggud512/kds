@@ -8,7 +8,7 @@ import 'package:mobile_client/src/features/order/domain/entites/order_item.dart'
 import 'package:mobile_client/src/features/order/presentation/add_new_order/widgets/counter_widget.dart';
 import 'package:mobile_client/src/features/order/presentation/add_new_order/widgets/dish_tile_widget.dart';
 
-class CreateOrderItemDialog extends StatefulWidget with DialogWidget<({int amount, String comment})> {
+class CreateOrderItemDialog extends StatefulWidget with DialogWidget<({int count, String comment})> {
   const CreateOrderItemDialog({super.key, required this.dish});
 
   final Dish dish;
@@ -18,18 +18,18 @@ class CreateOrderItemDialog extends StatefulWidget with DialogWidget<({int amoun
 }
 
 class _CreateOrderItemDialogState extends State<CreateOrderItemDialog> {
-  int amount = 1;
+  int count = 1;
   final commentController = TextEditingController();
 
   void onAmountChange(int newAmount) {
     setState(() {
-      amount = newAmount;
+      count = newAmount;
     });
   }
 
   void submit() {
     Navigator.of(context).pop((
-      amount: amount, 
+      amount: count, 
       comment: commentController.text
     ));
   }

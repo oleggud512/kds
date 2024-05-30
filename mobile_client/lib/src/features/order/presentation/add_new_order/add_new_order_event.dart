@@ -10,13 +10,13 @@ class AddNewOrderEvent with _$AddNewOrderEvent {
 
   factory AddNewOrderEvent.dishSelected({
     required Dish dish,
-    int? amount, 
+    int? count, 
     String? comment,
   }) = AddNewOrderDishSelectedEvent;
 
   factory AddNewOrderEvent.deleteItem(OrderItem item) = AddNewOrderDeleteItemEvent;
 
-  factory AddNewOrderEvent.amountChanged(OrderItem item, int newAmount) = AddNewOrderAmountChangedEvent;
+  factory AddNewOrderEvent.countChanged(OrderItem item, int newCount) = AddNewOrderCountChangedEvent;
 
   factory AddNewOrderEvent.commentChanged(OrderItem item, String newComment) = AddNewOrderCommentChangedEvent;
 

@@ -19,7 +19,7 @@ function getDishes() {
             model: sequelize_2.Dish,
             type: sequelize_1.QueryTypes.SELECT
         });
-        console.log(dishes);
+        return dishes;
     });
 }
 exports.getDishes = getDishes;

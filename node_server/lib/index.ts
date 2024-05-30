@@ -4,6 +4,7 @@ import rootRouter from './router';
 import http from "http"
 import { handleErrorMiddleware } from './src/common/handle-error';
 import { initSequelize } from './sequelize';
+import { setupSocketIoServer } from './socket';
 
 
 (async () => {
@@ -21,6 +22,8 @@ import { initSequelize } from './sequelize';
   const server = http.createServer(app)
   
   const PORT = 3000
+
+  setupSocketIoServer(server)
     
   server.listen(PORT, () => {
     console.log(`KDS server is running on port ${PORT}`)
