@@ -35,6 +35,9 @@ export function setupOrderSockets(io: Server) {
   })
 }
 
+/**
+ * отправляет обновленные списки поварам и каждому из активных официантов
+ */
 export async function onInProgressOrdersUpdated() : Promise<void> {
   const items = await orderRepository.getCookingOrderItems()
 

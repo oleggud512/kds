@@ -17,3 +17,13 @@ export async function addOrder(order: CreateOrder) : Promise<IOrder> {
 //   orderSocket.onInProgressOrdersUpdated()
 
 // }
+
+export async function updateOrderItemState(args: {
+  orderId: number,
+  dishId: number,
+  newState: OrderItemState
+}) : Promise<void> {
+  const newItem = await orderRepository.updateOrderItemState(args)
+
+  orderSocket.onInProgressOrdersUpdated()
+}

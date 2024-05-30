@@ -2,6 +2,26 @@ import { QueryTypes } from "sequelize"
 import { Dish, IOrder, IOrderItem, Order, OrderItem, sequelize } from "../../../../sequelize"
 import { populateOrderItemsWithDishes, populateOrdersWithItems } from "./../data/populate"
 import OrderState from "../OrderState"
+import OrderItemState from "../OrderItemState"
+
+
+export async function getOrder(id: number) : Promise<IOrder> {
+  const orders = await sequelize.query("SELECT * FROM `order` WHERE id = :id", {
+    replacements: {
+      id
+    },
+    type: QueryTypes.SELECT,
+    mapToModel: true,
+    model: Order
+  })
+
+  const order = orders[0]
+
+  await populateOrdersWithItems([order], { withDishes: true })
+
+  return { ...order.dataValues, items: order.items }
+}
+
 
 export async function getOrders(args?: {
   waiterId?: number,
@@ -46,6 +66,28 @@ export async function getOrders(args?: {
 }
 
 
+export async function getOrderItem(
+  orderId: number, 
+  dishId: number
+) : Promise<IOrderItem> {
+  const items = await sequelize.query(`
+    SELECT * 
+    FROM order_item 
+    WHERE order_id = :orderId AND dish_id = :dishId
+  `, {
+    type: QueryTypes.SELECT,
+    mapToModel: true,
+    model: OrderItem
+  })
+
+  const item = items[0].dataValues
+
+  await populateOrderItemsWithDishes([item])
+
+  return item
+}
+
+
 export async function getCookingOrderItems() : Promise<IOrderItem[]> {
   const items = await sequelize.query("SELECT * FROM order_item WHERE state = \"cooking\"", {
     type: QueryTypes.SELECT,
@@ -56,24 +98,6 @@ export async function getCookingOrderItems() : Promise<IOrderItem[]> {
   await populateOrderItemsWithDishes(items)
 
   return items.map(i => ({ ...i.dataValues, dish: i.dish }))
-}
-
-
-export async function getOrder(id: number) : Promise<IOrder> {
-  const orders = await sequelize.query("SELECT * FROM `order` WHERE id = :id", {
-    replacements: {
-      id
-    },
-    type: QueryTypes.SELECT,
-    mapToModel: true,
-    model: Order
-  })
-
-  const order = orders[0]
-
-  await populateOrdersWithItems([order], { withDishes: true })
-
-  return { ...order.dataValues, items: order.items }
 }
 
 
@@ -96,4 +120,17 @@ export async function addOrder(args: {
   }
 
   return getOrder(order.id)
+}
+
+export async function updateOrderItemState(args: {
+  orderId: number,
+  dishId: number,
+  newState: OrderItemState
+}) : Promise<IOrderItem> {
+  const res = await sequelize.query("CALL update_order_item_state(:orderId, :dishId, :newState)", {
+    type: QueryTypes.RAW,
+    replacements: args
+  })
+
+  return getOrderItem(args.orderId, args.dishId)
 }

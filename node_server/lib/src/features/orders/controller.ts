@@ -12,10 +12,10 @@ export async function getOrders(
   res: Response, 
   next: NextFunction
 ) {
-  const waiterId = tryParseInt(req.params.waiterId)
-  const startDate = tryParseDate(req.params.startDate)
-  const endDate = tryParseDate(req.params.endDate)
-  const state = req.params.state 
+  const waiterId = tryParseInt(req.query.waiterId as string | undefined)
+  const startDate = tryParseDate(req.query.startDate as string | undefined)
+  const endDate = tryParseDate(req.query.endDate as string | undefined)
+  const state = req.query.state 
     ? OrderState[req.params.state! as keyof typeof OrderState] 
     : undefined
   
@@ -46,6 +46,25 @@ export async function addOrder(
   }
 
   ordersService.addOrder({ waiterId: waiterId!, items })
+}
+
+export async function updateOrderItemState(
+  req: Request, 
+  res: Response, 
+  next: NextFunction
+) {
+  
+  const orderId = tryParseInt(req.params.orderId)!
+  const dishId = tryParseInt(req.params.dishId)!
+  const newState = req.body.state
+
+  await ordersService.updateOrderItemState({
+    orderId,
+    dishId,
+    newState
+  })
+
+  return res.json({ data: 'success' })
 }
 
 export async function deleteOrder(
