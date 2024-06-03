@@ -15,7 +15,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.initSequelize = exports.sequelize = exports.OrderItem = exports.Waiter = exports.Order = exports.Dish = void 0;
 const sequelize_1 = require("sequelize");
 const OrderState_1 = __importDefault(require("./src/features/orders/OrderState"));
+const repository_1 = require("./src/features/orders/data/repository");
 const OrderItemState_1 = __importDefault(require("./src/features/orders/OrderItemState"));
+const repository_2 = require("./src/features/orders/data/repository");
 const sequelize = new sequelize_1.Sequelize('kds', 'root', 'Ab7Cug84', {
     host: 'localhost',
     port: 3306,
@@ -50,6 +52,7 @@ Waiter.init({
         allowNull: false
     }
 }, {
+    timestamps: false,
     sequelize: sequelize,
     modelName: 'waiter',
     freezeTableName: true
@@ -73,6 +76,7 @@ Dish.init({
         allowNull: false,
     }
 }, {
+    timestamps: false,
     sequelize: sequelize,
     modelName: 'dish',
     freezeTableName: true
@@ -108,6 +112,7 @@ Order.init({
         allowNull: true
     }
 }, {
+    timestamps: false,
     sequelize: sequelize,
     modelName: 'order',
     freezeTableName: true
@@ -149,6 +154,7 @@ OrderItem.init({
         allowNull: true,
     }
 }, {
+    timestamps: false,
     sequelize: sequelize,
     modelName: 'order_item',
     freezeTableName: true
@@ -167,11 +173,36 @@ function initSequelize() {
             // alter: true,
             force: true
         });
-        dummyData();
+        yield createTriggers();
+        yield dummyData();
         console.log('synchronized');
     });
 }
 exports.initSequelize = initSequelize;
+function createTriggers() {
+    return __awaiter(this, void 0, void 0, function* () {
+        yield sequelize.query(`
+    CREATE TRIGGER order_item_price
+    BEFORE INSERT
+    ON kds.order_item FOR EACH ROW
+    BEGIN
+      DECLARE dish_price DECIMAL(8,2);
+      
+      SELECT d.price INTO dish_price
+      FROM dish d 
+      WHERE d.id = NEW.dish_id;
+      
+      SET NEW.price = dish_price;
+        
+      UPDATE \`order\`
+      SET total = IF(total IS NULL, dish_price, total + dish_price)
+      WHERE id = NEW.order_id;
+    END
+  `, {
+            type: sequelize_1.QueryTypes.RAW
+        });
+    });
+}
 function dummyData() {
     return __awaiter(this, void 0, void 0, function* () {
         console.log('meant to insert something into the database here.');
@@ -218,17 +249,24 @@ function dummyData() {
                 phoneNumber: waiters[waiter]
             });
         }
-        const order = yield Order.create({
-            waiterId: 1
-        });
+        const order = {
+            waiterId: 1,
+            items: []
+        };
         for (let i = 1; i < 4; i++) {
-            yield OrderItem.create({
-                orderId: order.id,
+            order.items.push({
                 dishId: i,
                 comment: "first comment",
                 count: i + 10
             });
         }
-        // console.log(await getOrders())
+        yield (0, repository_1.addOrder)(order);
+        yield (0, repository_2.updateOrderItemState)({
+            orderId: 1,
+            dishId: 1,
+            newState: OrderItemState_1.default.ready
+        });
+        const ord = yield (0, repository_1.getOrder)(1);
+        console.log(ord);
     });
 }

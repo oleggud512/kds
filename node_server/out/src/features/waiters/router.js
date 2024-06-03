@@ -30,4 +30,5 @@ const express_1 = __importDefault(require("express"));
 const waitersController = __importStar(require("./controller"));
 const waitersRouter = express_1.default.Router();
 waitersRouter.get('/', waitersController.getWaiters);
+waitersRouter.get('/:id', waitersController.getWaiter);
 exports.default = waitersRouter;

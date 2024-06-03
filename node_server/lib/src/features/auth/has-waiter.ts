@@ -3,7 +3,7 @@ import { AppError } from '../../common/app-error'
 import { AppErrors } from '../../shared/errors'
 
 export async function hasWaiter(req: Request, res: Response, next: Function) {
-  const waiterId = req.headers.waiterId
+  const waiterId = req.headers["waiter-id"]
   
   if (!waiterId) return next(new AppError(AppErrors.noWaiterId))
 

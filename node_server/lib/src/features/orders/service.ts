@@ -6,7 +6,7 @@ import * as orderSocket from "./socket"
 
 export async function addOrder(order: CreateOrder) : Promise<IOrder> {
   const createdOrder = await orderRepository.addOrder(order)
-
+  console.log("meant to send something to the socket")
   orderSocket.onInProgressOrdersUpdated()
 
   return createdOrder
@@ -26,4 +26,8 @@ export async function updateOrderItemState(args: {
   const newItem = await orderRepository.updateOrderItemState(args)
 
   orderSocket.onInProgressOrdersUpdated()
+
+  if (args.newState == OrderItemState.ready) {
+    orderSocket.sendDishReady(newItem)
+  }
 }

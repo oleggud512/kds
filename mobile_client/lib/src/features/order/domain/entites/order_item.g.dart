@@ -8,13 +8,16 @@ part of 'order_item.dart';
 
 _$OrderItemImpl _$$OrderItemImplFromJson(Map<String, dynamic> json) =>
     _$OrderItemImpl(
-      id: json['id'] as int? ?? 0,
-      dish: Dish.fromJson(json['dish'] as Map<String, dynamic>),
-      count: json['count'] as int? ?? 0,
+      orderId: (json['orderId'] as num?)?.toInt() ?? 0,
+      dishId: (json['dishId'] as num?)?.toInt() ?? 0,
+      count: (json['count'] as num?)?.toInt() ?? 0,
       comment: json['comment'] as String? ?? "",
-      orderId: json['orderId'] as int? ?? 0,
       state: $enumDecodeNullable(_$OrderItemStateEnumMap, json['state']) ??
           OrderItemState.cooking,
+      order: json['order'] == null
+          ? null
+          : MyOrder.fromJson(json['order'] as Map<String, dynamic>),
+      dish: Dish.fromJson(json['dish'] as Map<String, dynamic>),
     );
 
 const _$OrderItemStateEnumMap = {

@@ -62,3 +62,6 @@ Date.prototype.addSeconds = function (seconds) {
 Date.prototype.subtractSeconds = function (seconds) {
     return this.addSeconds(-seconds);
 };
+Date.prototype.toISODateString = function () {
+    return this.toISOString().substring(0, 10);
+};

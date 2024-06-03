@@ -17,7 +17,7 @@ class DishRepositoryImpl implements DishRepository {
   Future<Either<AppException, List<Dish>>> getDishes({String? category}) async {
     try {
       final res = await dio.get('dishes');
-      return Right(List.from(res.data)
+      return Right(List.from(res.data["data"])
         .map((d) => Dish.fromJson(d))
         .toList());
     } catch (e) {

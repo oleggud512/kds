@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_client/src/core/common/constants/sizes.dart';
 import 'package:mobile_client/src/features/order/domain/entites/order.dart';
+import 'package:mobile_client/src/shared/utils.dart';
 
 class OrderWidget extends StatelessWidget {
   const OrderWidget({
@@ -23,11 +24,17 @@ class OrderWidget extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              ...order.items.map((i) => Text('${i.dish.name} x ${i.count} [${i.state.name}]')),
-              Text(order.waiter.name,
-                textAlign: TextAlign.right,
-                style: Theme.of(context).textTheme.bodyLarge,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(AppUtils.idToString(order.id)),
+                  Text(order.waiter.name,
+                    textAlign: TextAlign.right,
+                    style: Theme.of(context).textTheme.bodyLarge,
+                  ),
+                ]
               ),
+              ...order.items.map((i) => Text('${i.dish.name} x ${i.count} [${i.state.name}]')),
             ]
           ),
         ),

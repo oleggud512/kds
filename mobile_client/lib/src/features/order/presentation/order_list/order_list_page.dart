@@ -8,6 +8,7 @@ import 'package:mobile_client/src/core/presentation/router/router.dart';
 import 'package:mobile_client/src/features/order/domain/entites/order.dart';
 import 'package:mobile_client/src/features/order/presentation/order_list/order_list_bloc.dart';
 import 'package:mobile_client/src/features/order/presentation/order_list/order_list_event.dart';
+import 'package:mobile_client/src/features/order/presentation/order_list/order_list_filters.dart';
 import 'package:mobile_client/src/features/order/presentation/order_list/order_list_state.dart';
 import 'package:mobile_client/src/features/order/presentation/order_list/widgets/order_widget.dart';
 import 'package:mobile_client/src/features/waiters/presentation/widgets/logout_boutton.dart';
@@ -27,7 +28,11 @@ class _OrderListPageState extends State<OrderListPage> {
   }
 
   void onTapOrder(MyOrder order) {
-    context.router.push(OrderRoute(order: order));
+    context.router.push(OrderRoute(
+      order: order,
+      listen: true
+      // orderId: order.id
+    ));
   }
 
   @override
@@ -41,10 +46,73 @@ class _OrderListPageState extends State<OrderListPage> {
             appBar: AppBar(
               title: Text("Orders".hardcoded),
               actions: const [
-                LogoutButton() 
+                LogoutButton()
               ]
             ),
-            body: buildOrderList(context, state),
+            body: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: p16),
+                  child: Wrap(
+                    children: [
+                      ConstrainedBox(
+                        constraints: const BoxConstraints(
+                          maxWidth: p104
+                        ),
+                        child: DropdownButton<OrderListWaiterFilter>(
+                          value: state.waiterFilter,
+                          isExpanded: true,
+                          items: [
+                            DropdownMenuItem(
+                              value: OrderListWaiterFilter.my,
+                              child: Text("my".hardcoded),
+                            ),
+                            DropdownMenuItem(
+                              value: OrderListWaiterFilter.all,
+                              child: Text("all".hardcoded)
+                            ),
+                          ],
+                          onChanged: (v) {
+                            context.read<OrderListBloc>()
+                              .add(OrderListEvent.updateWaiterFilter(v!));
+                          },
+                        ),
+                      ),
+                      w8gap,
+                      ConstrainedBox(
+                        constraints: const BoxConstraints(
+                          maxWidth: p104,
+                        ),
+                        child: DropdownButton<OrderListStateFilter>(
+                          value: state.stateFilter,
+                          isExpanded: true,
+                          items: [
+                            DropdownMenuItem(
+                              value: OrderListStateFilter.inProgress,
+                              child: Text("active".hardcoded),
+                            ),
+                            DropdownMenuItem(
+                              value: OrderListStateFilter.closed,
+                              child: Text("closed".hardcoded)
+                            ),
+                            DropdownMenuItem(
+                              value: OrderListStateFilter.all,
+                              child: Text("all".hardcoded)
+                            ),
+                          ],
+                          onChanged: (v) {
+                            context.read<OrderListBloc>()
+                              .add(OrderListEvent.updateStateFilter(v!));
+                          },
+                        ),
+                      ),
+                    ]
+                  ),
+                ),
+                Expanded(child: buildOrderList(context, state)),
+              ],
+            ),
             floatingActionButton: FloatingActionButton(
               onPressed: onAddOrder,
               child: const Icon(Icons.add),
@@ -63,6 +131,7 @@ class _OrderListPageState extends State<OrderListPage> {
       itemBuilder: (context, i) {
         final order = state.orders[i];
         return OrderWidget(
+          key: UniqueKey(),
           order: order,
           onTap: () => onTapOrder(order)
         );

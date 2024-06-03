@@ -1,7 +1,7 @@
 enum OrderItemState {
   cooking = 'cooking',
   ready = 'ready',
-  inProgress = 'inProgress'
+  served = 'served'
 }
 
 export default OrderItemState

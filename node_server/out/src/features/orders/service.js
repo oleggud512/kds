@@ -31,13 +31,18 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.updateOrderItemState = exports.addOrder = void 0;
+const OrderItemState_1 = __importDefault(require("./OrderItemState"));
 const orderRepository = __importStar(require("./data/repository"));
 const orderSocket = __importStar(require("./socket"));
 function addOrder(order) {
     return __awaiter(this, void 0, void 0, function* () {
         const createdOrder = yield orderRepository.addOrder(order);
+        console.log("meant to send something to the socket");
         orderSocket.onInProgressOrdersUpdated();
         return createdOrder;
     });
@@ -50,6 +55,9 @@ function updateOrderItemState(args) {
     return __awaiter(this, void 0, void 0, function* () {
         const newItem = yield orderRepository.updateOrderItemState(args);
         orderSocket.onInProgressOrdersUpdated();
+        if (args.newState == OrderItemState_1.default.ready) {
+            orderSocket.sendDishReady(newItem);
+        }
     });
 }
 exports.updateOrderItemState = updateOrderItemState;

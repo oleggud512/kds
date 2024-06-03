@@ -1,5 +1,6 @@
 import 'package:either_dart/either.dart';
 import 'package:injectable/injectable.dart';
+import 'package:mobile_client/src/core/common/logger.dart';
 import 'package:mobile_client/src/core/domain/exceptions.dart';
 import 'package:mobile_client/src/features/order/domain/entites/order.dart';
 import 'package:mobile_client/src/features/order/domain/entites/order_item.dart';

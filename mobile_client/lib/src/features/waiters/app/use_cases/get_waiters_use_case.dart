@@ -10,7 +10,7 @@ class GetWaitersUseCase {
   final WaiterRepository repo;
 
   GetWaitersUseCase(this.repo);
-  
+ 
   Future<Either<AppException, List<Waiter>>> call() async {
     final res = await repo.getWaiters();
     return res;

@@ -14,6 +14,7 @@ declare global {
     subtractMinutes(minutes: number): Date;
     addSeconds(seconds: number): Date;
     subtractSeconds(seconds: number): Date;
+    toISODateString(): string;
   }
 }
 
@@ -91,6 +92,10 @@ Date.prototype.addSeconds = function (seconds: number): Date {
 
 Date.prototype.subtractSeconds = function (seconds: number): Date {
   return this.addSeconds(-seconds);
+};
+
+Date.prototype.toISODateString = function (): string {
+  return this.toISOString().substring(0, 10)
 };
 
 export {}

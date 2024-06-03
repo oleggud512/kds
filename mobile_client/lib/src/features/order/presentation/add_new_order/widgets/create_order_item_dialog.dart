@@ -29,7 +29,7 @@ class _CreateOrderItemDialogState extends State<CreateOrderItemDialog> {
 
   void submit() {
     Navigator.of(context).pop((
-      amount: count, 
+      count: count, 
       comment: commentController.text
     ));
   }

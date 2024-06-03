@@ -20,7 +20,7 @@ class GetSocketUseCase {
     options = options.setAuthFn((authFn) async {
       if (auth.waiterId == null) return authFn({});
       return authFn({
-        "waiterId": auth.waiterId!
+        "waiter-id": auth.waiterId!
       });
     });
     

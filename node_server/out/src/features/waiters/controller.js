@@ -32,8 +32,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getWaiters = void 0;
+exports.getWaiter = exports.getWaiters = void 0;
 const waitersSrevice = __importStar(require("./service"));
+const tryParseInt_1 = require("../../common/tryParseInt");
 function getWaiters(req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
         const waiters = yield waitersSrevice.getWaiters();
@@ -41,3 +42,10 @@ function getWaiters(req, res, next) {
     });
 }
 exports.getWaiters = getWaiters;
+function getWaiter(req, res, next) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const waiter = yield waitersSrevice.getWaiter((0, tryParseInt_1.tryParseInt)(req.params.id));
+        return res.json({ data: waiter });
+    });
+}
+exports.getWaiter = getWaiter;

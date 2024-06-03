@@ -19,32 +19,56 @@ mixin _$OrderListEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() load,
+    required TResult Function(List<MyOrder> orders) ordersArrived,
+    required TResult Function(OrderListWaiterFilter waiterFilter)
+        updateWaiterFilter,
+    required TResult Function(OrderListStateFilter stateFilter)
+        updateStateFilter,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? load,
+    TResult? Function(List<MyOrder> orders)? ordersArrived,
+    TResult? Function(OrderListWaiterFilter waiterFilter)? updateWaiterFilter,
+    TResult? Function(OrderListStateFilter stateFilter)? updateStateFilter,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
+    TResult Function(List<MyOrder> orders)? ordersArrived,
+    TResult Function(OrderListWaiterFilter waiterFilter)? updateWaiterFilter,
+    TResult Function(OrderListStateFilter stateFilter)? updateStateFilter,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(OrderListLoadEvent value) load,
+    required TResult Function(OrderListOrdersArrivedEvent value) ordersArrived,
+    required TResult Function(OrderListUpdateWaiterFilterEvent value)
+        updateWaiterFilter,
+    required TResult Function(OrderListUpdateStateFilterEvent value)
+        updateStateFilter,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(OrderListLoadEvent value)? load,
+    TResult? Function(OrderListOrdersArrivedEvent value)? ordersArrived,
+    TResult? Function(OrderListUpdateWaiterFilterEvent value)?
+        updateWaiterFilter,
+    TResult? Function(OrderListUpdateStateFilterEvent value)? updateStateFilter,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(OrderListLoadEvent value)? load,
+    TResult Function(OrderListOrdersArrivedEvent value)? ordersArrived,
+    TResult Function(OrderListUpdateWaiterFilterEvent value)?
+        updateWaiterFilter,
+    TResult Function(OrderListUpdateStateFilterEvent value)? updateStateFilter,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -107,6 +131,11 @@ class _$OrderListLoadEventImpl implements OrderListLoadEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() load,
+    required TResult Function(List<MyOrder> orders) ordersArrived,
+    required TResult Function(OrderListWaiterFilter waiterFilter)
+        updateWaiterFilter,
+    required TResult Function(OrderListStateFilter stateFilter)
+        updateStateFilter,
   }) {
     return load();
   }
@@ -115,6 +144,9 @@ class _$OrderListLoadEventImpl implements OrderListLoadEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? load,
+    TResult? Function(List<MyOrder> orders)? ordersArrived,
+    TResult? Function(OrderListWaiterFilter waiterFilter)? updateWaiterFilter,
+    TResult? Function(OrderListStateFilter stateFilter)? updateStateFilter,
   }) {
     return load?.call();
   }
@@ -123,6 +155,9 @@ class _$OrderListLoadEventImpl implements OrderListLoadEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
+    TResult Function(List<MyOrder> orders)? ordersArrived,
+    TResult Function(OrderListWaiterFilter waiterFilter)? updateWaiterFilter,
+    TResult Function(OrderListStateFilter stateFilter)? updateStateFilter,
     required TResult orElse(),
   }) {
     if (load != null) {
@@ -135,6 +170,11 @@ class _$OrderListLoadEventImpl implements OrderListLoadEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(OrderListLoadEvent value) load,
+    required TResult Function(OrderListOrdersArrivedEvent value) ordersArrived,
+    required TResult Function(OrderListUpdateWaiterFilterEvent value)
+        updateWaiterFilter,
+    required TResult Function(OrderListUpdateStateFilterEvent value)
+        updateStateFilter,
   }) {
     return load(this);
   }
@@ -143,6 +183,10 @@ class _$OrderListLoadEventImpl implements OrderListLoadEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(OrderListLoadEvent value)? load,
+    TResult? Function(OrderListOrdersArrivedEvent value)? ordersArrived,
+    TResult? Function(OrderListUpdateWaiterFilterEvent value)?
+        updateWaiterFilter,
+    TResult? Function(OrderListUpdateStateFilterEvent value)? updateStateFilter,
   }) {
     return load?.call(this);
   }
@@ -151,6 +195,10 @@ class _$OrderListLoadEventImpl implements OrderListLoadEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(OrderListLoadEvent value)? load,
+    TResult Function(OrderListOrdersArrivedEvent value)? ordersArrived,
+    TResult Function(OrderListUpdateWaiterFilterEvent value)?
+        updateWaiterFilter,
+    TResult Function(OrderListUpdateStateFilterEvent value)? updateStateFilter,
     required TResult orElse(),
   }) {
     if (load != null) {
@@ -162,4 +210,489 @@ class _$OrderListLoadEventImpl implements OrderListLoadEvent {
 
 abstract class OrderListLoadEvent implements OrderListEvent {
   factory OrderListLoadEvent() = _$OrderListLoadEventImpl;
+}
+
+/// @nodoc
+abstract class _$$OrderListOrdersArrivedEventImplCopyWith<$Res> {
+  factory _$$OrderListOrdersArrivedEventImplCopyWith(
+          _$OrderListOrdersArrivedEventImpl value,
+          $Res Function(_$OrderListOrdersArrivedEventImpl) then) =
+      __$$OrderListOrdersArrivedEventImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({List<MyOrder> orders});
+}
+
+/// @nodoc
+class __$$OrderListOrdersArrivedEventImplCopyWithImpl<$Res>
+    extends _$OrderListEventCopyWithImpl<$Res,
+        _$OrderListOrdersArrivedEventImpl>
+    implements _$$OrderListOrdersArrivedEventImplCopyWith<$Res> {
+  __$$OrderListOrdersArrivedEventImplCopyWithImpl(
+      _$OrderListOrdersArrivedEventImpl _value,
+      $Res Function(_$OrderListOrdersArrivedEventImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? orders = null,
+  }) {
+    return _then(_$OrderListOrdersArrivedEventImpl(
+      null == orders
+          ? _value._orders
+          : orders // ignore: cast_nullable_to_non_nullable
+              as List<MyOrder>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$OrderListOrdersArrivedEventImpl implements OrderListOrdersArrivedEvent {
+  _$OrderListOrdersArrivedEventImpl(final List<MyOrder> orders)
+      : _orders = orders;
+
+  final List<MyOrder> _orders;
+  @override
+  List<MyOrder> get orders {
+    if (_orders is EqualUnmodifiableListView) return _orders;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_orders);
+  }
+
+  @override
+  String toString() {
+    return 'OrderListEvent.ordersArrived(orders: $orders)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$OrderListOrdersArrivedEventImpl &&
+            const DeepCollectionEquality().equals(other._orders, _orders));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_orders));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$OrderListOrdersArrivedEventImplCopyWith<_$OrderListOrdersArrivedEventImpl>
+      get copyWith => __$$OrderListOrdersArrivedEventImplCopyWithImpl<
+          _$OrderListOrdersArrivedEventImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() load,
+    required TResult Function(List<MyOrder> orders) ordersArrived,
+    required TResult Function(OrderListWaiterFilter waiterFilter)
+        updateWaiterFilter,
+    required TResult Function(OrderListStateFilter stateFilter)
+        updateStateFilter,
+  }) {
+    return ordersArrived(orders);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? load,
+    TResult? Function(List<MyOrder> orders)? ordersArrived,
+    TResult? Function(OrderListWaiterFilter waiterFilter)? updateWaiterFilter,
+    TResult? Function(OrderListStateFilter stateFilter)? updateStateFilter,
+  }) {
+    return ordersArrived?.call(orders);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? load,
+    TResult Function(List<MyOrder> orders)? ordersArrived,
+    TResult Function(OrderListWaiterFilter waiterFilter)? updateWaiterFilter,
+    TResult Function(OrderListStateFilter stateFilter)? updateStateFilter,
+    required TResult orElse(),
+  }) {
+    if (ordersArrived != null) {
+      return ordersArrived(orders);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(OrderListLoadEvent value) load,
+    required TResult Function(OrderListOrdersArrivedEvent value) ordersArrived,
+    required TResult Function(OrderListUpdateWaiterFilterEvent value)
+        updateWaiterFilter,
+    required TResult Function(OrderListUpdateStateFilterEvent value)
+        updateStateFilter,
+  }) {
+    return ordersArrived(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(OrderListLoadEvent value)? load,
+    TResult? Function(OrderListOrdersArrivedEvent value)? ordersArrived,
+    TResult? Function(OrderListUpdateWaiterFilterEvent value)?
+        updateWaiterFilter,
+    TResult? Function(OrderListUpdateStateFilterEvent value)? updateStateFilter,
+  }) {
+    return ordersArrived?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(OrderListLoadEvent value)? load,
+    TResult Function(OrderListOrdersArrivedEvent value)? ordersArrived,
+    TResult Function(OrderListUpdateWaiterFilterEvent value)?
+        updateWaiterFilter,
+    TResult Function(OrderListUpdateStateFilterEvent value)? updateStateFilter,
+    required TResult orElse(),
+  }) {
+    if (ordersArrived != null) {
+      return ordersArrived(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class OrderListOrdersArrivedEvent implements OrderListEvent {
+  factory OrderListOrdersArrivedEvent(final List<MyOrder> orders) =
+      _$OrderListOrdersArrivedEventImpl;
+
+  List<MyOrder> get orders;
+  @JsonKey(ignore: true)
+  _$$OrderListOrdersArrivedEventImplCopyWith<_$OrderListOrdersArrivedEventImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$OrderListUpdateWaiterFilterEventImplCopyWith<$Res> {
+  factory _$$OrderListUpdateWaiterFilterEventImplCopyWith(
+          _$OrderListUpdateWaiterFilterEventImpl value,
+          $Res Function(_$OrderListUpdateWaiterFilterEventImpl) then) =
+      __$$OrderListUpdateWaiterFilterEventImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({OrderListWaiterFilter waiterFilter});
+}
+
+/// @nodoc
+class __$$OrderListUpdateWaiterFilterEventImplCopyWithImpl<$Res>
+    extends _$OrderListEventCopyWithImpl<$Res,
+        _$OrderListUpdateWaiterFilterEventImpl>
+    implements _$$OrderListUpdateWaiterFilterEventImplCopyWith<$Res> {
+  __$$OrderListUpdateWaiterFilterEventImplCopyWithImpl(
+      _$OrderListUpdateWaiterFilterEventImpl _value,
+      $Res Function(_$OrderListUpdateWaiterFilterEventImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? waiterFilter = null,
+  }) {
+    return _then(_$OrderListUpdateWaiterFilterEventImpl(
+      null == waiterFilter
+          ? _value.waiterFilter
+          : waiterFilter // ignore: cast_nullable_to_non_nullable
+              as OrderListWaiterFilter,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$OrderListUpdateWaiterFilterEventImpl
+    implements OrderListUpdateWaiterFilterEvent {
+  _$OrderListUpdateWaiterFilterEventImpl(this.waiterFilter);
+
+  @override
+  final OrderListWaiterFilter waiterFilter;
+
+  @override
+  String toString() {
+    return 'OrderListEvent.updateWaiterFilter(waiterFilter: $waiterFilter)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$OrderListUpdateWaiterFilterEventImpl &&
+            (identical(other.waiterFilter, waiterFilter) ||
+                other.waiterFilter == waiterFilter));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, waiterFilter);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$OrderListUpdateWaiterFilterEventImplCopyWith<
+          _$OrderListUpdateWaiterFilterEventImpl>
+      get copyWith => __$$OrderListUpdateWaiterFilterEventImplCopyWithImpl<
+          _$OrderListUpdateWaiterFilterEventImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() load,
+    required TResult Function(List<MyOrder> orders) ordersArrived,
+    required TResult Function(OrderListWaiterFilter waiterFilter)
+        updateWaiterFilter,
+    required TResult Function(OrderListStateFilter stateFilter)
+        updateStateFilter,
+  }) {
+    return updateWaiterFilter(waiterFilter);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? load,
+    TResult? Function(List<MyOrder> orders)? ordersArrived,
+    TResult? Function(OrderListWaiterFilter waiterFilter)? updateWaiterFilter,
+    TResult? Function(OrderListStateFilter stateFilter)? updateStateFilter,
+  }) {
+    return updateWaiterFilter?.call(waiterFilter);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? load,
+    TResult Function(List<MyOrder> orders)? ordersArrived,
+    TResult Function(OrderListWaiterFilter waiterFilter)? updateWaiterFilter,
+    TResult Function(OrderListStateFilter stateFilter)? updateStateFilter,
+    required TResult orElse(),
+  }) {
+    if (updateWaiterFilter != null) {
+      return updateWaiterFilter(waiterFilter);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(OrderListLoadEvent value) load,
+    required TResult Function(OrderListOrdersArrivedEvent value) ordersArrived,
+    required TResult Function(OrderListUpdateWaiterFilterEvent value)
+        updateWaiterFilter,
+    required TResult Function(OrderListUpdateStateFilterEvent value)
+        updateStateFilter,
+  }) {
+    return updateWaiterFilter(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(OrderListLoadEvent value)? load,
+    TResult? Function(OrderListOrdersArrivedEvent value)? ordersArrived,
+    TResult? Function(OrderListUpdateWaiterFilterEvent value)?
+        updateWaiterFilter,
+    TResult? Function(OrderListUpdateStateFilterEvent value)? updateStateFilter,
+  }) {
+    return updateWaiterFilter?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(OrderListLoadEvent value)? load,
+    TResult Function(OrderListOrdersArrivedEvent value)? ordersArrived,
+    TResult Function(OrderListUpdateWaiterFilterEvent value)?
+        updateWaiterFilter,
+    TResult Function(OrderListUpdateStateFilterEvent value)? updateStateFilter,
+    required TResult orElse(),
+  }) {
+    if (updateWaiterFilter != null) {
+      return updateWaiterFilter(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class OrderListUpdateWaiterFilterEvent implements OrderListEvent {
+  factory OrderListUpdateWaiterFilterEvent(
+          final OrderListWaiterFilter waiterFilter) =
+      _$OrderListUpdateWaiterFilterEventImpl;
+
+  OrderListWaiterFilter get waiterFilter;
+  @JsonKey(ignore: true)
+  _$$OrderListUpdateWaiterFilterEventImplCopyWith<
+          _$OrderListUpdateWaiterFilterEventImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$OrderListUpdateStateFilterEventImplCopyWith<$Res> {
+  factory _$$OrderListUpdateStateFilterEventImplCopyWith(
+          _$OrderListUpdateStateFilterEventImpl value,
+          $Res Function(_$OrderListUpdateStateFilterEventImpl) then) =
+      __$$OrderListUpdateStateFilterEventImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({OrderListStateFilter stateFilter});
+}
+
+/// @nodoc
+class __$$OrderListUpdateStateFilterEventImplCopyWithImpl<$Res>
+    extends _$OrderListEventCopyWithImpl<$Res,
+        _$OrderListUpdateStateFilterEventImpl>
+    implements _$$OrderListUpdateStateFilterEventImplCopyWith<$Res> {
+  __$$OrderListUpdateStateFilterEventImplCopyWithImpl(
+      _$OrderListUpdateStateFilterEventImpl _value,
+      $Res Function(_$OrderListUpdateStateFilterEventImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? stateFilter = null,
+  }) {
+    return _then(_$OrderListUpdateStateFilterEventImpl(
+      null == stateFilter
+          ? _value.stateFilter
+          : stateFilter // ignore: cast_nullable_to_non_nullable
+              as OrderListStateFilter,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$OrderListUpdateStateFilterEventImpl
+    implements OrderListUpdateStateFilterEvent {
+  _$OrderListUpdateStateFilterEventImpl(this.stateFilter);
+
+  @override
+  final OrderListStateFilter stateFilter;
+
+  @override
+  String toString() {
+    return 'OrderListEvent.updateStateFilter(stateFilter: $stateFilter)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$OrderListUpdateStateFilterEventImpl &&
+            (identical(other.stateFilter, stateFilter) ||
+                other.stateFilter == stateFilter));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, stateFilter);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$OrderListUpdateStateFilterEventImplCopyWith<
+          _$OrderListUpdateStateFilterEventImpl>
+      get copyWith => __$$OrderListUpdateStateFilterEventImplCopyWithImpl<
+          _$OrderListUpdateStateFilterEventImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() load,
+    required TResult Function(List<MyOrder> orders) ordersArrived,
+    required TResult Function(OrderListWaiterFilter waiterFilter)
+        updateWaiterFilter,
+    required TResult Function(OrderListStateFilter stateFilter)
+        updateStateFilter,
+  }) {
+    return updateStateFilter(stateFilter);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? load,
+    TResult? Function(List<MyOrder> orders)? ordersArrived,
+    TResult? Function(OrderListWaiterFilter waiterFilter)? updateWaiterFilter,
+    TResult? Function(OrderListStateFilter stateFilter)? updateStateFilter,
+  }) {
+    return updateStateFilter?.call(stateFilter);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? load,
+    TResult Function(List<MyOrder> orders)? ordersArrived,
+    TResult Function(OrderListWaiterFilter waiterFilter)? updateWaiterFilter,
+    TResult Function(OrderListStateFilter stateFilter)? updateStateFilter,
+    required TResult orElse(),
+  }) {
+    if (updateStateFilter != null) {
+      return updateStateFilter(stateFilter);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(OrderListLoadEvent value) load,
+    required TResult Function(OrderListOrdersArrivedEvent value) ordersArrived,
+    required TResult Function(OrderListUpdateWaiterFilterEvent value)
+        updateWaiterFilter,
+    required TResult Function(OrderListUpdateStateFilterEvent value)
+        updateStateFilter,
+  }) {
+    return updateStateFilter(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(OrderListLoadEvent value)? load,
+    TResult? Function(OrderListOrdersArrivedEvent value)? ordersArrived,
+    TResult? Function(OrderListUpdateWaiterFilterEvent value)?
+        updateWaiterFilter,
+    TResult? Function(OrderListUpdateStateFilterEvent value)? updateStateFilter,
+  }) {
+    return updateStateFilter?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(OrderListLoadEvent value)? load,
+    TResult Function(OrderListOrdersArrivedEvent value)? ordersArrived,
+    TResult Function(OrderListUpdateWaiterFilterEvent value)?
+        updateWaiterFilter,
+    TResult Function(OrderListUpdateStateFilterEvent value)? updateStateFilter,
+    required TResult orElse(),
+  }) {
+    if (updateStateFilter != null) {
+      return updateStateFilter(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class OrderListUpdateStateFilterEvent implements OrderListEvent {
+  factory OrderListUpdateStateFilterEvent(
+          final OrderListStateFilter stateFilter) =
+      _$OrderListUpdateStateFilterEventImpl;
+
+  OrderListStateFilter get stateFilter;
+  @JsonKey(ignore: true)
+  _$$OrderListUpdateStateFilterEventImplCopyWith<
+          _$OrderListUpdateStateFilterEventImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

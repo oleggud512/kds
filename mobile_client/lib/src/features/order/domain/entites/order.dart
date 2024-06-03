@@ -10,12 +10,9 @@ part 'order.g.dart';
 class MyOrder with _$MyOrder {
   factory MyOrder({
     required int id,
-
     required Waiter waiter,
-
     @Default(OrderState.inProgress) OrderState state,
 
-    @JsonKey(name: 'order_items')
     @Default([]) 
     List<OrderItem> items,
   }) = _MyOrder;

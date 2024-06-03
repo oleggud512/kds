@@ -1,6 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
+import 'package:mobile_client/src/core/common/logger.dart';
 import 'package:mobile_client/src/features/menu/app/use_cases/get_dishes_use_case.dart';
+import 'package:mobile_client/src/features/order/app/use_cases/add_order_use_case.dart';
 import 'package:mobile_client/src/features/order/domain/entites/order_item.dart';
 import 'package:mobile_client/src/features/order/presentation/add_new_order/add_new_order_event.dart';
 import 'package:mobile_client/src/features/order/presentation/add_new_order/add_new_order_state.dart';
@@ -8,8 +10,9 @@ import 'package:mobile_client/src/features/order/presentation/add_new_order/add_
 @Injectable()
 class AddNewOrderBloc extends Bloc<AddNewOrderEvent, AddNewOrderState> {
   final GetDishesUseCase getDishes;
+  final AddOrderUseCase addOrder;
 
-  AddNewOrderBloc(this.getDishes) 
+  AddNewOrderBloc(this.getDishes, this.addOrder) 
     : super(AddNewOrderState(
         isLoading: true,
       )) {
@@ -25,7 +28,13 @@ class AddNewOrderBloc extends Bloc<AddNewOrderEvent, AddNewOrderState> {
     AddNewOrderSubmitEvent event,
     Emitter<AddNewOrderState> emit,
   ) async {
+    final res = await addOrder.call(state.items);
     
+    res.fold((l) {
+      
+    }, (r) {
+      event.onSuccess();
+    });
   }
 
   Future<void> _load(

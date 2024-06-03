@@ -7,7 +7,7 @@ part of 'waiter.dart';
 // **************************************************************************
 
 _$WaiterImpl _$$WaiterImplFromJson(Map<String, dynamic> json) => _$WaiterImpl(
-      id: json['id'] as int,
+      id: (json['id'] as num).toInt(),
       name: json['name'] as String,
     );
 

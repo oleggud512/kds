@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getWaiters = void 0;
+exports.getWaiter = exports.getWaiters = void 0;
 const sequelize_1 = require("sequelize");
 const sequelize_2 = require("../../../sequelize");
 function getWaiters() {
@@ -23,3 +23,21 @@ function getWaiters() {
     });
 }
 exports.getWaiters = getWaiters;
+function getWaiter(id) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const waiters = yield sequelize_2.sequelize.query(`
+    SELECT * 
+    FROM waiter 
+    WHERE id = :id
+  `, {
+            replacements: {
+                id
+            },
+            mapToModel: true,
+            model: sequelize_2.Waiter
+        });
+        const waiter = waiters[0].dataValues;
+        return waiter;
+    });
+}
+exports.getWaiter = getWaiter;

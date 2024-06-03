@@ -23,7 +23,6 @@ mixin _$MyOrder {
   int get id => throw _privateConstructorUsedError;
   Waiter get waiter => throw _privateConstructorUsedError;
   OrderState get state => throw _privateConstructorUsedError;
-  @JsonKey(name: 'order_items')
   List<OrderItem> get items => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -35,11 +34,7 @@ abstract class $MyOrderCopyWith<$Res> {
   factory $MyOrderCopyWith(MyOrder value, $Res Function(MyOrder) then) =
       _$MyOrderCopyWithImpl<$Res, MyOrder>;
   @useResult
-  $Res call(
-      {int id,
-      Waiter waiter,
-      OrderState state,
-      @JsonKey(name: 'order_items') List<OrderItem> items});
+  $Res call({int id, Waiter waiter, OrderState state, List<OrderItem> items});
 
   $WaiterCopyWith<$Res> get waiter;
 }
@@ -98,11 +93,7 @@ abstract class _$$MyOrderImplCopyWith<$Res> implements $MyOrderCopyWith<$Res> {
       __$$MyOrderImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {int id,
-      Waiter waiter,
-      OrderState state,
-      @JsonKey(name: 'order_items') List<OrderItem> items});
+  $Res call({int id, Waiter waiter, OrderState state, List<OrderItem> items});
 
   @override
   $WaiterCopyWith<$Res> get waiter;
@@ -152,7 +143,7 @@ class _$MyOrderImpl implements _MyOrder {
       {required this.id,
       required this.waiter,
       this.state = OrderState.inProgress,
-      @JsonKey(name: 'order_items') final List<OrderItem> items = const []})
+      final List<OrderItem> items = const []})
       : _items = items;
 
   factory _$MyOrderImpl.fromJson(Map<String, dynamic> json) =>
@@ -167,7 +158,7 @@ class _$MyOrderImpl implements _MyOrder {
   final OrderState state;
   final List<OrderItem> _items;
   @override
-  @JsonKey(name: 'order_items')
+  @JsonKey()
   List<OrderItem> get items {
     if (_items is EqualUnmodifiableListView) return _items;
     // ignore: implicit_dynamic_type
@@ -204,11 +195,10 @@ class _$MyOrderImpl implements _MyOrder {
 
 abstract class _MyOrder implements MyOrder {
   factory _MyOrder(
-          {required final int id,
-          required final Waiter waiter,
-          final OrderState state,
-          @JsonKey(name: 'order_items') final List<OrderItem> items}) =
-      _$MyOrderImpl;
+      {required final int id,
+      required final Waiter waiter,
+      final OrderState state,
+      final List<OrderItem> items}) = _$MyOrderImpl;
 
   factory _MyOrder.fromJson(Map<String, dynamic> json) = _$MyOrderImpl.fromJson;
 
@@ -219,7 +209,6 @@ abstract class _MyOrder implements MyOrder {
   @override
   OrderState get state;
   @override
-  @JsonKey(name: 'order_items')
   List<OrderItem> get items;
   @override
   @JsonKey(ignore: true)

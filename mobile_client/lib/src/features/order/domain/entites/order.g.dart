@@ -8,11 +8,11 @@ part of 'order.dart';
 
 _$MyOrderImpl _$$MyOrderImplFromJson(Map<String, dynamic> json) =>
     _$MyOrderImpl(
-      id: json['id'] as int,
+      id: (json['id'] as num).toInt(),
       waiter: Waiter.fromJson(json['waiter'] as Map<String, dynamic>),
       state: $enumDecodeNullable(_$OrderStateEnumMap, json['state']) ??
           OrderState.inProgress,
-      items: (json['order_items'] as List<dynamic>?)
+      items: (json['items'] as List<dynamic>?)
               ?.map((e) => OrderItem.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],

@@ -71,7 +71,8 @@ function addOrder(req, res, next) {
                 count: (0, tryParseInt_1.tryParseInt)(item.count)
             });
         }
-        ordersService.addOrder({ waiterId: waiterId, items });
+        const order = yield ordersService.addOrder({ waiterId: waiterId, items });
+        return res.json({ data: order });
     });
 }
 exports.addOrder = addOrder;

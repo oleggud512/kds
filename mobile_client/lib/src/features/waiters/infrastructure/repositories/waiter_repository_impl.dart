@@ -17,7 +17,7 @@ class WaiterRepositoryImpl implements WaiterRepository {
   Future<Either<AppException, List<Waiter>>> getWaiters() async {
     try {
       final res = await dio.get('waiters'.hardcoded);
-      final waiters = List.from(res.data).map((w) => Waiter.fromJson(w)).toList();
+      final waiters = List.from(res.data["data"]).map((w) => Waiter.fromJson(w)).toList();
       return Right(waiters);
     } catch (e) {
       glogger.e(e);
@@ -29,7 +29,7 @@ class WaiterRepositoryImpl implements WaiterRepository {
   Future<Either<AppException, Waiter>> getWaiter(int id) async {
     try {
       final res = await dio.get('waiters/$id'.hardcoded);
-      final waiter = Waiter.fromJson(res.data);
+      final waiter = Waiter.fromJson(res.data["data"]);
       return Right(waiter);
     } catch (e) {
       glogger.e(e);

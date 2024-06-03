@@ -47,7 +47,8 @@ export async function addOrder(
     })
   }
 
-  ordersService.addOrder({ waiterId: waiterId!, items })
+  const order = await ordersService.addOrder({ waiterId: waiterId!, items })
+  return res.json({ data: order })
 }
 
 export async function updateOrderItemState(

@@ -34,6 +34,7 @@ abstract class _$AppRouter extends RootStackRouter {
         child: OrderPage(
           key: args.key,
           order: args.order,
+          listen: args.listen,
         ),
       );
     },
@@ -84,12 +85,14 @@ class OrderRoute extends PageRouteInfo<OrderRouteArgs> {
   OrderRoute({
     Key? key,
     required MyOrder order,
+    bool listen = false,
     List<PageRouteInfo>? children,
   }) : super(
           OrderRoute.name,
           args: OrderRouteArgs(
             key: key,
             order: order,
+            listen: listen,
           ),
           initialChildren: children,
         );
@@ -103,15 +106,18 @@ class OrderRouteArgs {
   const OrderRouteArgs({
     this.key,
     required this.order,
+    this.listen = false,
   });
 
   final Key? key;
 
   final MyOrder order;
 
+  final bool listen;
+
   @override
   String toString() {
-    return 'OrderRouteArgs{key: $key, order: $order}';
+    return 'OrderRouteArgs{key: $key, order: $order, listen: $listen}';
   }
 }
 

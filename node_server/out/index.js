@@ -18,7 +18,10 @@ const router_1 = __importDefault(require("./router"));
 const http_1 = __importDefault(require("http"));
 const handle_error_1 = require("./src/common/handle-error");
 const sequelize_1 = require("./sequelize");
+const socket_1 = require("./socket");
+const mysql_1 = __importDefault(require("./mysql"));
 (() => __awaiter(void 0, void 0, void 0, function* () {
+    yield mysql_1.default.init();
     yield (0, sequelize_1.initSequelize)();
     const app = (0, express_1.default)();
     app.use((0, cors_1.default)());
@@ -28,6 +31,7 @@ const sequelize_1 = require("./sequelize");
     app.use(handle_error_1.handleErrorMiddleware);
     const server = http_1.default.createServer(app);
     const PORT = 3000;
+    (0, socket_1.setupSocketIoServer)(server);
     server.listen(PORT, () => {
         console.log(`KDS server is running on port ${PORT}`);
     });

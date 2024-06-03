@@ -5,9 +5,11 @@ import http from "http"
 import { handleErrorMiddleware } from './src/common/handle-error';
 import { initSequelize } from './sequelize';
 import { setupSocketIoServer } from './socket';
+import Db from './mysql';
 
 
 (async () => {
+  await Db.init()
   await initSequelize()
 
   const app = express()

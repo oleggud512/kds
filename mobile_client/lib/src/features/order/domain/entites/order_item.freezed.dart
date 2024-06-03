@@ -20,12 +20,13 @@ OrderItem _$OrderItemFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$OrderItem {
-  int get id => throw _privateConstructorUsedError;
-  Dish get dish => throw _privateConstructorUsedError;
+  int get orderId => throw _privateConstructorUsedError;
+  int get dishId => throw _privateConstructorUsedError;
   int get count => throw _privateConstructorUsedError;
   String get comment => throw _privateConstructorUsedError;
-  int get orderId => throw _privateConstructorUsedError;
   OrderItemState get state => throw _privateConstructorUsedError;
+  MyOrder? get order => throw _privateConstructorUsedError;
+  Dish get dish => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $OrderItemCopyWith<OrderItem> get copyWith =>
@@ -38,13 +39,15 @@ abstract class $OrderItemCopyWith<$Res> {
       _$OrderItemCopyWithImpl<$Res, OrderItem>;
   @useResult
   $Res call(
-      {int id,
-      Dish dish,
+      {int orderId,
+      int dishId,
       int count,
       String comment,
-      int orderId,
-      OrderItemState state});
+      OrderItemState state,
+      MyOrder? order,
+      Dish dish});
 
+  $MyOrderCopyWith<$Res>? get order;
   $DishCopyWith<$Res> get dish;
 }
 
@@ -61,22 +64,23 @@ class _$OrderItemCopyWithImpl<$Res, $Val extends OrderItem>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? dish = null,
+    Object? orderId = null,
+    Object? dishId = null,
     Object? count = null,
     Object? comment = null,
-    Object? orderId = null,
     Object? state = null,
+    Object? order = freezed,
+    Object? dish = null,
   }) {
     return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+      orderId: null == orderId
+          ? _value.orderId
+          : orderId // ignore: cast_nullable_to_non_nullable
               as int,
-      dish: null == dish
-          ? _value.dish
-          : dish // ignore: cast_nullable_to_non_nullable
-              as Dish,
+      dishId: null == dishId
+          ? _value.dishId
+          : dishId // ignore: cast_nullable_to_non_nullable
+              as int,
       count: null == count
           ? _value.count
           : count // ignore: cast_nullable_to_non_nullable
@@ -85,15 +89,31 @@ class _$OrderItemCopyWithImpl<$Res, $Val extends OrderItem>
           ? _value.comment
           : comment // ignore: cast_nullable_to_non_nullable
               as String,
-      orderId: null == orderId
-          ? _value.orderId
-          : orderId // ignore: cast_nullable_to_non_nullable
-              as int,
       state: null == state
           ? _value.state
           : state // ignore: cast_nullable_to_non_nullable
               as OrderItemState,
+      order: freezed == order
+          ? _value.order
+          : order // ignore: cast_nullable_to_non_nullable
+              as MyOrder?,
+      dish: null == dish
+          ? _value.dish
+          : dish // ignore: cast_nullable_to_non_nullable
+              as Dish,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $MyOrderCopyWith<$Res>? get order {
+    if (_value.order == null) {
+      return null;
+    }
+
+    return $MyOrderCopyWith<$Res>(_value.order!, (value) {
+      return _then(_value.copyWith(order: value) as $Val);
+    });
   }
 
   @override
@@ -114,13 +134,16 @@ abstract class _$$OrderItemImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int id,
-      Dish dish,
+      {int orderId,
+      int dishId,
       int count,
       String comment,
-      int orderId,
-      OrderItemState state});
+      OrderItemState state,
+      MyOrder? order,
+      Dish dish});
 
+  @override
+  $MyOrderCopyWith<$Res>? get order;
   @override
   $DishCopyWith<$Res> get dish;
 }
@@ -136,22 +159,23 @@ class __$$OrderItemImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? dish = null,
+    Object? orderId = null,
+    Object? dishId = null,
     Object? count = null,
     Object? comment = null,
-    Object? orderId = null,
     Object? state = null,
+    Object? order = freezed,
+    Object? dish = null,
   }) {
     return _then(_$OrderItemImpl(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+      orderId: null == orderId
+          ? _value.orderId
+          : orderId // ignore: cast_nullable_to_non_nullable
               as int,
-      dish: null == dish
-          ? _value.dish
-          : dish // ignore: cast_nullable_to_non_nullable
-              as Dish,
+      dishId: null == dishId
+          ? _value.dishId
+          : dishId // ignore: cast_nullable_to_non_nullable
+              as int,
       count: null == count
           ? _value.count
           : count // ignore: cast_nullable_to_non_nullable
@@ -160,14 +184,18 @@ class __$$OrderItemImplCopyWithImpl<$Res>
           ? _value.comment
           : comment // ignore: cast_nullable_to_non_nullable
               as String,
-      orderId: null == orderId
-          ? _value.orderId
-          : orderId // ignore: cast_nullable_to_non_nullable
-              as int,
       state: null == state
           ? _value.state
           : state // ignore: cast_nullable_to_non_nullable
               as OrderItemState,
+      order: freezed == order
+          ? _value.order
+          : order // ignore: cast_nullable_to_non_nullable
+              as MyOrder?,
+      dish: null == dish
+          ? _value.dish
+          : dish // ignore: cast_nullable_to_non_nullable
+              as Dish,
     ));
   }
 }
@@ -176,12 +204,13 @@ class __$$OrderItemImplCopyWithImpl<$Res>
 @JsonSerializable(createToJson: false)
 class _$OrderItemImpl extends _OrderItem {
   _$OrderItemImpl(
-      {this.id = 0,
-      required this.dish,
+      {this.orderId = 0,
+      this.dishId = 0,
       this.count = 0,
       this.comment = "",
-      this.orderId = 0,
-      this.state = OrderItemState.cooking})
+      this.state = OrderItemState.cooking,
+      this.order,
+      required this.dish})
       : super._();
 
   factory _$OrderItemImpl.fromJson(Map<String, dynamic> json) =>
@@ -189,9 +218,10 @@ class _$OrderItemImpl extends _OrderItem {
 
   @override
   @JsonKey()
-  final int id;
+  final int orderId;
   @override
-  final Dish dish;
+  @JsonKey()
+  final int dishId;
   @override
   @JsonKey()
   final int count;
@@ -200,14 +230,15 @@ class _$OrderItemImpl extends _OrderItem {
   final String comment;
   @override
   @JsonKey()
-  final int orderId;
-  @override
-  @JsonKey()
   final OrderItemState state;
+  @override
+  final MyOrder? order;
+  @override
+  final Dish dish;
 
   @override
   String toString() {
-    return 'OrderItem(id: $id, dish: $dish, count: $count, comment: $comment, orderId: $orderId, state: $state)';
+    return 'OrderItem(orderId: $orderId, dishId: $dishId, count: $count, comment: $comment, state: $state, order: $order, dish: $dish)';
   }
 
   @override
@@ -215,18 +246,19 @@ class _$OrderItemImpl extends _OrderItem {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$OrderItemImpl &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.dish, dish) || other.dish == dish) &&
+            (identical(other.orderId, orderId) || other.orderId == orderId) &&
+            (identical(other.dishId, dishId) || other.dishId == dishId) &&
             (identical(other.count, count) || other.count == count) &&
             (identical(other.comment, comment) || other.comment == comment) &&
-            (identical(other.orderId, orderId) || other.orderId == orderId) &&
-            (identical(other.state, state) || other.state == state));
+            (identical(other.state, state) || other.state == state) &&
+            (identical(other.order, order) || other.order == order) &&
+            (identical(other.dish, dish) || other.dish == dish));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, dish, count, comment, orderId, state);
+  int get hashCode => Object.hash(
+      runtimeType, orderId, dishId, count, comment, state, order, dish);
 
   @JsonKey(ignore: true)
   @override
@@ -237,29 +269,32 @@ class _$OrderItemImpl extends _OrderItem {
 
 abstract class _OrderItem extends OrderItem {
   factory _OrderItem(
-      {final int id,
-      required final Dish dish,
+      {final int orderId,
+      final int dishId,
       final int count,
       final String comment,
-      final int orderId,
-      final OrderItemState state}) = _$OrderItemImpl;
+      final OrderItemState state,
+      final MyOrder? order,
+      required final Dish dish}) = _$OrderItemImpl;
   _OrderItem._() : super._();
 
   factory _OrderItem.fromJson(Map<String, dynamic> json) =
       _$OrderItemImpl.fromJson;
 
   @override
-  int get id;
+  int get orderId;
   @override
-  Dish get dish;
+  int get dishId;
   @override
   int get count;
   @override
   String get comment;
   @override
-  int get orderId;
-  @override
   OrderItemState get state;
+  @override
+  MyOrder? get order;
+  @override
+  Dish get dish;
   @override
   @JsonKey(ignore: true)
   _$$OrderItemImplCopyWith<_$OrderItemImpl> get copyWith =>

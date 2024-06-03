@@ -10,12 +10,12 @@ import 'get_it.config.dart';
 @module
 abstract class RegisterModule {
 
-  @lazySingleton
+  @singleton
   Dio getDio(WaiterAuthService waiterAuth) => Dio(BaseOptions(
-    baseUrl: baseUrl,
+    baseUrl: baseApiUrl,
   ))..interceptors.add(QueuedInterceptorsWrapper(
     onRequest: (options, handler) {
-      options.headers['waiterId'] = waiterAuth.waiterId;
+      options.headers['waiter-id'] = waiterAuth.waiterId;
       handler.next(options);
     },
   ));

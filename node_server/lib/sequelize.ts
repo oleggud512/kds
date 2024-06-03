@@ -1,15 +1,54 @@
-import { CreationOptional, DataTypes, ForeignKey, InferAttributes, InferCreationAttributes, Model, NonAttribute, Sequelize } from "sequelize";
+import { CreationOptional, DataTypes, ForeignKey, InferAttributes, InferCreationAttributes, Model, NonAttribute, QueryTypes, Sequelize } from "sequelize";
 import OrderState from "./src/features/orders/OrderState";
 
 import { getDishes } from "./src/features/dishes/service";
-import { getOrders } from "./src/features/orders/data/repository";
+import { addOrder, getOrder, getOrders } from "./src/features/orders/data/repository";
 import OrderItemState from "./src/features/orders/OrderItemState";
+import { orderQuery } from "./src/features/orders/data/join";
+import { CreateOrder } from "./src/features/orders/CreateOrder";
+import { updateOrderItemState } from "./src/features/orders/data/repository";
 
 const sequelize = new Sequelize('kds', 'root', 'Ab7Cug84', { 
   host: 'localhost',
   port: 3306,
   dialect: 'mysql'
 })
+
+interface IWaiter {
+  id: number
+  name: string
+  phoneNumber: string
+}
+
+interface IDish {
+  id: number
+  name: string
+  category: string
+  price: number
+}
+
+interface IOrderItem {
+  dishId: number
+  orderId: number
+  price: number
+  comment: string
+  state: OrderItemState
+  count: number
+
+  dish?: IDish
+  order?: IOrder
+}
+
+interface IOrder {
+  id: number
+  waiterId: number
+  total?: number
+  date: Date
+  state: OrderState
+
+  items?: IOrderItem[]
+  waiter?: IWaiter
+}
 
 
 class Waiter extends Model<InferAttributes<Waiter>, InferCreationAttributes<Waiter>> {
@@ -36,40 +75,6 @@ class OrderItem extends Model<InferAttributes<OrderItem>, InferCreationAttribute
   declare dish: NonAttribute<Dish>
 }
 
-interface IWaiter {
-  id: number
-  name: string
-  phoneNumber: string
-}
-
-interface IDish {
-  id: number
-  name: string
-  category: string
-  price: number
-}
-
-interface IOrderItem {
-  dishId: number
-  orderId: number
-  price: number
-  comment: string
-  state: OrderItemState
-
-  dish?: IDish
-}
-
-interface IOrder {
-  id: number
-  waiterId: number
-  total?: number
-  date: Date
-  state: OrderState
-
-  items?: IOrderItem[]
-  waiter?: IWaiter
-}
-
 class Order extends Model<InferAttributes<Order>, InferCreationAttributes<Order>> {
   declare id: CreationOptional<number>
   declare waiterId: ForeignKey<Waiter['id']>
@@ -77,7 +82,8 @@ class Order extends Model<InferAttributes<Order>, InferCreationAttributes<Order>
   declare date: CreationOptional<Date>
   declare state: CreationOptional<OrderState>
 
-  declare items: NonAttribute<OrderItem[]>
+  declare items: NonAttribute<IOrderItem[]>
+  declare waiter: NonAttribute<IWaiter>
 }
 
 Waiter.init({
@@ -96,6 +102,7 @@ Waiter.init({
     allowNull: false
   }
 }, { 
+  timestamps: false,
   sequelize: sequelize,
   modelName: 'waiter', 
   freezeTableName: true 
@@ -120,6 +127,7 @@ Dish.init({
     allowNull: false,
   }
 }, { 
+  timestamps: false,
   sequelize: sequelize,
   modelName: 'dish', 
   freezeTableName: true 
@@ -156,6 +164,7 @@ Order.init({
     allowNull: true
   }
 }, { 
+  timestamps: false,
   sequelize: sequelize,
   modelName: 'order', 
   freezeTableName: true 
@@ -198,6 +207,7 @@ OrderItem.init({
     allowNull: true,
   }
 }, { 
+  timestamps: false,
   sequelize: sequelize,
   modelName: 'order_item', 
   freezeTableName: true 
@@ -221,10 +231,34 @@ async function initSequelize() {
     // alter: true,
     force: true
   })
+  await createTriggers()
 
-  dummyData()
+  await dummyData()
 
   console.log('synchronized')
+}
+
+async function createTriggers() {
+  await sequelize.query(`
+    CREATE TRIGGER order_item_price
+    BEFORE INSERT
+    ON kds.order_item FOR EACH ROW
+    BEGIN
+      DECLARE dish_price DECIMAL(8,2);
+      
+      SELECT d.price INTO dish_price
+      FROM dish d 
+      WHERE d.id = NEW.dish_id;
+      
+      SET NEW.price = dish_price;
+        
+      UPDATE \`order\`
+      SET total = IF(total IS NULL, dish_price, total + dish_price)
+      WHERE id = NEW.order_id;
+    END
+  `, {
+    type: QueryTypes.RAW
+  })
 }
 
 async function dummyData() {
@@ -277,23 +311,27 @@ async function dummyData() {
     })
   }
 
-  const order = await Order.create({
-    waiterId: 1
-  });
+  const order: CreateOrder = {
+    waiterId: 1,
+    items: []
+  };
 
   for (let i = 1; i < 4; i++) {
-    await OrderItem.create({
-      orderId: order.id,
+    order.items.push({
       dishId: i,
       comment: "first comment",
       count: i+10
     })
   }
 
-  // console.log(await getOrders())
-
-
-
+  await addOrder(order)
+  await updateOrderItemState({
+    orderId: 1,
+    dishId: 1,
+    newState: OrderItemState.ready
+  })
+  const ord = await getOrder(1)
+  console.log(ord)
 }
 
 export {

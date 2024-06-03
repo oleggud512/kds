@@ -6,6 +6,7 @@ import 'package:mobile_client/src/core/common/extensions/string.dart';
 import 'package:mobile_client/src/core/common/logger.dart';
 import 'package:mobile_client/src/core/presentation/confirm_dialog.dart';
 import 'package:mobile_client/src/core/presentation/constants.dart';
+import 'package:mobile_client/src/core/presentation/router/router.dart';
 import 'package:mobile_client/src/features/order/domain/entites/order_item.dart';
 import 'package:mobile_client/src/features/order/presentation/add_new_order/add_new_order_bloc.dart';
 import 'package:mobile_client/src/features/order/presentation/add_new_order/add_new_order_event.dart';
@@ -54,7 +55,9 @@ class _OrderFormWidgetState extends State<OrderFormWidget> {
 
     if (isSure == true && context.mounted) {
       context.read<AddNewOrderBloc>()
-        .add(AddNewOrderEvent.submit(onSuccess: context.router.pop));
+        .add(AddNewOrderEvent.submit(onSuccess: () {
+          context.router.popUntilRoot();
+        }));
     }
   }
 
@@ -118,7 +121,8 @@ class _OrderFormWidgetState extends State<OrderFormWidget> {
           child: FilledButton(
             onPressed: () {
               // TODO: implement adding new order.
-              glogger.i(state.items);
+              glogger.i("add order: ${state.items}");
+              onAddOrder(context);
             },
             child: Text("Add order!".hardcoded),
           )

@@ -1,11 +1,9 @@
 import { QueryTypes } from "sequelize"
-import { Dish, IOrder, IOrderItem, OrderItem, sequelize } from "../../../../sequelize"
+import { Dish, IOrder, IOrderItem, OrderItem, Waiter, sequelize } from "../../../../sequelize"
 
 export async function populateOrderItemsWithDishes(items: IOrderItem[]) : Promise<void> {
   
   const dishIds = items.map(i => i.dishId)
-  console.log("dishIds")
-  console.log(dishIds)
 
   const dishes = await sequelize.query("SELECT * FROM dish WHERE id IN (:dishIds)", {
     type: QueryTypes.SELECT,
@@ -15,11 +13,34 @@ export async function populateOrderItemsWithDishes(items: IOrderItem[]) : Promis
       dishIds
     }
   })
-  console.log("dishes")
-  console.log(dishes)
+  
   for (const dish of dishes) {
     const item = items.find(i => i.dishId == dish.id)!
     item.dish = dish.dataValues
+  }
+}
+
+export async function populateOrdersWithWaiters(orders: IOrder[]) : Promise<void> {
+  console.log(JSON.stringify(orders))
+  const waiterIds = orders.map(o => o.waiterId)
+  console.log("waiterIds")
+  console.log(waiterIds)
+
+  const waiters = await sequelize.query(`
+    SELECT *
+    FROM waiter
+    WHERE id IN (:waiterIds)
+  `, {
+    replacements: {
+      waiterIds
+    },
+    mapToModel: true,
+    model: Waiter
+  })
+
+  for (const waiter of waiters) {
+    const order = orders.find(o => o.waiterId)!
+    order.waiter = waiter.dataValues
   }
 }
 
