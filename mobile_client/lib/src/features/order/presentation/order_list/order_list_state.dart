@@ -10,6 +10,7 @@ class OrderListState with _$OrderListState {
     @Default(false) bool isLoading,
     @Default(OrderListStateFilter.inProgress) OrderListStateFilter stateFilter,
     @Default(OrderListWaiterFilter.my) OrderListWaiterFilter waiterFilter,
+    @Default(OrderListTimeFilter.today) OrderListTimeFilter timeFilter,
     @Default([]) List<MyOrder> orders,
   }) = _OrderListState;
 }

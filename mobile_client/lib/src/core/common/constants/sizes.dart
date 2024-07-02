@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+
+const double p2 = 2.0;
 const double p4 = 4.0;
 const double p8 = 8.0;
 const double p16 = 16.0;
@@ -60,6 +62,7 @@ const double p448 = 448.0;
 
 const shrink = SizedBox.shrink();
 
+const h2gap = SizedBox(height: p2);
 const h4gap = SizedBox(height: p4);
 const w4gap = SizedBox(width: p4);
 const h8gap = SizedBox(height: p8);

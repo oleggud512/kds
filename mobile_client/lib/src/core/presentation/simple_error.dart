@@ -24,7 +24,7 @@ class SimpleError extends StatelessWidget {
             h8gap,
             FilledButton(
               onPressed: onRetry, 
-              child: Text('Retry'.hardcoded)
+              child: Text('Спробувати знов'.hardcoded)
             )
           ]
         ]

@@ -10,6 +10,8 @@ _$MyOrderImpl _$$MyOrderImplFromJson(Map<String, dynamic> json) =>
     _$MyOrderImpl(
       id: (json['id'] as num).toInt(),
       waiter: Waiter.fromJson(json['waiter'] as Map<String, dynamic>),
+      date: DateTime.parse(json['date'] as String),
+      table: json['table'] as String? ?? "",
       state: $enumDecodeNullable(_$OrderStateEnumMap, json['state']) ??
           OrderState.inProgress,
       items: (json['items'] as List<dynamic>?)

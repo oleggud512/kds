@@ -42,7 +42,6 @@ const orderSocket = __importStar(require("./socket"));
 function addOrder(order) {
     return __awaiter(this, void 0, void 0, function* () {
         const createdOrder = yield orderRepository.addOrder(order);
-        console.log("meant to send something to the socket");
         orderSocket.onInProgressOrdersUpdated();
         return createdOrder;
     });

@@ -22,6 +22,8 @@ MyOrder _$MyOrderFromJson(Map<String, dynamic> json) {
 mixin _$MyOrder {
   int get id => throw _privateConstructorUsedError;
   Waiter get waiter => throw _privateConstructorUsedError;
+  DateTime get date => throw _privateConstructorUsedError;
+  String get table => throw _privateConstructorUsedError;
   OrderState get state => throw _privateConstructorUsedError;
   List<OrderItem> get items => throw _privateConstructorUsedError;
 
@@ -34,7 +36,13 @@ abstract class $MyOrderCopyWith<$Res> {
   factory $MyOrderCopyWith(MyOrder value, $Res Function(MyOrder) then) =
       _$MyOrderCopyWithImpl<$Res, MyOrder>;
   @useResult
-  $Res call({int id, Waiter waiter, OrderState state, List<OrderItem> items});
+  $Res call(
+      {int id,
+      Waiter waiter,
+      DateTime date,
+      String table,
+      OrderState state,
+      List<OrderItem> items});
 
   $WaiterCopyWith<$Res> get waiter;
 }
@@ -54,6 +62,8 @@ class _$MyOrderCopyWithImpl<$Res, $Val extends MyOrder>
   $Res call({
     Object? id = null,
     Object? waiter = null,
+    Object? date = null,
+    Object? table = null,
     Object? state = null,
     Object? items = null,
   }) {
@@ -66,6 +76,14 @@ class _$MyOrderCopyWithImpl<$Res, $Val extends MyOrder>
           ? _value.waiter
           : waiter // ignore: cast_nullable_to_non_nullable
               as Waiter,
+      date: null == date
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      table: null == table
+          ? _value.table
+          : table // ignore: cast_nullable_to_non_nullable
+              as String,
       state: null == state
           ? _value.state
           : state // ignore: cast_nullable_to_non_nullable
@@ -93,7 +111,13 @@ abstract class _$$MyOrderImplCopyWith<$Res> implements $MyOrderCopyWith<$Res> {
       __$$MyOrderImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, Waiter waiter, OrderState state, List<OrderItem> items});
+  $Res call(
+      {int id,
+      Waiter waiter,
+      DateTime date,
+      String table,
+      OrderState state,
+      List<OrderItem> items});
 
   @override
   $WaiterCopyWith<$Res> get waiter;
@@ -112,6 +136,8 @@ class __$$MyOrderImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? waiter = null,
+    Object? date = null,
+    Object? table = null,
     Object? state = null,
     Object? items = null,
   }) {
@@ -124,6 +150,14 @@ class __$$MyOrderImplCopyWithImpl<$Res>
           ? _value.waiter
           : waiter // ignore: cast_nullable_to_non_nullable
               as Waiter,
+      date: null == date
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      table: null == table
+          ? _value.table
+          : table // ignore: cast_nullable_to_non_nullable
+              as String,
       state: null == state
           ? _value.state
           : state // ignore: cast_nullable_to_non_nullable
@@ -142,6 +176,8 @@ class _$MyOrderImpl implements _MyOrder {
   _$MyOrderImpl(
       {required this.id,
       required this.waiter,
+      required this.date,
+      this.table = "",
       this.state = OrderState.inProgress,
       final List<OrderItem> items = const []})
       : _items = items;
@@ -153,6 +189,11 @@ class _$MyOrderImpl implements _MyOrder {
   final int id;
   @override
   final Waiter waiter;
+  @override
+  final DateTime date;
+  @override
+  @JsonKey()
+  final String table;
   @override
   @JsonKey()
   final OrderState state;
@@ -167,7 +208,7 @@ class _$MyOrderImpl implements _MyOrder {
 
   @override
   String toString() {
-    return 'MyOrder(id: $id, waiter: $waiter, state: $state, items: $items)';
+    return 'MyOrder(id: $id, waiter: $waiter, date: $date, table: $table, state: $state, items: $items)';
   }
 
   @override
@@ -177,13 +218,15 @@ class _$MyOrderImpl implements _MyOrder {
             other is _$MyOrderImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.waiter, waiter) || other.waiter == waiter) &&
+            (identical(other.date, date) || other.date == date) &&
+            (identical(other.table, table) || other.table == table) &&
             (identical(other.state, state) || other.state == state) &&
             const DeepCollectionEquality().equals(other._items, _items));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, waiter, state,
+  int get hashCode => Object.hash(runtimeType, id, waiter, date, table, state,
       const DeepCollectionEquality().hash(_items));
 
   @JsonKey(ignore: true)
@@ -197,6 +240,8 @@ abstract class _MyOrder implements MyOrder {
   factory _MyOrder(
       {required final int id,
       required final Waiter waiter,
+      required final DateTime date,
+      final String table,
       final OrderState state,
       final List<OrderItem> items}) = _$MyOrderImpl;
 
@@ -206,6 +251,10 @@ abstract class _MyOrder implements MyOrder {
   int get id;
   @override
   Waiter get waiter;
+  @override
+  DateTime get date;
+  @override
+  String get table;
   @override
   OrderState get state;
   @override

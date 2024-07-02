@@ -19,4 +19,8 @@ class OrderListEvent with _$OrderListEvent {
   factory OrderListEvent.updateStateFilter(
     OrderListStateFilter stateFilter
   ) = OrderListUpdateStateFilterEvent;
+
+  factory OrderListEvent.updateTimeFilter(
+    OrderListTimeFilter timeFilter
+  ) = OrderListUpdateTimeFilterEvent;
 }

@@ -12,6 +12,7 @@ class AddNewOrderState with _$AddNewOrderState {
 
   factory AddNewOrderState({
     @Default(false) bool isLoading,
+    @Default("") String table, // TODO: REPLACE WITH HARDCODED
     @Default([]) List<Dish> dishes,
     @Default([]) List<OrderItem> items,
   }) = _EditOrderState;

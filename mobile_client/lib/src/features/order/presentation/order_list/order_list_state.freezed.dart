@@ -19,6 +19,7 @@ mixin _$OrderListState {
   bool get isLoading => throw _privateConstructorUsedError;
   OrderListStateFilter get stateFilter => throw _privateConstructorUsedError;
   OrderListWaiterFilter get waiterFilter => throw _privateConstructorUsedError;
+  OrderListTimeFilter get timeFilter => throw _privateConstructorUsedError;
   List<MyOrder> get orders => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -36,6 +37,7 @@ abstract class $OrderListStateCopyWith<$Res> {
       {bool isLoading,
       OrderListStateFilter stateFilter,
       OrderListWaiterFilter waiterFilter,
+      OrderListTimeFilter timeFilter,
       List<MyOrder> orders});
 }
 
@@ -55,6 +57,7 @@ class _$OrderListStateCopyWithImpl<$Res, $Val extends OrderListState>
     Object? isLoading = null,
     Object? stateFilter = null,
     Object? waiterFilter = null,
+    Object? timeFilter = null,
     Object? orders = null,
   }) {
     return _then(_value.copyWith(
@@ -70,6 +73,10 @@ class _$OrderListStateCopyWithImpl<$Res, $Val extends OrderListState>
           ? _value.waiterFilter
           : waiterFilter // ignore: cast_nullable_to_non_nullable
               as OrderListWaiterFilter,
+      timeFilter: null == timeFilter
+          ? _value.timeFilter
+          : timeFilter // ignore: cast_nullable_to_non_nullable
+              as OrderListTimeFilter,
       orders: null == orders
           ? _value.orders
           : orders // ignore: cast_nullable_to_non_nullable
@@ -90,6 +97,7 @@ abstract class _$$OrderListStateImplCopyWith<$Res>
       {bool isLoading,
       OrderListStateFilter stateFilter,
       OrderListWaiterFilter waiterFilter,
+      OrderListTimeFilter timeFilter,
       List<MyOrder> orders});
 }
 
@@ -107,6 +115,7 @@ class __$$OrderListStateImplCopyWithImpl<$Res>
     Object? isLoading = null,
     Object? stateFilter = null,
     Object? waiterFilter = null,
+    Object? timeFilter = null,
     Object? orders = null,
   }) {
     return _then(_$OrderListStateImpl(
@@ -122,6 +131,10 @@ class __$$OrderListStateImplCopyWithImpl<$Res>
           ? _value.waiterFilter
           : waiterFilter // ignore: cast_nullable_to_non_nullable
               as OrderListWaiterFilter,
+      timeFilter: null == timeFilter
+          ? _value.timeFilter
+          : timeFilter // ignore: cast_nullable_to_non_nullable
+              as OrderListTimeFilter,
       orders: null == orders
           ? _value._orders
           : orders // ignore: cast_nullable_to_non_nullable
@@ -137,6 +150,7 @@ class _$OrderListStateImpl implements _OrderListState {
       {this.isLoading = false,
       this.stateFilter = OrderListStateFilter.inProgress,
       this.waiterFilter = OrderListWaiterFilter.my,
+      this.timeFilter = OrderListTimeFilter.today,
       final List<MyOrder> orders = const []})
       : _orders = orders;
 
@@ -149,6 +163,9 @@ class _$OrderListStateImpl implements _OrderListState {
   @override
   @JsonKey()
   final OrderListWaiterFilter waiterFilter;
+  @override
+  @JsonKey()
+  final OrderListTimeFilter timeFilter;
   final List<MyOrder> _orders;
   @override
   @JsonKey()
@@ -160,7 +177,7 @@ class _$OrderListStateImpl implements _OrderListState {
 
   @override
   String toString() {
-    return 'OrderListState(isLoading: $isLoading, stateFilter: $stateFilter, waiterFilter: $waiterFilter, orders: $orders)';
+    return 'OrderListState(isLoading: $isLoading, stateFilter: $stateFilter, waiterFilter: $waiterFilter, timeFilter: $timeFilter, orders: $orders)';
   }
 
   @override
@@ -174,12 +191,14 @@ class _$OrderListStateImpl implements _OrderListState {
                 other.stateFilter == stateFilter) &&
             (identical(other.waiterFilter, waiterFilter) ||
                 other.waiterFilter == waiterFilter) &&
+            (identical(other.timeFilter, timeFilter) ||
+                other.timeFilter == timeFilter) &&
             const DeepCollectionEquality().equals(other._orders, _orders));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, isLoading, stateFilter,
-      waiterFilter, const DeepCollectionEquality().hash(_orders));
+      waiterFilter, timeFilter, const DeepCollectionEquality().hash(_orders));
 
   @JsonKey(ignore: true)
   @override
@@ -194,6 +213,7 @@ abstract class _OrderListState implements OrderListState {
       {final bool isLoading,
       final OrderListStateFilter stateFilter,
       final OrderListWaiterFilter waiterFilter,
+      final OrderListTimeFilter timeFilter,
       final List<MyOrder> orders}) = _$OrderListStateImpl;
 
   @override
@@ -202,6 +222,8 @@ abstract class _OrderListState implements OrderListState {
   OrderListStateFilter get stateFilter;
   @override
   OrderListWaiterFilter get waiterFilter;
+  @override
+  OrderListTimeFilter get timeFilter;
   @override
   List<MyOrder> get orders;
   @override

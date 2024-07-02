@@ -15,9 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.initSequelize = exports.sequelize = exports.OrderItem = exports.Waiter = exports.Order = exports.Dish = void 0;
 const sequelize_1 = require("sequelize");
 const OrderState_1 = __importDefault(require("./src/features/orders/OrderState"));
-const repository_1 = require("./src/features/orders/data/repository");
 const OrderItemState_1 = __importDefault(require("./src/features/orders/OrderItemState"));
-const repository_2 = require("./src/features/orders/data/repository");
 const sequelize = new sequelize_1.Sequelize('kds', 'root', 'Ab7Cug84', {
     host: 'localhost',
     port: 3306,
@@ -101,6 +99,11 @@ Order.init({
         allowNull: false,
         defaultValue: sequelize_1.Sequelize.fn("now")
     },
+    table: {
+        type: sequelize_1.DataTypes.STRING(64),
+        allowNull: false,
+        defaultValue: ""
+    },
     state: {
         type: sequelize_1.DataTypes.ENUM,
         values: Object.keys(OrderState_1.default),
@@ -169,13 +172,13 @@ function initSequelize() {
         });
         Order.belongsToMany(Dish, { through: OrderItem });
         Dish.belongsToMany(Order, { through: OrderItem });
-        yield sequelize.sync({
-            // alter: true,
-            force: true
-        });
-        yield createTriggers();
-        yield dummyData();
-        console.log('synchronized');
+        // await sequelize.sync({
+        //   // alter: true,
+        //   force: true
+        // })
+        // await createTriggers()
+        // await dummyData()
+        // console.log('synchronized')
     });
 }
 exports.initSequelize = initSequelize;
@@ -249,24 +252,25 @@ function dummyData() {
                 phoneNumber: waiters[waiter]
             });
         }
-        const order = {
-            waiterId: 1,
-            items: []
-        };
-        for (let i = 1; i < 4; i++) {
-            order.items.push({
-                dishId: i,
-                comment: "first comment",
-                count: i + 10
-            });
-        }
-        yield (0, repository_1.addOrder)(order);
-        yield (0, repository_2.updateOrderItemState)({
-            orderId: 1,
-            dishId: 1,
-            newState: OrderItemState_1.default.ready
-        });
-        const ord = yield (0, repository_1.getOrder)(1);
-        console.log(ord);
+        // const order: CreateOrder = {
+        //   waiterId: 1,
+        //   table: "na table",
+        //   items: []
+        // };
+        // for (let i = 1; i < 4; i++) {
+        //   order.items.push({
+        //     dishId: i,
+        //     comment: "first comment",
+        //     count: i+10
+        //   })
+        // }
+        // await addOrder(order)
+        // await updateOrderItemState({
+        //   orderId: 1,
+        //   dishId: 1,
+        //   newState: OrderItemState.ready
+        // })
+        // const ord = await getOrder(1)
+        // console.log(ord)
     });
 }

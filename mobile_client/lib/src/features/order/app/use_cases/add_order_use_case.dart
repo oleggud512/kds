@@ -13,8 +13,8 @@ class AddOrderUseCase {
 
   AddOrderUseCase(this.repo);
   
-  Future<Either<AppException, MyOrder>> call(List<OrderItem> items) async {
-    final res = await repo.createNewOrder(items);
+  Future<Either<AppException, MyOrder>> call(List<OrderItem> items, String table) async {
+    final res = await repo.createNewOrder(items, table);
     return res;
   }
 }

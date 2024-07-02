@@ -23,6 +23,7 @@ export async function orderQuery(args?: {
   let select = `o.id AS o_id, 
     o.waiter_id as o_waiter_id, 
     o.date AS o_date, 
+    o.table AS o_table,
     o.state AS o_state, 
     o.total AS o_total`
   let q = "FROM `order` o"
@@ -69,17 +70,23 @@ export async function orderQuery(args?: {
 
   if (args?.startDate && !args?.endDate) {
     qargs.push(args!.startDate!)
-    q += " AND DAY(o.date) = DAY(DATE(?))"
+    q += " AND DATE(o.date) = DATE(?)"
+    console.log("with start date")
   }
   else if (args?.startDate && args?.endDate) {
     qargs.push(args!.startDate!, args!.endDate!)
     q += " AND o.date BETWEEN DATE(?) AND DATE(?)"
+  }
+  else {
+    console.log("no start date provided")
   }
 
   if (args?.state) {
     qargs.push(args!.state!)
     q += " AND o.state = ?"
   }
+
+  q += " ORDER BY FIELD(o.state, \"inProgress\", \"closed\")"
 
   const [res, fields] = await conn.query<RowDataPacket[]>(`SELECT ${select} ${q}`, qargs)
   const orders: IOrder[] = []
@@ -92,6 +99,7 @@ export async function orderQuery(args?: {
         id: row.o_id,
         total: parseFloat(row.o_total),
         waiterId: row.o_waiter_id,
+        table: row.o_table,
         date: row.o_date,
         state: OrderState[row.o_state as keyof typeof OrderState],
         waiter: args?.withWaiter 
@@ -176,6 +184,7 @@ export async function orderItemQuery(args?: {
       o.id AS o_id, 
       o.waiter_id as o_waiter_id, 
       o.date AS o_date, 
+      o.table AS o_table,
       o.state AS o_state, 
       o.total AS o_total`
     q += " JOIN `order` o ON o.id = oi.order_id"
@@ -239,6 +248,7 @@ export async function orderItemQuery(args?: {
         total: parseFloat(row.o_total),
         waiterId: row.o_waiter_id,
         date: row.o_date,
+        table: row.o_table,
         state: OrderState[row.o_state as keyof typeof OrderState],
         waiter: args?.withWaiter 
           ? {

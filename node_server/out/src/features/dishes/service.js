@@ -14,7 +14,7 @@ const sequelize_1 = require("sequelize");
 const sequelize_2 = require("../../../sequelize");
 function getDishes() {
     return __awaiter(this, void 0, void 0, function* () {
-        const dishes = yield sequelize_2.sequelize.query('SELECT * FROM dish', {
+        const dishes = yield sequelize_2.sequelize.query('SELECT * FROM dish ORDER BY category', {
             mapToModel: true,
             model: sequelize_2.Dish,
             type: sequelize_1.QueryTypes.SELECT

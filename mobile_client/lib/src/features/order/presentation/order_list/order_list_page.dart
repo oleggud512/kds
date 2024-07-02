@@ -44,7 +44,7 @@ class _OrderListPageState extends State<OrderListPage> {
         builder: (context, state) {
           return Scaffold(
             appBar: AppBar(
-              title: Text("Orders".hardcoded),
+              title: Text("Замовлення".hardcoded),
               actions: const [
                 LogoutButton()
               ]
@@ -54,23 +54,20 @@ class _OrderListPageState extends State<OrderListPage> {
               children: [
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: p16),
-                  child: Wrap(
+                  child: Row(
                     children: [
-                      ConstrainedBox(
-                        constraints: const BoxConstraints(
-                          maxWidth: p104
-                        ),
-                        child: DropdownButton<OrderListWaiterFilter>(
+                      Expanded(
+                        child: MyDropdown<OrderListWaiterFilter>(
                           value: state.waiterFilter,
-                          isExpanded: true,
+                          underText: "Офіціант".hardcoded,
                           items: [
                             DropdownMenuItem(
                               value: OrderListWaiterFilter.my,
-                              child: Text("my".hardcoded),
+                              child: Text("Мої".hardcoded),
                             ),
                             DropdownMenuItem(
                               value: OrderListWaiterFilter.all,
-                              child: Text("all".hardcoded)
+                              child: Text("Всі".hardcoded)
                             ),
                           ],
                           onChanged: (v) {
@@ -80,30 +77,48 @@ class _OrderListPageState extends State<OrderListPage> {
                         ),
                       ),
                       w8gap,
-                      ConstrainedBox(
-                        constraints: const BoxConstraints(
-                          maxWidth: p104,
-                        ),
-                        child: DropdownButton<OrderListStateFilter>(
+                      Expanded(
+                        child: MyDropdown<OrderListStateFilter>(
                           value: state.stateFilter,
-                          isExpanded: true,
+                          underText: "Стан зам.".hardcoded,
                           items: [
                             DropdownMenuItem(
                               value: OrderListStateFilter.inProgress,
-                              child: Text("active".hardcoded),
+                              child: Text("Активні".hardcoded),
                             ),
                             DropdownMenuItem(
                               value: OrderListStateFilter.closed,
-                              child: Text("closed".hardcoded)
+                              child: Text("Закриті".hardcoded)
                             ),
                             DropdownMenuItem(
                               value: OrderListStateFilter.all,
-                              child: Text("all".hardcoded)
+                              child: Text("Всі".hardcoded)
                             ),
                           ],
                           onChanged: (v) {
                             context.read<OrderListBloc>()
                               .add(OrderListEvent.updateStateFilter(v!));
+                          },
+                        ),
+                      ),
+                      w8gap,
+                      Expanded(
+                        child: MyDropdown<OrderListTimeFilter>(
+                          value: state.timeFilter,
+                          underText: "Дата зам.",
+                          items: [
+                            DropdownMenuItem(
+                              value: OrderListTimeFilter.today,
+                              child: Text("Сьогоднішні".hardcoded),
+                            ),
+                            DropdownMenuItem(
+                              value: OrderListTimeFilter.all,
+                              child: Text("Всі".hardcoded)
+                            ),
+                          ],
+                          onChanged: (v) {
+                            context.read<OrderListBloc>()
+                              .add(OrderListEvent.updateTimeFilter(v!));
                           },
                         ),
                       ),
@@ -136,6 +151,44 @@ class _OrderListPageState extends State<OrderListPage> {
           onTap: () => onTapOrder(order)
         );
       }
+    );
+  }
+}
+
+class MyDropdown<T> extends StatelessWidget {
+  const MyDropdown({
+    super.key,
+    required this.items,
+    this.value,
+    this.onChanged,
+    this.underText
+  });
+
+  final void Function(T?)? onChanged;
+  final T? value;
+  final List<DropdownMenuItem<T>>? items;
+  final String? underText;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        DropdownButton<T>(
+          value: value,
+          isExpanded: true,
+          underline: null,
+          isDense: true,
+          items: items,
+          onChanged: onChanged,
+        ),
+        h2gap,
+        if (underText != null) Text(underText!,
+          style: Theme.of(context).textTheme.labelSmall?.copyWith(
+            color: Theme.of(context).colorScheme.onSurfaceVariant
+          ),
+        )
+      ],
     );
   }
 }

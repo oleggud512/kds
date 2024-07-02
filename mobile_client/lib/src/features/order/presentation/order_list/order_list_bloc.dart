@@ -30,6 +30,20 @@ class OrderListBloc extends Bloc<OrderListEvent, OrderListState> {
     on<OrderListOrdersArrivedEvent>(_ordersArrived);
     on<OrderListUpdateWaiterFilterEvent>(_updateWaiterFilter);
     on<OrderListUpdateStateFilterEvent>(_updateStateFilter);
+    on<OrderListUpdateTimeFilterEvent>(_updateTimeFilter);
+  }
+
+  Future<void> _updateTimeFilter(
+    OrderListUpdateTimeFilterEvent event,
+    Emitter<OrderListState> emit,
+  ) async {
+    socketConn.socket.emit(
+      "update-waiter-orders-filters", 
+      _createFilters(state.waiterFilter, state.stateFilter, event.timeFilter)
+    );
+    emit(state.copyWith(
+      timeFilter: event.timeFilter
+    ));
   }
 
   Future<void> _updateWaiterFilter(
@@ -38,7 +52,11 @@ class OrderListBloc extends Bloc<OrderListEvent, OrderListState> {
   ) async {
     socketConn.socket.emit(
       "update-waiter-orders-filters", 
-      _createFilters(event.waiterFilter, state.stateFilter)
+      _createFilters(
+        event.waiterFilter, 
+        state.stateFilter, 
+        state.timeFilter
+      )
     );
     emit(state.copyWith(
       waiterFilter: event.waiterFilter
@@ -50,7 +68,7 @@ class OrderListBloc extends Bloc<OrderListEvent, OrderListState> {
   ) async {
     socketConn.socket.emit(
       "update-waiter-orders-filters", 
-      _createFilters(state.waiterFilter, event.stateFilter)
+      _createFilters(state.waiterFilter, event.stateFilter, state.timeFilter)
     );
     emit(state.copyWith(
       stateFilter: event.stateFilter
@@ -89,7 +107,8 @@ class OrderListBloc extends Bloc<OrderListEvent, OrderListState> {
       onOn: (socket, listener) {
         socket.emit("subscribe-waiter-orders", _createFilters(
           state.waiterFilter,
-          state.stateFilter
+          state.stateFilter,
+          state.timeFilter
         ));
         socket.on("waiter-orders", listener);
       },
@@ -102,17 +121,22 @@ class OrderListBloc extends Bloc<OrderListEvent, OrderListState> {
 
   Map<String, dynamic> _createFilters(
     OrderListWaiterFilter waiterFilter,
-    OrderListStateFilter stateFilter
+    OrderListStateFilter stateFilter,
+    OrderListTimeFilter timeFilter,
   ) {
+    glogger.i(timeFilter);
     return {
       "waiterId": waiterFilter == OrderListWaiterFilter.my
         ? getWaiterId.call()
         : null,
       "state": switch (stateFilter) {
-        OrderListStateFilter.inProgress => OrderState.inProgress,
-        OrderListStateFilter.closed => OrderState.closed,
+        OrderListStateFilter.inProgress => OrderState.inProgress.name,
+        OrderListStateFilter.closed => OrderState.closed.name,
         OrderListStateFilter.all => null
-      }
+      },
+      "startDate": timeFilter == OrderListTimeFilter.today
+        ? DateTime.now().toIso8601String().substring(0, 10)
+        : null
     };  
   }
 

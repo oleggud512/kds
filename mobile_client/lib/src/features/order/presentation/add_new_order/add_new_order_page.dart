@@ -44,14 +44,14 @@ class _AddOrderPageState extends State<AddOrderPage> {
             initialIndex: 1,
             child: Scaffold(
               appBar: AppBar(
-                title: Text("New order".hardcoded),
+                title: Text("Нове замовлення".hardcoded),
                 bottom: TabBar(
                   tabs: [
                     Tab(
-                      text: "Order".hardcoded,
+                      text: "Замовлення".hardcoded,
                     ),
                     Tab(
-                      text: "Menu".hardcoded,
+                      text: "Меню".hardcoded,
                     ),
                   ]
                 )

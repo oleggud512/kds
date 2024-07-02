@@ -16,8 +16,10 @@ class WaiterRepositoryImpl implements WaiterRepository {
   @override
   Future<Either<AppException, List<Waiter>>> getWaiters() async {
     try {
+      glogger.i("no no no");
       final res = await dio.get('waiters'.hardcoded);
       final waiters = List.from(res.data["data"]).map((w) => Waiter.fromJson(w)).toList();
+      glogger.i("yes yes yes");
       return Right(waiters);
     } catch (e) {
       glogger.e(e);

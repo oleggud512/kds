@@ -24,6 +24,7 @@ mixin _$OrderListEvent {
         updateWaiterFilter,
     required TResult Function(OrderListStateFilter stateFilter)
         updateStateFilter,
+    required TResult Function(OrderListTimeFilter timeFilter) updateTimeFilter,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -32,6 +33,7 @@ mixin _$OrderListEvent {
     TResult? Function(List<MyOrder> orders)? ordersArrived,
     TResult? Function(OrderListWaiterFilter waiterFilter)? updateWaiterFilter,
     TResult? Function(OrderListStateFilter stateFilter)? updateStateFilter,
+    TResult? Function(OrderListTimeFilter timeFilter)? updateTimeFilter,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -40,6 +42,7 @@ mixin _$OrderListEvent {
     TResult Function(List<MyOrder> orders)? ordersArrived,
     TResult Function(OrderListWaiterFilter waiterFilter)? updateWaiterFilter,
     TResult Function(OrderListStateFilter stateFilter)? updateStateFilter,
+    TResult Function(OrderListTimeFilter timeFilter)? updateTimeFilter,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -51,6 +54,8 @@ mixin _$OrderListEvent {
         updateWaiterFilter,
     required TResult Function(OrderListUpdateStateFilterEvent value)
         updateStateFilter,
+    required TResult Function(OrderListUpdateTimeFilterEvent value)
+        updateTimeFilter,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -60,6 +65,7 @@ mixin _$OrderListEvent {
     TResult? Function(OrderListUpdateWaiterFilterEvent value)?
         updateWaiterFilter,
     TResult? Function(OrderListUpdateStateFilterEvent value)? updateStateFilter,
+    TResult? Function(OrderListUpdateTimeFilterEvent value)? updateTimeFilter,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -69,6 +75,7 @@ mixin _$OrderListEvent {
     TResult Function(OrderListUpdateWaiterFilterEvent value)?
         updateWaiterFilter,
     TResult Function(OrderListUpdateStateFilterEvent value)? updateStateFilter,
+    TResult Function(OrderListUpdateTimeFilterEvent value)? updateTimeFilter,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -136,6 +143,7 @@ class _$OrderListLoadEventImpl implements OrderListLoadEvent {
         updateWaiterFilter,
     required TResult Function(OrderListStateFilter stateFilter)
         updateStateFilter,
+    required TResult Function(OrderListTimeFilter timeFilter) updateTimeFilter,
   }) {
     return load();
   }
@@ -147,6 +155,7 @@ class _$OrderListLoadEventImpl implements OrderListLoadEvent {
     TResult? Function(List<MyOrder> orders)? ordersArrived,
     TResult? Function(OrderListWaiterFilter waiterFilter)? updateWaiterFilter,
     TResult? Function(OrderListStateFilter stateFilter)? updateStateFilter,
+    TResult? Function(OrderListTimeFilter timeFilter)? updateTimeFilter,
   }) {
     return load?.call();
   }
@@ -158,6 +167,7 @@ class _$OrderListLoadEventImpl implements OrderListLoadEvent {
     TResult Function(List<MyOrder> orders)? ordersArrived,
     TResult Function(OrderListWaiterFilter waiterFilter)? updateWaiterFilter,
     TResult Function(OrderListStateFilter stateFilter)? updateStateFilter,
+    TResult Function(OrderListTimeFilter timeFilter)? updateTimeFilter,
     required TResult orElse(),
   }) {
     if (load != null) {
@@ -175,6 +185,8 @@ class _$OrderListLoadEventImpl implements OrderListLoadEvent {
         updateWaiterFilter,
     required TResult Function(OrderListUpdateStateFilterEvent value)
         updateStateFilter,
+    required TResult Function(OrderListUpdateTimeFilterEvent value)
+        updateTimeFilter,
   }) {
     return load(this);
   }
@@ -187,6 +199,7 @@ class _$OrderListLoadEventImpl implements OrderListLoadEvent {
     TResult? Function(OrderListUpdateWaiterFilterEvent value)?
         updateWaiterFilter,
     TResult? Function(OrderListUpdateStateFilterEvent value)? updateStateFilter,
+    TResult? Function(OrderListUpdateTimeFilterEvent value)? updateTimeFilter,
   }) {
     return load?.call(this);
   }
@@ -199,6 +212,7 @@ class _$OrderListLoadEventImpl implements OrderListLoadEvent {
     TResult Function(OrderListUpdateWaiterFilterEvent value)?
         updateWaiterFilter,
     TResult Function(OrderListUpdateStateFilterEvent value)? updateStateFilter,
+    TResult Function(OrderListUpdateTimeFilterEvent value)? updateTimeFilter,
     required TResult orElse(),
   }) {
     if (load != null) {
@@ -293,6 +307,7 @@ class _$OrderListOrdersArrivedEventImpl implements OrderListOrdersArrivedEvent {
         updateWaiterFilter,
     required TResult Function(OrderListStateFilter stateFilter)
         updateStateFilter,
+    required TResult Function(OrderListTimeFilter timeFilter) updateTimeFilter,
   }) {
     return ordersArrived(orders);
   }
@@ -304,6 +319,7 @@ class _$OrderListOrdersArrivedEventImpl implements OrderListOrdersArrivedEvent {
     TResult? Function(List<MyOrder> orders)? ordersArrived,
     TResult? Function(OrderListWaiterFilter waiterFilter)? updateWaiterFilter,
     TResult? Function(OrderListStateFilter stateFilter)? updateStateFilter,
+    TResult? Function(OrderListTimeFilter timeFilter)? updateTimeFilter,
   }) {
     return ordersArrived?.call(orders);
   }
@@ -315,6 +331,7 @@ class _$OrderListOrdersArrivedEventImpl implements OrderListOrdersArrivedEvent {
     TResult Function(List<MyOrder> orders)? ordersArrived,
     TResult Function(OrderListWaiterFilter waiterFilter)? updateWaiterFilter,
     TResult Function(OrderListStateFilter stateFilter)? updateStateFilter,
+    TResult Function(OrderListTimeFilter timeFilter)? updateTimeFilter,
     required TResult orElse(),
   }) {
     if (ordersArrived != null) {
@@ -332,6 +349,8 @@ class _$OrderListOrdersArrivedEventImpl implements OrderListOrdersArrivedEvent {
         updateWaiterFilter,
     required TResult Function(OrderListUpdateStateFilterEvent value)
         updateStateFilter,
+    required TResult Function(OrderListUpdateTimeFilterEvent value)
+        updateTimeFilter,
   }) {
     return ordersArrived(this);
   }
@@ -344,6 +363,7 @@ class _$OrderListOrdersArrivedEventImpl implements OrderListOrdersArrivedEvent {
     TResult? Function(OrderListUpdateWaiterFilterEvent value)?
         updateWaiterFilter,
     TResult? Function(OrderListUpdateStateFilterEvent value)? updateStateFilter,
+    TResult? Function(OrderListUpdateTimeFilterEvent value)? updateTimeFilter,
   }) {
     return ordersArrived?.call(this);
   }
@@ -356,6 +376,7 @@ class _$OrderListOrdersArrivedEventImpl implements OrderListOrdersArrivedEvent {
     TResult Function(OrderListUpdateWaiterFilterEvent value)?
         updateWaiterFilter,
     TResult Function(OrderListUpdateStateFilterEvent value)? updateStateFilter,
+    TResult Function(OrderListUpdateTimeFilterEvent value)? updateTimeFilter,
     required TResult orElse(),
   }) {
     if (ordersArrived != null) {
@@ -452,6 +473,7 @@ class _$OrderListUpdateWaiterFilterEventImpl
         updateWaiterFilter,
     required TResult Function(OrderListStateFilter stateFilter)
         updateStateFilter,
+    required TResult Function(OrderListTimeFilter timeFilter) updateTimeFilter,
   }) {
     return updateWaiterFilter(waiterFilter);
   }
@@ -463,6 +485,7 @@ class _$OrderListUpdateWaiterFilterEventImpl
     TResult? Function(List<MyOrder> orders)? ordersArrived,
     TResult? Function(OrderListWaiterFilter waiterFilter)? updateWaiterFilter,
     TResult? Function(OrderListStateFilter stateFilter)? updateStateFilter,
+    TResult? Function(OrderListTimeFilter timeFilter)? updateTimeFilter,
   }) {
     return updateWaiterFilter?.call(waiterFilter);
   }
@@ -474,6 +497,7 @@ class _$OrderListUpdateWaiterFilterEventImpl
     TResult Function(List<MyOrder> orders)? ordersArrived,
     TResult Function(OrderListWaiterFilter waiterFilter)? updateWaiterFilter,
     TResult Function(OrderListStateFilter stateFilter)? updateStateFilter,
+    TResult Function(OrderListTimeFilter timeFilter)? updateTimeFilter,
     required TResult orElse(),
   }) {
     if (updateWaiterFilter != null) {
@@ -491,6 +515,8 @@ class _$OrderListUpdateWaiterFilterEventImpl
         updateWaiterFilter,
     required TResult Function(OrderListUpdateStateFilterEvent value)
         updateStateFilter,
+    required TResult Function(OrderListUpdateTimeFilterEvent value)
+        updateTimeFilter,
   }) {
     return updateWaiterFilter(this);
   }
@@ -503,6 +529,7 @@ class _$OrderListUpdateWaiterFilterEventImpl
     TResult? Function(OrderListUpdateWaiterFilterEvent value)?
         updateWaiterFilter,
     TResult? Function(OrderListUpdateStateFilterEvent value)? updateStateFilter,
+    TResult? Function(OrderListUpdateTimeFilterEvent value)? updateTimeFilter,
   }) {
     return updateWaiterFilter?.call(this);
   }
@@ -515,6 +542,7 @@ class _$OrderListUpdateWaiterFilterEventImpl
     TResult Function(OrderListUpdateWaiterFilterEvent value)?
         updateWaiterFilter,
     TResult Function(OrderListUpdateStateFilterEvent value)? updateStateFilter,
+    TResult Function(OrderListUpdateTimeFilterEvent value)? updateTimeFilter,
     required TResult orElse(),
   }) {
     if (updateWaiterFilter != null) {
@@ -613,6 +641,7 @@ class _$OrderListUpdateStateFilterEventImpl
         updateWaiterFilter,
     required TResult Function(OrderListStateFilter stateFilter)
         updateStateFilter,
+    required TResult Function(OrderListTimeFilter timeFilter) updateTimeFilter,
   }) {
     return updateStateFilter(stateFilter);
   }
@@ -624,6 +653,7 @@ class _$OrderListUpdateStateFilterEventImpl
     TResult? Function(List<MyOrder> orders)? ordersArrived,
     TResult? Function(OrderListWaiterFilter waiterFilter)? updateWaiterFilter,
     TResult? Function(OrderListStateFilter stateFilter)? updateStateFilter,
+    TResult? Function(OrderListTimeFilter timeFilter)? updateTimeFilter,
   }) {
     return updateStateFilter?.call(stateFilter);
   }
@@ -635,6 +665,7 @@ class _$OrderListUpdateStateFilterEventImpl
     TResult Function(List<MyOrder> orders)? ordersArrived,
     TResult Function(OrderListWaiterFilter waiterFilter)? updateWaiterFilter,
     TResult Function(OrderListStateFilter stateFilter)? updateStateFilter,
+    TResult Function(OrderListTimeFilter timeFilter)? updateTimeFilter,
     required TResult orElse(),
   }) {
     if (updateStateFilter != null) {
@@ -652,6 +683,8 @@ class _$OrderListUpdateStateFilterEventImpl
         updateWaiterFilter,
     required TResult Function(OrderListUpdateStateFilterEvent value)
         updateStateFilter,
+    required TResult Function(OrderListUpdateTimeFilterEvent value)
+        updateTimeFilter,
   }) {
     return updateStateFilter(this);
   }
@@ -664,6 +697,7 @@ class _$OrderListUpdateStateFilterEventImpl
     TResult? Function(OrderListUpdateWaiterFilterEvent value)?
         updateWaiterFilter,
     TResult? Function(OrderListUpdateStateFilterEvent value)? updateStateFilter,
+    TResult? Function(OrderListUpdateTimeFilterEvent value)? updateTimeFilter,
   }) {
     return updateStateFilter?.call(this);
   }
@@ -676,6 +710,7 @@ class _$OrderListUpdateStateFilterEventImpl
     TResult Function(OrderListUpdateWaiterFilterEvent value)?
         updateWaiterFilter,
     TResult Function(OrderListUpdateStateFilterEvent value)? updateStateFilter,
+    TResult Function(OrderListUpdateTimeFilterEvent value)? updateTimeFilter,
     required TResult orElse(),
   }) {
     if (updateStateFilter != null) {
@@ -694,5 +729,172 @@ abstract class OrderListUpdateStateFilterEvent implements OrderListEvent {
   @JsonKey(ignore: true)
   _$$OrderListUpdateStateFilterEventImplCopyWith<
           _$OrderListUpdateStateFilterEventImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$OrderListUpdateTimeFilterEventImplCopyWith<$Res> {
+  factory _$$OrderListUpdateTimeFilterEventImplCopyWith(
+          _$OrderListUpdateTimeFilterEventImpl value,
+          $Res Function(_$OrderListUpdateTimeFilterEventImpl) then) =
+      __$$OrderListUpdateTimeFilterEventImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({OrderListTimeFilter timeFilter});
+}
+
+/// @nodoc
+class __$$OrderListUpdateTimeFilterEventImplCopyWithImpl<$Res>
+    extends _$OrderListEventCopyWithImpl<$Res,
+        _$OrderListUpdateTimeFilterEventImpl>
+    implements _$$OrderListUpdateTimeFilterEventImplCopyWith<$Res> {
+  __$$OrderListUpdateTimeFilterEventImplCopyWithImpl(
+      _$OrderListUpdateTimeFilterEventImpl _value,
+      $Res Function(_$OrderListUpdateTimeFilterEventImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? timeFilter = null,
+  }) {
+    return _then(_$OrderListUpdateTimeFilterEventImpl(
+      null == timeFilter
+          ? _value.timeFilter
+          : timeFilter // ignore: cast_nullable_to_non_nullable
+              as OrderListTimeFilter,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$OrderListUpdateTimeFilterEventImpl
+    implements OrderListUpdateTimeFilterEvent {
+  _$OrderListUpdateTimeFilterEventImpl(this.timeFilter);
+
+  @override
+  final OrderListTimeFilter timeFilter;
+
+  @override
+  String toString() {
+    return 'OrderListEvent.updateTimeFilter(timeFilter: $timeFilter)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$OrderListUpdateTimeFilterEventImpl &&
+            (identical(other.timeFilter, timeFilter) ||
+                other.timeFilter == timeFilter));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, timeFilter);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$OrderListUpdateTimeFilterEventImplCopyWith<
+          _$OrderListUpdateTimeFilterEventImpl>
+      get copyWith => __$$OrderListUpdateTimeFilterEventImplCopyWithImpl<
+          _$OrderListUpdateTimeFilterEventImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() load,
+    required TResult Function(List<MyOrder> orders) ordersArrived,
+    required TResult Function(OrderListWaiterFilter waiterFilter)
+        updateWaiterFilter,
+    required TResult Function(OrderListStateFilter stateFilter)
+        updateStateFilter,
+    required TResult Function(OrderListTimeFilter timeFilter) updateTimeFilter,
+  }) {
+    return updateTimeFilter(timeFilter);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? load,
+    TResult? Function(List<MyOrder> orders)? ordersArrived,
+    TResult? Function(OrderListWaiterFilter waiterFilter)? updateWaiterFilter,
+    TResult? Function(OrderListStateFilter stateFilter)? updateStateFilter,
+    TResult? Function(OrderListTimeFilter timeFilter)? updateTimeFilter,
+  }) {
+    return updateTimeFilter?.call(timeFilter);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? load,
+    TResult Function(List<MyOrder> orders)? ordersArrived,
+    TResult Function(OrderListWaiterFilter waiterFilter)? updateWaiterFilter,
+    TResult Function(OrderListStateFilter stateFilter)? updateStateFilter,
+    TResult Function(OrderListTimeFilter timeFilter)? updateTimeFilter,
+    required TResult orElse(),
+  }) {
+    if (updateTimeFilter != null) {
+      return updateTimeFilter(timeFilter);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(OrderListLoadEvent value) load,
+    required TResult Function(OrderListOrdersArrivedEvent value) ordersArrived,
+    required TResult Function(OrderListUpdateWaiterFilterEvent value)
+        updateWaiterFilter,
+    required TResult Function(OrderListUpdateStateFilterEvent value)
+        updateStateFilter,
+    required TResult Function(OrderListUpdateTimeFilterEvent value)
+        updateTimeFilter,
+  }) {
+    return updateTimeFilter(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(OrderListLoadEvent value)? load,
+    TResult? Function(OrderListOrdersArrivedEvent value)? ordersArrived,
+    TResult? Function(OrderListUpdateWaiterFilterEvent value)?
+        updateWaiterFilter,
+    TResult? Function(OrderListUpdateStateFilterEvent value)? updateStateFilter,
+    TResult? Function(OrderListUpdateTimeFilterEvent value)? updateTimeFilter,
+  }) {
+    return updateTimeFilter?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(OrderListLoadEvent value)? load,
+    TResult Function(OrderListOrdersArrivedEvent value)? ordersArrived,
+    TResult Function(OrderListUpdateWaiterFilterEvent value)?
+        updateWaiterFilter,
+    TResult Function(OrderListUpdateStateFilterEvent value)? updateStateFilter,
+    TResult Function(OrderListUpdateTimeFilterEvent value)? updateTimeFilter,
+    required TResult orElse(),
+  }) {
+    if (updateTimeFilter != null) {
+      return updateTimeFilter(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class OrderListUpdateTimeFilterEvent implements OrderListEvent {
+  factory OrderListUpdateTimeFilterEvent(final OrderListTimeFilter timeFilter) =
+      _$OrderListUpdateTimeFilterEventImpl;
+
+  OrderListTimeFilter get timeFilter;
+  @JsonKey(ignore: true)
+  _$$OrderListUpdateTimeFilterEventImplCopyWith<
+          _$OrderListUpdateTimeFilterEventImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

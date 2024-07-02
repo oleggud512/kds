@@ -17,6 +17,8 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$AddNewOrderState {
   bool get isLoading => throw _privateConstructorUsedError;
+  String get table =>
+      throw _privateConstructorUsedError; // TODO: REPLACE WITH HARDCODED
   List<Dish> get dishes => throw _privateConstructorUsedError;
   List<OrderItem> get items => throw _privateConstructorUsedError;
 
@@ -31,7 +33,8 @@ abstract class $AddNewOrderStateCopyWith<$Res> {
           AddNewOrderState value, $Res Function(AddNewOrderState) then) =
       _$AddNewOrderStateCopyWithImpl<$Res, AddNewOrderState>;
   @useResult
-  $Res call({bool isLoading, List<Dish> dishes, List<OrderItem> items});
+  $Res call(
+      {bool isLoading, String table, List<Dish> dishes, List<OrderItem> items});
 }
 
 /// @nodoc
@@ -48,6 +51,7 @@ class _$AddNewOrderStateCopyWithImpl<$Res, $Val extends AddNewOrderState>
   @override
   $Res call({
     Object? isLoading = null,
+    Object? table = null,
     Object? dishes = null,
     Object? items = null,
   }) {
@@ -56,6 +60,10 @@ class _$AddNewOrderStateCopyWithImpl<$Res, $Val extends AddNewOrderState>
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
+      table: null == table
+          ? _value.table
+          : table // ignore: cast_nullable_to_non_nullable
+              as String,
       dishes: null == dishes
           ? _value.dishes
           : dishes // ignore: cast_nullable_to_non_nullable
@@ -76,7 +84,8 @@ abstract class _$$EditOrderStateImplCopyWith<$Res>
       __$$EditOrderStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool isLoading, List<Dish> dishes, List<OrderItem> items});
+  $Res call(
+      {bool isLoading, String table, List<Dish> dishes, List<OrderItem> items});
 }
 
 /// @nodoc
@@ -91,6 +100,7 @@ class __$$EditOrderStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? isLoading = null,
+    Object? table = null,
     Object? dishes = null,
     Object? items = null,
   }) {
@@ -99,6 +109,10 @@ class __$$EditOrderStateImplCopyWithImpl<$Res>
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
+      table: null == table
+          ? _value.table
+          : table // ignore: cast_nullable_to_non_nullable
+              as String,
       dishes: null == dishes
           ? _value._dishes
           : dishes // ignore: cast_nullable_to_non_nullable
@@ -116,6 +130,7 @@ class __$$EditOrderStateImplCopyWithImpl<$Res>
 class _$EditOrderStateImpl extends _EditOrderState {
   _$EditOrderStateImpl(
       {this.isLoading = false,
+      this.table = "",
       final List<Dish> dishes = const [],
       final List<OrderItem> items = const []})
       : _dishes = dishes,
@@ -125,7 +140,12 @@ class _$EditOrderStateImpl extends _EditOrderState {
   @override
   @JsonKey()
   final bool isLoading;
+  @override
+  @JsonKey()
+  final String table;
+// TODO: REPLACE WITH HARDCODED
   final List<Dish> _dishes;
+// TODO: REPLACE WITH HARDCODED
   @override
   @JsonKey()
   List<Dish> get dishes {
@@ -145,7 +165,7 @@ class _$EditOrderStateImpl extends _EditOrderState {
 
   @override
   String toString() {
-    return 'AddNewOrderState(isLoading: $isLoading, dishes: $dishes, items: $items)';
+    return 'AddNewOrderState(isLoading: $isLoading, table: $table, dishes: $dishes, items: $items)';
   }
 
   @override
@@ -155,6 +175,7 @@ class _$EditOrderStateImpl extends _EditOrderState {
             other is _$EditOrderStateImpl &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
+            (identical(other.table, table) || other.table == table) &&
             const DeepCollectionEquality().equals(other._dishes, _dishes) &&
             const DeepCollectionEquality().equals(other._items, _items));
   }
@@ -163,6 +184,7 @@ class _$EditOrderStateImpl extends _EditOrderState {
   int get hashCode => Object.hash(
       runtimeType,
       isLoading,
+      table,
       const DeepCollectionEquality().hash(_dishes),
       const DeepCollectionEquality().hash(_items));
 
@@ -177,6 +199,7 @@ class _$EditOrderStateImpl extends _EditOrderState {
 abstract class _EditOrderState extends AddNewOrderState {
   factory _EditOrderState(
       {final bool isLoading,
+      final String table,
       final List<Dish> dishes,
       final List<OrderItem> items}) = _$EditOrderStateImpl;
   _EditOrderState._() : super._();
@@ -184,6 +207,8 @@ abstract class _EditOrderState extends AddNewOrderState {
   @override
   bool get isLoading;
   @override
+  String get table;
+  @override // TODO: REPLACE WITH HARDCODED
   List<Dish> get dishes;
   @override
   List<OrderItem> get items;

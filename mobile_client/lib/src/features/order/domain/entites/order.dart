@@ -11,6 +11,8 @@ class MyOrder with _$MyOrder {
   factory MyOrder({
     required int id,
     required Waiter waiter,
+    required DateTime date,
+    @Default("") String table,
     @Default(OrderState.inProgress) OrderState state,
 
     @Default([]) 

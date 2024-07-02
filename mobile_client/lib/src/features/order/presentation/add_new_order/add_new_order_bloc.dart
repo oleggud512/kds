@@ -21,6 +21,7 @@ class AddNewOrderBloc extends Bloc<AddNewOrderEvent, AddNewOrderState> {
     on<AddNewOrderDeleteItemEvent>(_deleteItem);
     on<AddNewOrderCountChangedEvent>(_changeAmount);
     on<AddNewOrderCommentChangedEvent>(_changeComment);
+    on<AddNewOrderTableChangedEvent>(_changeTable);
     on<AddNewOrderSubmitEvent>(_submit);
   } 
 
@@ -28,7 +29,7 @@ class AddNewOrderBloc extends Bloc<AddNewOrderEvent, AddNewOrderState> {
     AddNewOrderSubmitEvent event,
     Emitter<AddNewOrderState> emit,
   ) async {
-    final res = await addOrder.call(state.items);
+    final res = await addOrder.call(state.items, state.table);
     
     res.fold((l) {
       
@@ -93,6 +94,15 @@ class AddNewOrderBloc extends Bloc<AddNewOrderEvent, AddNewOrderState> {
     final i = newItems.indexOf(event.item);
     newItems[i] = newItems[i].copyWith(comment: event.newComment);
     emit(state.copyWith(items: newItems));
+  }
+
+  Future<void> _changeTable(
+    AddNewOrderTableChangedEvent event,
+    Emitter<AddNewOrderState> emit,
+  ) async {
+    emit(state.copyWith(
+      table: event.newTable
+    ));
   }
 
 }

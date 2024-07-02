@@ -6,6 +6,7 @@ import 'package:mobile_client/src/core/common/extensions/string.dart';
 import 'package:mobile_client/src/core/di/inject.dart';
 import 'package:mobile_client/src/core/domain/exceptions.dart';
 import 'package:mobile_client/src/core/presentation/confirm_dialog.dart';
+import 'package:mobile_client/src/core/socket/notification_handler.dart';
 import 'package:mobile_client/src/features/waiters/app/use_cases/get_current_waiter_use_case.dart';
 import 'package:mobile_client/src/features/waiters/domain/entities/waiter.dart';
 import 'package:mobile_client/src/features/waiters/domain/services/waiter_auth_service.dart';
@@ -31,8 +32,9 @@ class _LogoutButtonState extends State<LogoutButton> {
 
   void onPressed() async {
     final isSureLogout = await ConfirmDialog(
-      message: 'Are you sure you want to logout?'.hardcoded
+      message: 'Ви впевнені, що хочете вийти?'.hardcoded
     ).show(context);
+    inject<NotificationHandler>().dispose();
     await inject<WaiterAuthService>().clearWaiterId();
     if (isSureLogout == true && mounted) {
       context.router.reevaluateGuards();

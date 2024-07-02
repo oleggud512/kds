@@ -15,9 +15,10 @@ class OrderRepositoryImpl implements OrderRepository {
   OrderRepositoryImpl(this.dio);
 
   @override
-  Future<Either<AppException, MyOrder>> createNewOrder(List<OrderItem> items) async {
+  Future<Either<AppException, MyOrder>> createNewOrder(List<OrderItem> items, String table) async {
     try {
       final res = await dio.post('orders', data: {
+        "table": table,
         "items": items.map((i) => i.toJson()).toList()
       });
       final order = MyOrder.fromJson(res.data["data"]);

@@ -13,6 +13,7 @@ import 'package:mobile_client/src/features/order/presentation/add_new_order/add_
 import 'package:mobile_client/src/features/order/presentation/add_new_order/add_new_order_state.dart';
 import 'package:mobile_client/src/features/order/presentation/add_new_order/widgets/counter_widget.dart';
 import 'package:mobile_client/src/features/order/presentation/add_new_order/widgets/dish_tile_widget.dart';
+import 'package:mobile_client/src/features/order/presentation/order_list/order_list_page.dart';
 
 class OrderFormWidget extends StatefulWidget {
   const OrderFormWidget({
@@ -28,10 +29,21 @@ class OrderFormWidget extends StatefulWidget {
 
 class _OrderFormWidgetState extends State<OrderFormWidget> {
   AddNewOrderState get state => widget.state;
+  // TODO: REPLACE WITH DB QUERY
+  static const tables = [
+    "",
+    "Стіл 1",
+    "Стіл 2",
+    "Стіл 3",
+    "Стіл 4",
+    "Стіл 5",
+    "Стіл 6",
+    "Стіл 7",
+  ];
 
   Future<void> onDeleteOrderItem(BuildContext context, OrderItem item) async {
     final isSure = await ConfirmDialog(
-      message: "Are you sure you want to delete this item?".hardcoded
+      message: "Ви впевнені, що хочете видалити цю страву?".hardcoded
     ).show(context);
     if (isSure == true && context.mounted) {
       context.read<AddNewOrderBloc>().add(AddNewOrderDeleteItemEvent(item));
@@ -50,7 +62,7 @@ class _OrderFormWidgetState extends State<OrderFormWidget> {
 
   Future<void> onAddOrder(BuildContext context) async {
     final isSure = await ConfirmDialog(
-      message: "Are you sure the order is completed? The action can't be undone.".hardcoded
+      message: "Ви впевнені, що хочете зберегти замовлення? Дію не може бути відмінено.".hardcoded
     ).show(context);
 
     if (isSure == true && context.mounted) {
@@ -61,11 +73,33 @@ class _OrderFormWidgetState extends State<OrderFormWidget> {
     }
   }
 
+  void onTableChanged(BuildContext context, String? newTable) {
+    if (newTable != null) {
+      context.read<AddNewOrderBloc>()
+        .add(AddNewOrderEvent.tableChanged(newTable));
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
+        h4gap,
+        // TODO: replace with database query
+        Padding(
+          padding: const EdgeInsets.all(p8),
+          child: MyDropdown<String>(
+            value: state.table,
+            items: tables.map((t) => DropdownMenuItem<String>(
+              value: t,
+              child: Text(t.isNotEmpty ? t : "не обрано")
+            )).toList(),
+            onChanged: (nt) => onTableChanged(context, nt),
+            underText: "Стіл".hardcoded,
+          ),
+        ),
+        h4gap,
         Expanded(
           child: ListView.separated(
             separatorBuilder: (context, index) => defaultListSeparator,
@@ -105,7 +139,7 @@ class _OrderFormWidgetState extends State<OrderFormWidget> {
                           expands: true,
                           textAlignVertical: TextAlignVertical.top,
                           decoration: InputDecoration(
-                            hintText: "Add a comment".hardcoded,
+                            hintText: "Додати коментар".hardcoded,
                           )
                         ),
                       ),
@@ -124,7 +158,7 @@ class _OrderFormWidgetState extends State<OrderFormWidget> {
               glogger.i("add order: ${state.items}");
               onAddOrder(context);
             },
-            child: Text("Add order!".hardcoded),
+            child: Text("Додати замовлення!".hardcoded),
           )
         )
       ],

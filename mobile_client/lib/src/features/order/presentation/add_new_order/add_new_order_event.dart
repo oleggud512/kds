@@ -19,6 +19,7 @@ class AddNewOrderEvent with _$AddNewOrderEvent {
   factory AddNewOrderEvent.countChanged(OrderItem item, int newCount) = AddNewOrderCountChangedEvent;
 
   factory AddNewOrderEvent.commentChanged(OrderItem item, String newComment) = AddNewOrderCommentChangedEvent;
+  factory AddNewOrderEvent.tableChanged(String newTable) = AddNewOrderTableChangedEvent;
 
   factory AddNewOrderEvent.submit({
     required void Function() onSuccess,

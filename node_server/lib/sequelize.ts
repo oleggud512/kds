@@ -45,6 +45,7 @@ interface IOrder {
   total?: number
   date: Date
   state: OrderState
+  table: string
 
   items?: IOrderItem[]
   waiter?: IWaiter
@@ -81,6 +82,7 @@ class Order extends Model<InferAttributes<Order>, InferCreationAttributes<Order>
   declare total: CreationOptional<number>
   declare date: CreationOptional<Date>
   declare state: CreationOptional<OrderState>
+  declare table: string
 
   declare items: NonAttribute<IOrderItem[]>
   declare waiter: NonAttribute<IWaiter>
@@ -152,6 +154,11 @@ Order.init({
     type: DataTypes.DATE,
     allowNull: false,
     defaultValue: Sequelize.fn("now")
+  },
+  table: {
+    type: DataTypes.STRING(64),
+    allowNull: false,
+    defaultValue: ""
   },
   state: {
     type: DataTypes.ENUM,
@@ -227,15 +234,15 @@ async function initSequelize() {
   Order.belongsToMany(Dish, { through: OrderItem })
   Dish.belongsToMany(Order, { through: OrderItem })
 
-  await sequelize.sync({
-    // alter: true,
-    force: true
-  })
-  await createTriggers()
+  // await sequelize.sync({
+  //   // alter: true,
+  //   force: true
+  // })
+  // await createTriggers()
 
-  await dummyData()
+  // await dummyData()
 
-  console.log('synchronized')
+  // console.log('synchronized')
 }
 
 async function createTriggers() {
@@ -311,27 +318,28 @@ async function dummyData() {
     })
   }
 
-  const order: CreateOrder = {
-    waiterId: 1,
-    items: []
-  };
+  // const order: CreateOrder = {
+  //   waiterId: 1,
+  //   table: "na table",
+  //   items: []
+  // };
 
-  for (let i = 1; i < 4; i++) {
-    order.items.push({
-      dishId: i,
-      comment: "first comment",
-      count: i+10
-    })
-  }
+  // for (let i = 1; i < 4; i++) {
+  //   order.items.push({
+  //     dishId: i,
+  //     comment: "first comment",
+  //     count: i+10
+  //   })
+  // }
 
-  await addOrder(order)
-  await updateOrderItemState({
-    orderId: 1,
-    dishId: 1,
-    newState: OrderItemState.ready
-  })
-  const ord = await getOrder(1)
-  console.log(ord)
+  // await addOrder(order)
+  // await updateOrderItemState({
+  //   orderId: 1,
+  //   dishId: 1,
+  //   newState: OrderItemState.ready
+  // })
+  // const ord = await getOrder(1)
+  // console.log(ord)
 }
 
 export {

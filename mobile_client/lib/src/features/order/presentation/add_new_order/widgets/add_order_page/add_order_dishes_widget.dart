@@ -25,11 +25,11 @@ class _AddOrderDishesWidgetState extends State<AddOrderDishesWidget> {
 
   Future<void> onSelectDish(BuildContext context, Dish dish) async {
     final res = await CreateOrderItemDialog(dish: dish).show(context);
-    if (context.mounted) {
+    if (context.mounted && res != null) {
       context.read<AddNewOrderBloc>().add(AddNewOrderDishSelectedEvent(
         dish: dish,
-        count: res?.count,
-        comment: res?.comment,
+        count: res.count,
+        comment: res.comment,
       ));
     }
   }

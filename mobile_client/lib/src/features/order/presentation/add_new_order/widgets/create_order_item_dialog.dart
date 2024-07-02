@@ -52,7 +52,7 @@ class _CreateOrderItemDialogState extends State<CreateOrderItemDialog> {
                 controller: commentController,
                 textAlignVertical: TextAlignVertical.top,
                 decoration: InputDecoration(
-                  hintText: "Add a comment".hardcoded,
+                  hintText: "Додати коментар".hardcoded,
                 ),
                 maxLines: null,
                 expands: true,
@@ -61,10 +61,10 @@ class _CreateOrderItemDialogState extends State<CreateOrderItemDialog> {
             h8gap,
             FilledButton(
               onPressed: submit,
-              child: Text("ADD ITEM".hardcoded),
+              child: Text("Додати страву".hardcoded),
             ),
             h4gap,
-            Text("You can edit this later".hardcoded,
+            Text("Можна відредагувати потім".hardcoded,
               textAlign: TextAlign.center,
             )
           ]

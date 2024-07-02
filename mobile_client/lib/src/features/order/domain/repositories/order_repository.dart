@@ -6,7 +6,7 @@ import 'package:mobile_client/src/features/order/domain/enums/order_item_state.d
 
 abstract interface class OrderRepository {
   Future<Either<AppException, List<MyOrder>>> getOrders();
-  Future<Either<AppException, MyOrder>> createNewOrder(List<OrderItem> items);
+  Future<Either<AppException, MyOrder>> createNewOrder(List<OrderItem> items, String table);
   Future<Either<AppException, void>> updateItemState(
     int orderId, 
     int dishId, 

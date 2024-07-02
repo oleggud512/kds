@@ -1,3 +1,4 @@
+import 'package:mobile_client/src/core/common/logger.dart';
 import 'package:mobile_client/src/core/socket/socket.dart';
 import 'package:socket_io_client/socket_io_client.dart';
 

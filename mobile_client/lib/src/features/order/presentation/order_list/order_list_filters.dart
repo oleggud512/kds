@@ -8,3 +8,8 @@ enum OrderListStateFilter {
   closed,
   all
 }
+
+enum OrderListTimeFilter {
+  today,
+  all
+}

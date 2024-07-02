@@ -7,6 +7,7 @@ import OrderItemState from "../OrderItemState"
 import { orderItemQuery, orderQuery } from "./join"
 import Db from "../../../../mysql"
 import { ResultSetHeader } from "mysql2"
+import { CreateOrder } from "../CreateOrder"
 
 
 export async function getOrder(id: number) : Promise<IOrder> {
@@ -58,16 +59,19 @@ export async function getCookingOrderItems() : Promise<IOrderItem[]> {
 }
 
 
-export async function addOrder(args: {
-  waiterId: number,
-  items: ({
-    comment?: string,
-    dishId: number,
-    count: number
-  })[]
-}) : Promise<IOrder> {
+export async function addOrder(args: CreateOrder) : Promise<IOrder> {
+  let insOrdArgs = "waiter_id"
+  let insOrdRess = "?"
+  let ordArgs: any[] = [args.waiterId]
+  
+  if (args.table) {
+    insOrdArgs += ", `table`"
+    insOrdRess += ", ?"
+    ordArgs.push(args.table)
+  }
+  
   const [res, _] = await Db.conn.execute<ResultSetHeader>(
-    "INSERT INTO `order`(waiter_id) VALUES (?)", [args.waiterId]
+    `INSERT INTO \`order\`(${insOrdArgs}) VALUES (${insOrdRess})`, ordArgs
   )
 
   const orderId = res.insertId

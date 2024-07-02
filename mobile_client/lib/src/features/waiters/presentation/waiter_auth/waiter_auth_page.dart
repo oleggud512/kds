@@ -19,66 +19,58 @@ class WaiterAuthPage extends StatelessWidget {
   final void Function() onWaiterSelected;
 
   void setWaiter(BuildContext context, int? waiterId) {
-    context.read<WaiterAuthBloc>().add(WaiterAuthSetWaiterEvent(
-      waiterId: waiterId
-    ));
+    context
+        .read<WaiterAuthBloc>()
+        .add(WaiterAuthSetWaiterEvent(waiterId: waiterId));
   }
 
   void submit(BuildContext context) {
-    context.read<WaiterAuthBloc>().add(
-      WaiterAuthLoginEvent(onSuccess: onWaiterSelected));
+    context
+        .read<WaiterAuthBloc>()
+        .add(WaiterAuthLoginEvent(onSuccess: onWaiterSelected));
   }
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => inject<WaiterAuthBloc>()
-        ..add(WaiterAuthLoadEvent()),
+      create: (_) => inject<WaiterAuthBloc>()..add(WaiterAuthLoadEvent()),
       child: BlocBuilder<WaiterAuthBloc, WaiterAuthState>(
-        builder: (context, state) {
-          if (state.isLoading) {
-            return const LoadingScaffold(message: "Loading waiters...");
-          }
-          return Scaffold(
-            appBar: AppBar(
-              title: Text("Who are you?".hardcoded)
-            ),
-            body: Padding(
-              padding: const EdgeInsets.all(p16),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  DropdownButtonFormField<int?>(
-                    isExpanded: true,
-                    value: state.currentWaiterId,
-                    items: [
-                      DropdownMenuItem(
-                        value: null,
-                        child: Text("No waiter selected".hardcoded)
-                      ),
-                      ...state.waiters.map((waiter) => DropdownMenuItem(
-                        value: waiter.id,
-                        child: Text(waiter.name),
-                      ))
-                    ],
-                    onChanged: (newV) {
-                      setWaiter(context, newV);
-                    }
-                  ),
-                  h16gap,
-                  FilledButton(
-                    onPressed: state.currentWaiterId != null 
-                      ? () => submit(context)
-                      : null,
-                    child: Text("Proceed".hardcoded)
-                  )
-                ],
-              )
-            )
-          );
+          builder: (context, state) {
+        if (state.isLoading) {
+          return const LoadingScaffold(message: "Завантаження офіціантів...");
         }
-      ),
+        return Scaffold(
+            appBar: AppBar(title: Text("Хто ви?".hardcoded)),
+            body: Padding(
+                padding: const EdgeInsets.all(p16),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    DropdownButtonFormField<int?>(
+                        isExpanded: true,
+                        value: state.currentWaiterId,
+                        items: [
+                          DropdownMenuItem(
+                              value: null,
+                              child: Text("Офіціанта не вибрано".hardcoded)),
+                          ...state.waiters.map((waiter) => DropdownMenuItem(
+                                value: waiter.id,
+                                child: Text(waiter.name),
+                              ))
+                        ],
+                        onChanged: (newV) {
+                          setWaiter(context, newV);
+                        }),
+                    h16gap,
+                    FilledButton(
+                        onPressed: state.currentWaiterId != null
+                            ? () => submit(context)
+                            : null,
+                        child: Text("Продовжити".hardcoded))
+                  ],
+                )));
+      }),
     );
   }
 }

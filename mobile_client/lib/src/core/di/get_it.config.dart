@@ -38,13 +38,13 @@ import 'package:mobile_client/src/features/order/presentation/add_new_order/add_
 import 'package:mobile_client/src/features/order/presentation/order_list/order_list_bloc.dart'
     as _i25;
 import 'package:mobile_client/src/features/order/presentation/order_page/order_page_bloc.dart'
-    as _i26;
-import 'package:mobile_client/src/features/order/presentation/order_page/order_page_bloc_params.dart'
     as _i27;
+import 'package:mobile_client/src/features/order/presentation/order_page/order_page_bloc_params.dart'
+    as _i28;
 import 'package:mobile_client/src/features/waiters/app/use_cases/get_current_waiter_id_use_case.dart'
     as _i6;
 import 'package:mobile_client/src/features/waiters/app/use_cases/get_current_waiter_use_case.dart'
-    as _i28;
+    as _i29;
 import 'package:mobile_client/src/features/waiters/app/use_cases/get_waiter_use_case.dart'
     as _i23;
 import 'package:mobile_client/src/features/waiters/app/use_cases/get_waiters_use_case.dart'
@@ -60,7 +60,7 @@ import 'package:mobile_client/src/features/waiters/infrastructure/repositories/w
 import 'package:mobile_client/src/features/waiters/infrastructure/services/waiter_auth_service_impl.dart'
     as _i4;
 import 'package:mobile_client/src/features/waiters/presentation/waiter_auth/waiter_auth_bloc.dart'
-    as _i29;
+    as _i26;
 
 extension GetItInjectableX on _i1.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -124,22 +124,23 @@ extension GetItInjectableX on _i1.GetIt {
           gh<_i5.GetSocketUseCase>(),
           gh<_i6.GetCurrentWaiterIdUseCase>(),
         ));
-    gh.factoryParam<_i26.OrderPageBloc, _i27.OrderPageBlocParams, dynamic>((
+    gh.factory<_i26.WaiterAuthBloc>(() => _i26.WaiterAuthBloc(
+          gh<_i7.SetWaiterUseCase>(),
+          gh<_i24.GetWaitersUseCase>(),
+          gh<_i9.NotificationHandler>(),
+        ));
+    gh.factoryParam<_i27.OrderPageBloc, _i28.OrderPageBlocParams, dynamic>((
       params,
       _,
     ) =>
-        _i26.OrderPageBloc(
+        _i27.OrderPageBloc(
           gh<_i5.GetSocketUseCase>(),
           gh<_i20.UpdateOrderItemStateUseCase>(),
           params,
         ));
-    gh.factory<_i28.GetCurrentWaiterUseCase>(() => _i28.GetCurrentWaiterUseCase(
+    gh.factory<_i29.GetCurrentWaiterUseCase>(() => _i29.GetCurrentWaiterUseCase(
           gh<_i23.GetWaiterUseCase>(),
           gh<_i3.WaiterAuthService>(),
-        ));
-    gh.factory<_i29.WaiterAuthBloc>(() => _i29.WaiterAuthBloc(
-          gh<_i7.SetWaiterUseCase>(),
-          gh<_i24.GetWaitersUseCase>(),
         ));
     return this;
   }

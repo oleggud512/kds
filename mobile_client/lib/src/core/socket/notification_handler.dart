@@ -9,8 +9,26 @@ import 'package:mobile_client/src/shared/utils.dart';
 @Singleton()
 class NotificationHandler {
   late SocketConnection<OrderItem> socket;
+  final GetSocketUseCase getSocket;
 
-  NotificationHandler(GetSocketUseCase getSocket) {
+  NotificationHandler(this.getSocket) {
+    _init();
+  }
+
+  void sendNotification(OrderItem item) {
+    final orderStr = AppUtils.idToString(item.orderId);
+    NotificationService.showNotification(
+      title: "Замовлення #$orderStr", 
+      body: "\"${item.dish.name}\" очікує подачі."
+    );
+  }
+
+  void reinit() {
+    dispose();
+    _init();
+  }
+
+  void _init() {
     glogger.i("init notification listener");
     socket = SocketConnection(
       namespace: "waiter-orders",
@@ -27,14 +45,6 @@ class NotificationHandler {
         socket.off("dish-ready-notification", listener);
         socket.emit("unsubscribe-notification");
       }
-    );
-  }
-
-  void sendNotification(OrderItem item) {
-    final orderStr = AppUtils.idToString(item.orderId);
-    NotificationService.showNotification(
-      title: "Замовлення #$orderStr", 
-      body: "\"${item.dish.name}\" очікує подачі."
     );
   }
 

@@ -16,13 +16,13 @@ class ConfirmDialog extends StatelessWidget with DialogWidget<bool> {
       title: Text(message),
       actions: [
         TextButton(
-          child: Text('No'.hardcoded),
+          child: Text('Ні'.hardcoded),
           onPressed: () {
             Navigator.pop(context, false);
           },
         ),
         FilledButton(
-          child: Text('Yes'.hardcoded),
+          child: Text('Так'.hardcoded),
           onPressed: () {
             Navigator.pop(context, true);
           },

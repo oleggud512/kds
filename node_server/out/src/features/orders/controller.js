@@ -63,6 +63,7 @@ exports.getOrders = getOrders;
 function addOrder(req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
         const waiterId = (0, tryParseInt_1.tryParseInt)(res.locals.waiterId);
+        const table = req.body.table;
         const items = [];
         for (const item of req.body.items) {
             items.push({
@@ -71,7 +72,11 @@ function addOrder(req, res, next) {
                 count: (0, tryParseInt_1.tryParseInt)(item.count)
             });
         }
-        const order = yield ordersService.addOrder({ waiterId: waiterId, items });
+        const order = yield ordersService.addOrder({
+            waiterId: waiterId,
+            table: table,
+            items
+        });
         return res.json({ data: order });
     });
 }

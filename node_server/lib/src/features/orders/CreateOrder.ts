@@ -7,4 +7,5 @@ export interface CreateOrderItem {
 export interface CreateOrder {
   waiterId: number
   items: CreateOrderItem[]
+  table: string
 }

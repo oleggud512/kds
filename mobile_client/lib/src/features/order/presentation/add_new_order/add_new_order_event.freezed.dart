@@ -24,6 +24,7 @@ mixin _$AddNewOrderEvent {
     required TResult Function(OrderItem item) deleteItem,
     required TResult Function(OrderItem item, int newCount) countChanged,
     required TResult Function(OrderItem item, String newComment) commentChanged,
+    required TResult Function(String newTable) tableChanged,
     required TResult Function(void Function() onSuccess) submit,
   }) =>
       throw _privateConstructorUsedError;
@@ -34,6 +35,7 @@ mixin _$AddNewOrderEvent {
     TResult? Function(OrderItem item)? deleteItem,
     TResult? Function(OrderItem item, int newCount)? countChanged,
     TResult? Function(OrderItem item, String newComment)? commentChanged,
+    TResult? Function(String newTable)? tableChanged,
     TResult? Function(void Function() onSuccess)? submit,
   }) =>
       throw _privateConstructorUsedError;
@@ -44,6 +46,7 @@ mixin _$AddNewOrderEvent {
     TResult Function(OrderItem item)? deleteItem,
     TResult Function(OrderItem item, int newCount)? countChanged,
     TResult Function(OrderItem item, String newComment)? commentChanged,
+    TResult Function(String newTable)? tableChanged,
     TResult Function(void Function() onSuccess)? submit,
     required TResult orElse(),
   }) =>
@@ -56,6 +59,7 @@ mixin _$AddNewOrderEvent {
     required TResult Function(AddNewOrderCountChangedEvent value) countChanged,
     required TResult Function(AddNewOrderCommentChangedEvent value)
         commentChanged,
+    required TResult Function(AddNewOrderTableChangedEvent value) tableChanged,
     required TResult Function(AddNewOrderSubmitEvent value) submit,
   }) =>
       throw _privateConstructorUsedError;
@@ -66,6 +70,7 @@ mixin _$AddNewOrderEvent {
     TResult? Function(AddNewOrderDeleteItemEvent value)? deleteItem,
     TResult? Function(AddNewOrderCountChangedEvent value)? countChanged,
     TResult? Function(AddNewOrderCommentChangedEvent value)? commentChanged,
+    TResult? Function(AddNewOrderTableChangedEvent value)? tableChanged,
     TResult? Function(AddNewOrderSubmitEvent value)? submit,
   }) =>
       throw _privateConstructorUsedError;
@@ -76,6 +81,7 @@ mixin _$AddNewOrderEvent {
     TResult Function(AddNewOrderDeleteItemEvent value)? deleteItem,
     TResult Function(AddNewOrderCountChangedEvent value)? countChanged,
     TResult Function(AddNewOrderCommentChangedEvent value)? commentChanged,
+    TResult Function(AddNewOrderTableChangedEvent value)? tableChanged,
     TResult Function(AddNewOrderSubmitEvent value)? submit,
     required TResult orElse(),
   }) =>
@@ -145,6 +151,7 @@ class _$AddNewOrderLoadEventImpl implements AddNewOrderLoadEvent {
     required TResult Function(OrderItem item) deleteItem,
     required TResult Function(OrderItem item, int newCount) countChanged,
     required TResult Function(OrderItem item, String newComment) commentChanged,
+    required TResult Function(String newTable) tableChanged,
     required TResult Function(void Function() onSuccess) submit,
   }) {
     return load();
@@ -158,6 +165,7 @@ class _$AddNewOrderLoadEventImpl implements AddNewOrderLoadEvent {
     TResult? Function(OrderItem item)? deleteItem,
     TResult? Function(OrderItem item, int newCount)? countChanged,
     TResult? Function(OrderItem item, String newComment)? commentChanged,
+    TResult? Function(String newTable)? tableChanged,
     TResult? Function(void Function() onSuccess)? submit,
   }) {
     return load?.call();
@@ -171,6 +179,7 @@ class _$AddNewOrderLoadEventImpl implements AddNewOrderLoadEvent {
     TResult Function(OrderItem item)? deleteItem,
     TResult Function(OrderItem item, int newCount)? countChanged,
     TResult Function(OrderItem item, String newComment)? commentChanged,
+    TResult Function(String newTable)? tableChanged,
     TResult Function(void Function() onSuccess)? submit,
     required TResult orElse(),
   }) {
@@ -189,6 +198,7 @@ class _$AddNewOrderLoadEventImpl implements AddNewOrderLoadEvent {
     required TResult Function(AddNewOrderCountChangedEvent value) countChanged,
     required TResult Function(AddNewOrderCommentChangedEvent value)
         commentChanged,
+    required TResult Function(AddNewOrderTableChangedEvent value) tableChanged,
     required TResult Function(AddNewOrderSubmitEvent value) submit,
   }) {
     return load(this);
@@ -202,6 +212,7 @@ class _$AddNewOrderLoadEventImpl implements AddNewOrderLoadEvent {
     TResult? Function(AddNewOrderDeleteItemEvent value)? deleteItem,
     TResult? Function(AddNewOrderCountChangedEvent value)? countChanged,
     TResult? Function(AddNewOrderCommentChangedEvent value)? commentChanged,
+    TResult? Function(AddNewOrderTableChangedEvent value)? tableChanged,
     TResult? Function(AddNewOrderSubmitEvent value)? submit,
   }) {
     return load?.call(this);
@@ -215,6 +226,7 @@ class _$AddNewOrderLoadEventImpl implements AddNewOrderLoadEvent {
     TResult Function(AddNewOrderDeleteItemEvent value)? deleteItem,
     TResult Function(AddNewOrderCountChangedEvent value)? countChanged,
     TResult Function(AddNewOrderCommentChangedEvent value)? commentChanged,
+    TResult Function(AddNewOrderTableChangedEvent value)? tableChanged,
     TResult Function(AddNewOrderSubmitEvent value)? submit,
     required TResult orElse(),
   }) {
@@ -332,6 +344,7 @@ class _$AddNewOrderDishSelectedEventImpl
     required TResult Function(OrderItem item) deleteItem,
     required TResult Function(OrderItem item, int newCount) countChanged,
     required TResult Function(OrderItem item, String newComment) commentChanged,
+    required TResult Function(String newTable) tableChanged,
     required TResult Function(void Function() onSuccess) submit,
   }) {
     return dishSelected(dish, count, comment);
@@ -345,6 +358,7 @@ class _$AddNewOrderDishSelectedEventImpl
     TResult? Function(OrderItem item)? deleteItem,
     TResult? Function(OrderItem item, int newCount)? countChanged,
     TResult? Function(OrderItem item, String newComment)? commentChanged,
+    TResult? Function(String newTable)? tableChanged,
     TResult? Function(void Function() onSuccess)? submit,
   }) {
     return dishSelected?.call(dish, count, comment);
@@ -358,6 +372,7 @@ class _$AddNewOrderDishSelectedEventImpl
     TResult Function(OrderItem item)? deleteItem,
     TResult Function(OrderItem item, int newCount)? countChanged,
     TResult Function(OrderItem item, String newComment)? commentChanged,
+    TResult Function(String newTable)? tableChanged,
     TResult Function(void Function() onSuccess)? submit,
     required TResult orElse(),
   }) {
@@ -376,6 +391,7 @@ class _$AddNewOrderDishSelectedEventImpl
     required TResult Function(AddNewOrderCountChangedEvent value) countChanged,
     required TResult Function(AddNewOrderCommentChangedEvent value)
         commentChanged,
+    required TResult Function(AddNewOrderTableChangedEvent value) tableChanged,
     required TResult Function(AddNewOrderSubmitEvent value) submit,
   }) {
     return dishSelected(this);
@@ -389,6 +405,7 @@ class _$AddNewOrderDishSelectedEventImpl
     TResult? Function(AddNewOrderDeleteItemEvent value)? deleteItem,
     TResult? Function(AddNewOrderCountChangedEvent value)? countChanged,
     TResult? Function(AddNewOrderCommentChangedEvent value)? commentChanged,
+    TResult? Function(AddNewOrderTableChangedEvent value)? tableChanged,
     TResult? Function(AddNewOrderSubmitEvent value)? submit,
   }) {
     return dishSelected?.call(this);
@@ -402,6 +419,7 @@ class _$AddNewOrderDishSelectedEventImpl
     TResult Function(AddNewOrderDeleteItemEvent value)? deleteItem,
     TResult Function(AddNewOrderCountChangedEvent value)? countChanged,
     TResult Function(AddNewOrderCommentChangedEvent value)? commentChanged,
+    TResult Function(AddNewOrderTableChangedEvent value)? tableChanged,
     TResult Function(AddNewOrderSubmitEvent value)? submit,
     required TResult orElse(),
   }) {
@@ -511,6 +529,7 @@ class _$AddNewOrderDeleteItemEventImpl implements AddNewOrderDeleteItemEvent {
     required TResult Function(OrderItem item) deleteItem,
     required TResult Function(OrderItem item, int newCount) countChanged,
     required TResult Function(OrderItem item, String newComment) commentChanged,
+    required TResult Function(String newTable) tableChanged,
     required TResult Function(void Function() onSuccess) submit,
   }) {
     return deleteItem(item);
@@ -524,6 +543,7 @@ class _$AddNewOrderDeleteItemEventImpl implements AddNewOrderDeleteItemEvent {
     TResult? Function(OrderItem item)? deleteItem,
     TResult? Function(OrderItem item, int newCount)? countChanged,
     TResult? Function(OrderItem item, String newComment)? commentChanged,
+    TResult? Function(String newTable)? tableChanged,
     TResult? Function(void Function() onSuccess)? submit,
   }) {
     return deleteItem?.call(item);
@@ -537,6 +557,7 @@ class _$AddNewOrderDeleteItemEventImpl implements AddNewOrderDeleteItemEvent {
     TResult Function(OrderItem item)? deleteItem,
     TResult Function(OrderItem item, int newCount)? countChanged,
     TResult Function(OrderItem item, String newComment)? commentChanged,
+    TResult Function(String newTable)? tableChanged,
     TResult Function(void Function() onSuccess)? submit,
     required TResult orElse(),
   }) {
@@ -555,6 +576,7 @@ class _$AddNewOrderDeleteItemEventImpl implements AddNewOrderDeleteItemEvent {
     required TResult Function(AddNewOrderCountChangedEvent value) countChanged,
     required TResult Function(AddNewOrderCommentChangedEvent value)
         commentChanged,
+    required TResult Function(AddNewOrderTableChangedEvent value) tableChanged,
     required TResult Function(AddNewOrderSubmitEvent value) submit,
   }) {
     return deleteItem(this);
@@ -568,6 +590,7 @@ class _$AddNewOrderDeleteItemEventImpl implements AddNewOrderDeleteItemEvent {
     TResult? Function(AddNewOrderDeleteItemEvent value)? deleteItem,
     TResult? Function(AddNewOrderCountChangedEvent value)? countChanged,
     TResult? Function(AddNewOrderCommentChangedEvent value)? commentChanged,
+    TResult? Function(AddNewOrderTableChangedEvent value)? tableChanged,
     TResult? Function(AddNewOrderSubmitEvent value)? submit,
   }) {
     return deleteItem?.call(this);
@@ -581,6 +604,7 @@ class _$AddNewOrderDeleteItemEventImpl implements AddNewOrderDeleteItemEvent {
     TResult Function(AddNewOrderDeleteItemEvent value)? deleteItem,
     TResult Function(AddNewOrderCountChangedEvent value)? countChanged,
     TResult Function(AddNewOrderCommentChangedEvent value)? commentChanged,
+    TResult Function(AddNewOrderTableChangedEvent value)? tableChanged,
     TResult Function(AddNewOrderSubmitEvent value)? submit,
     required TResult orElse(),
   }) {
@@ -696,6 +720,7 @@ class _$AddNewOrderCountChangedEventImpl
     required TResult Function(OrderItem item) deleteItem,
     required TResult Function(OrderItem item, int newCount) countChanged,
     required TResult Function(OrderItem item, String newComment) commentChanged,
+    required TResult Function(String newTable) tableChanged,
     required TResult Function(void Function() onSuccess) submit,
   }) {
     return countChanged(item, newCount);
@@ -709,6 +734,7 @@ class _$AddNewOrderCountChangedEventImpl
     TResult? Function(OrderItem item)? deleteItem,
     TResult? Function(OrderItem item, int newCount)? countChanged,
     TResult? Function(OrderItem item, String newComment)? commentChanged,
+    TResult? Function(String newTable)? tableChanged,
     TResult? Function(void Function() onSuccess)? submit,
   }) {
     return countChanged?.call(item, newCount);
@@ -722,6 +748,7 @@ class _$AddNewOrderCountChangedEventImpl
     TResult Function(OrderItem item)? deleteItem,
     TResult Function(OrderItem item, int newCount)? countChanged,
     TResult Function(OrderItem item, String newComment)? commentChanged,
+    TResult Function(String newTable)? tableChanged,
     TResult Function(void Function() onSuccess)? submit,
     required TResult orElse(),
   }) {
@@ -740,6 +767,7 @@ class _$AddNewOrderCountChangedEventImpl
     required TResult Function(AddNewOrderCountChangedEvent value) countChanged,
     required TResult Function(AddNewOrderCommentChangedEvent value)
         commentChanged,
+    required TResult Function(AddNewOrderTableChangedEvent value) tableChanged,
     required TResult Function(AddNewOrderSubmitEvent value) submit,
   }) {
     return countChanged(this);
@@ -753,6 +781,7 @@ class _$AddNewOrderCountChangedEventImpl
     TResult? Function(AddNewOrderDeleteItemEvent value)? deleteItem,
     TResult? Function(AddNewOrderCountChangedEvent value)? countChanged,
     TResult? Function(AddNewOrderCommentChangedEvent value)? commentChanged,
+    TResult? Function(AddNewOrderTableChangedEvent value)? tableChanged,
     TResult? Function(AddNewOrderSubmitEvent value)? submit,
   }) {
     return countChanged?.call(this);
@@ -766,6 +795,7 @@ class _$AddNewOrderCountChangedEventImpl
     TResult Function(AddNewOrderDeleteItemEvent value)? deleteItem,
     TResult Function(AddNewOrderCountChangedEvent value)? countChanged,
     TResult Function(AddNewOrderCommentChangedEvent value)? commentChanged,
+    TResult Function(AddNewOrderTableChangedEvent value)? tableChanged,
     TResult Function(AddNewOrderSubmitEvent value)? submit,
     required TResult orElse(),
   }) {
@@ -884,6 +914,7 @@ class _$AddNewOrderCommentChangedEventImpl
     required TResult Function(OrderItem item) deleteItem,
     required TResult Function(OrderItem item, int newCount) countChanged,
     required TResult Function(OrderItem item, String newComment) commentChanged,
+    required TResult Function(String newTable) tableChanged,
     required TResult Function(void Function() onSuccess) submit,
   }) {
     return commentChanged(item, newComment);
@@ -897,6 +928,7 @@ class _$AddNewOrderCommentChangedEventImpl
     TResult? Function(OrderItem item)? deleteItem,
     TResult? Function(OrderItem item, int newCount)? countChanged,
     TResult? Function(OrderItem item, String newComment)? commentChanged,
+    TResult? Function(String newTable)? tableChanged,
     TResult? Function(void Function() onSuccess)? submit,
   }) {
     return commentChanged?.call(item, newComment);
@@ -910,6 +942,7 @@ class _$AddNewOrderCommentChangedEventImpl
     TResult Function(OrderItem item)? deleteItem,
     TResult Function(OrderItem item, int newCount)? countChanged,
     TResult Function(OrderItem item, String newComment)? commentChanged,
+    TResult Function(String newTable)? tableChanged,
     TResult Function(void Function() onSuccess)? submit,
     required TResult orElse(),
   }) {
@@ -928,6 +961,7 @@ class _$AddNewOrderCommentChangedEventImpl
     required TResult Function(AddNewOrderCountChangedEvent value) countChanged,
     required TResult Function(AddNewOrderCommentChangedEvent value)
         commentChanged,
+    required TResult Function(AddNewOrderTableChangedEvent value) tableChanged,
     required TResult Function(AddNewOrderSubmitEvent value) submit,
   }) {
     return commentChanged(this);
@@ -941,6 +975,7 @@ class _$AddNewOrderCommentChangedEventImpl
     TResult? Function(AddNewOrderDeleteItemEvent value)? deleteItem,
     TResult? Function(AddNewOrderCountChangedEvent value)? countChanged,
     TResult? Function(AddNewOrderCommentChangedEvent value)? commentChanged,
+    TResult? Function(AddNewOrderTableChangedEvent value)? tableChanged,
     TResult? Function(AddNewOrderSubmitEvent value)? submit,
   }) {
     return commentChanged?.call(this);
@@ -954,6 +989,7 @@ class _$AddNewOrderCommentChangedEventImpl
     TResult Function(AddNewOrderDeleteItemEvent value)? deleteItem,
     TResult Function(AddNewOrderCountChangedEvent value)? countChanged,
     TResult Function(AddNewOrderCommentChangedEvent value)? commentChanged,
+    TResult Function(AddNewOrderTableChangedEvent value)? tableChanged,
     TResult Function(AddNewOrderSubmitEvent value)? submit,
     required TResult orElse(),
   }) {
@@ -974,6 +1010,180 @@ abstract class AddNewOrderCommentChangedEvent implements AddNewOrderEvent {
   @JsonKey(ignore: true)
   _$$AddNewOrderCommentChangedEventImplCopyWith<
           _$AddNewOrderCommentChangedEventImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$AddNewOrderTableChangedEventImplCopyWith<$Res> {
+  factory _$$AddNewOrderTableChangedEventImplCopyWith(
+          _$AddNewOrderTableChangedEventImpl value,
+          $Res Function(_$AddNewOrderTableChangedEventImpl) then) =
+      __$$AddNewOrderTableChangedEventImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String newTable});
+}
+
+/// @nodoc
+class __$$AddNewOrderTableChangedEventImplCopyWithImpl<$Res>
+    extends _$AddNewOrderEventCopyWithImpl<$Res,
+        _$AddNewOrderTableChangedEventImpl>
+    implements _$$AddNewOrderTableChangedEventImplCopyWith<$Res> {
+  __$$AddNewOrderTableChangedEventImplCopyWithImpl(
+      _$AddNewOrderTableChangedEventImpl _value,
+      $Res Function(_$AddNewOrderTableChangedEventImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? newTable = null,
+  }) {
+    return _then(_$AddNewOrderTableChangedEventImpl(
+      null == newTable
+          ? _value.newTable
+          : newTable // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$AddNewOrderTableChangedEventImpl
+    implements AddNewOrderTableChangedEvent {
+  _$AddNewOrderTableChangedEventImpl(this.newTable);
+
+  @override
+  final String newTable;
+
+  @override
+  String toString() {
+    return 'AddNewOrderEvent.tableChanged(newTable: $newTable)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AddNewOrderTableChangedEventImpl &&
+            (identical(other.newTable, newTable) ||
+                other.newTable == newTable));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, newTable);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AddNewOrderTableChangedEventImplCopyWith<
+          _$AddNewOrderTableChangedEventImpl>
+      get copyWith => __$$AddNewOrderTableChangedEventImplCopyWithImpl<
+          _$AddNewOrderTableChangedEventImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() load,
+    required TResult Function(Dish dish, int? count, String? comment)
+        dishSelected,
+    required TResult Function(OrderItem item) deleteItem,
+    required TResult Function(OrderItem item, int newCount) countChanged,
+    required TResult Function(OrderItem item, String newComment) commentChanged,
+    required TResult Function(String newTable) tableChanged,
+    required TResult Function(void Function() onSuccess) submit,
+  }) {
+    return tableChanged(newTable);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? load,
+    TResult? Function(Dish dish, int? count, String? comment)? dishSelected,
+    TResult? Function(OrderItem item)? deleteItem,
+    TResult? Function(OrderItem item, int newCount)? countChanged,
+    TResult? Function(OrderItem item, String newComment)? commentChanged,
+    TResult? Function(String newTable)? tableChanged,
+    TResult? Function(void Function() onSuccess)? submit,
+  }) {
+    return tableChanged?.call(newTable);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? load,
+    TResult Function(Dish dish, int? count, String? comment)? dishSelected,
+    TResult Function(OrderItem item)? deleteItem,
+    TResult Function(OrderItem item, int newCount)? countChanged,
+    TResult Function(OrderItem item, String newComment)? commentChanged,
+    TResult Function(String newTable)? tableChanged,
+    TResult Function(void Function() onSuccess)? submit,
+    required TResult orElse(),
+  }) {
+    if (tableChanged != null) {
+      return tableChanged(newTable);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(AddNewOrderLoadEvent value) load,
+    required TResult Function(AddNewOrderDishSelectedEvent value) dishSelected,
+    required TResult Function(AddNewOrderDeleteItemEvent value) deleteItem,
+    required TResult Function(AddNewOrderCountChangedEvent value) countChanged,
+    required TResult Function(AddNewOrderCommentChangedEvent value)
+        commentChanged,
+    required TResult Function(AddNewOrderTableChangedEvent value) tableChanged,
+    required TResult Function(AddNewOrderSubmitEvent value) submit,
+  }) {
+    return tableChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AddNewOrderLoadEvent value)? load,
+    TResult? Function(AddNewOrderDishSelectedEvent value)? dishSelected,
+    TResult? Function(AddNewOrderDeleteItemEvent value)? deleteItem,
+    TResult? Function(AddNewOrderCountChangedEvent value)? countChanged,
+    TResult? Function(AddNewOrderCommentChangedEvent value)? commentChanged,
+    TResult? Function(AddNewOrderTableChangedEvent value)? tableChanged,
+    TResult? Function(AddNewOrderSubmitEvent value)? submit,
+  }) {
+    return tableChanged?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AddNewOrderLoadEvent value)? load,
+    TResult Function(AddNewOrderDishSelectedEvent value)? dishSelected,
+    TResult Function(AddNewOrderDeleteItemEvent value)? deleteItem,
+    TResult Function(AddNewOrderCountChangedEvent value)? countChanged,
+    TResult Function(AddNewOrderCommentChangedEvent value)? commentChanged,
+    TResult Function(AddNewOrderTableChangedEvent value)? tableChanged,
+    TResult Function(AddNewOrderSubmitEvent value)? submit,
+    required TResult orElse(),
+  }) {
+    if (tableChanged != null) {
+      return tableChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class AddNewOrderTableChangedEvent implements AddNewOrderEvent {
+  factory AddNewOrderTableChangedEvent(final String newTable) =
+      _$AddNewOrderTableChangedEventImpl;
+
+  String get newTable;
+  @JsonKey(ignore: true)
+  _$$AddNewOrderTableChangedEventImplCopyWith<
+          _$AddNewOrderTableChangedEventImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -1051,6 +1261,7 @@ class _$AddNewOrderSubmitEventImpl implements AddNewOrderSubmitEvent {
     required TResult Function(OrderItem item) deleteItem,
     required TResult Function(OrderItem item, int newCount) countChanged,
     required TResult Function(OrderItem item, String newComment) commentChanged,
+    required TResult Function(String newTable) tableChanged,
     required TResult Function(void Function() onSuccess) submit,
   }) {
     return submit(onSuccess);
@@ -1064,6 +1275,7 @@ class _$AddNewOrderSubmitEventImpl implements AddNewOrderSubmitEvent {
     TResult? Function(OrderItem item)? deleteItem,
     TResult? Function(OrderItem item, int newCount)? countChanged,
     TResult? Function(OrderItem item, String newComment)? commentChanged,
+    TResult? Function(String newTable)? tableChanged,
     TResult? Function(void Function() onSuccess)? submit,
   }) {
     return submit?.call(onSuccess);
@@ -1077,6 +1289,7 @@ class _$AddNewOrderSubmitEventImpl implements AddNewOrderSubmitEvent {
     TResult Function(OrderItem item)? deleteItem,
     TResult Function(OrderItem item, int newCount)? countChanged,
     TResult Function(OrderItem item, String newComment)? commentChanged,
+    TResult Function(String newTable)? tableChanged,
     TResult Function(void Function() onSuccess)? submit,
     required TResult orElse(),
   }) {
@@ -1095,6 +1308,7 @@ class _$AddNewOrderSubmitEventImpl implements AddNewOrderSubmitEvent {
     required TResult Function(AddNewOrderCountChangedEvent value) countChanged,
     required TResult Function(AddNewOrderCommentChangedEvent value)
         commentChanged,
+    required TResult Function(AddNewOrderTableChangedEvent value) tableChanged,
     required TResult Function(AddNewOrderSubmitEvent value) submit,
   }) {
     return submit(this);
@@ -1108,6 +1322,7 @@ class _$AddNewOrderSubmitEventImpl implements AddNewOrderSubmitEvent {
     TResult? Function(AddNewOrderDeleteItemEvent value)? deleteItem,
     TResult? Function(AddNewOrderCountChangedEvent value)? countChanged,
     TResult? Function(AddNewOrderCommentChangedEvent value)? commentChanged,
+    TResult? Function(AddNewOrderTableChangedEvent value)? tableChanged,
     TResult? Function(AddNewOrderSubmitEvent value)? submit,
   }) {
     return submit?.call(this);
@@ -1121,6 +1336,7 @@ class _$AddNewOrderSubmitEventImpl implements AddNewOrderSubmitEvent {
     TResult Function(AddNewOrderDeleteItemEvent value)? deleteItem,
     TResult Function(AddNewOrderCountChangedEvent value)? countChanged,
     TResult Function(AddNewOrderCommentChangedEvent value)? commentChanged,
+    TResult Function(AddNewOrderTableChangedEvent value)? tableChanged,
     TResult Function(AddNewOrderSubmitEvent value)? submit,
     required TResult orElse(),
   }) {

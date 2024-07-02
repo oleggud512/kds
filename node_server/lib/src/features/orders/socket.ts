@@ -11,7 +11,8 @@ let orders: Namespace
 
 export type OrderFilters = {
   waiterId?: number,
-  state?: OrderState
+  state?: OrderState,
+  startDate?: string
 }
 
 function waiterRoom(waiterId: any) {
@@ -64,6 +65,7 @@ export function setupOrderSockets(io: Server) {
 
     socket.on("update-waiter-orders-filters", (filters: OrderFilters) => {
       socket.data.filters = filters
+      console.log("updating socket filters: " + JSON.stringify(filters))
       sendWaiterOrders()
     })
 
@@ -115,9 +117,13 @@ export async function sendWaiterOrders() : Promise<void> {
       const filters: OrderFilters = 
         orders.sockets.get(orders.adapter.rooms.get(roomName)
           ?.values().next().value)!.data.filters
+      console.log("sending with filters: " + JSON.stringify(filters))
       orderRepository.getOrders({
         waiterId: filters.waiterId,
-        state: filters.state
+        state: filters.state,
+        startDate: filters.startDate 
+          ? new Date(filters.startDate!) 
+          : undefined
       }).then(ords => {
         orders
           .to(roomName)
@@ -137,7 +143,7 @@ export async function sendWaiterOrders() : Promise<void> {
 export async function sendDishReady(orderItem: IOrderItem) : Promise<void> {
   const waiterId = orderItem.order!.waiterId
   const roomName = notificationRoom(waiterId)
-
+  console.log(`sent notification to ${roomName}`)
   orders
     .to(roomName)
     .emit("dish-ready-notification", orderItem)

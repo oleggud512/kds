@@ -37,6 +37,7 @@ export async function addOrder(
   next: NextFunction
 ) {
   const waiterId = tryParseInt(res.locals.waiterId)
+  const table = req.body.table 
   const items: CreateOrderItem[] = []
 
   for (const item of req.body.items) {
@@ -47,7 +48,11 @@ export async function addOrder(
     })
   }
 
-  const order = await ordersService.addOrder({ waiterId: waiterId!, items })
+  const order = await ordersService.addOrder({ 
+    waiterId: waiterId!, 
+    table: table,
+    items 
+  })
   return res.json({ data: order })
 }
 
